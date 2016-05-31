@@ -100,60 +100,115 @@
 	if($api == 'wiki')
 	{
 
-		$token = $_POST['token'];
-		$user_id = $_POST['user_id'];
-
 		$ret = array();
 
-		if(is_login($token,$user_id))
-		{
-			$type = $_POST['type'];
+		$type = $_POST['type'];
 
-			$ret['status'] = "1";
-			$ret['error'] = "SUCCESS";
-			$ret['data'] = get_wiki_video($type);
-		}
-		else
-		{
-			$ret['status'] = 0;
-			$ret['error'] = '登录超时或未登录';
-			$ret['data'] = -1;
-		}
+		$ret['data'] = get_wiki_video($type);
+		$ret['status'] = "1";
+		$ret['error'] = "SUCCESS";
+
 		echo json_encode($ret);
 		exit();
 
 	}
 
 	/**
-	 * 获取发现-体育明星
-	 * @var [type]
+	 * 获取百科视频总数
+	 * @var [type = '0' ： 获取标准动作视频]
+	 * @var [type = '0' ： 获取原创动作视频]
+	 */
+	if($api == 'wiki_count')
+	{
+		$ret = $_POST['type'];
+
+		$ret['data'] = get_wiki_video_count($type);
+
+		$ret['status'] = '1';
+		$ret['error'] = 'SUCCESS';
+
+		echo json_encode($ret);
+		ext();
+	}
+
+	/**
+	 * 获取发现-体育明星-普通用户
+	 * @var [`0`:普通用户,`1`:专家用户（体育明星）]
 	 */
 	if($api == ‘discovery’)
 	{
-		$token = $_POST['token'];
-		$user_id = $_POST['user_id'];
 
 		$ret = array();
 
-		if(is_login($token,$user_id))
-		{
-			$type = $_POST['type'];
+		$type = $_POST['type'];
 
-			$ret['status'] = "1";
-			$ret['error'] = "SUCCESS";
-			$ret['data'] = get_wiki_video($type);
-		}
-		else
-		{
-			$ret['status'] = 0;
-			$ret['error'] = '登录超时或未登录';
-			$ret['data'] = -1;
-		}
+		$ret['data'] = get_user($type);
+		$ret['status'] = "1";
+		$ret['error'] = "SUCCESS";
+
 		echo json_encode($ret);
 		exit();
 	}
 
+	/**
+	 * 获取发现用户列表总数
+	 * @var [`0`:普通用户,`1`:专家用户（体育明星）]
+	 */
+	if($api == 'discovery_count')
+	{
+		$ret = array();
+		$ret['status'] = '0';
+		$ret['error'] = "数据获取失败";
 
+		$type = $_POST['type'];
+
+		$ret['data'] = get_user_count($type);
+
+		$ret['status'] = '1';
+		$ret['error'] = "SUCCESS";
+
+		echo json_encode($ret);
+		exit();
+
+	}
+
+	/**
+	 * 获取首页-发现-俱乐部列表
+	 * @var [type]
+	 */
+	if($api == 'dis_club')
+	{
+		$ret = array();
+		$ret['status'] = '0';
+		$ret['error'] = '数据获取失败';
+
+		$ret['data'] = get_dis_club();
+
+		$ret['status'] = '1';
+		$ret['error'] = 'SUCCESS';
+
+		echo json_encode($ret);
+		exit();
+	}
+
+	/**
+	 * 获取首页-发现-俱乐部总数
+	 * @var [type]
+	 */
+	if($api == 'dis_club_count')
+	{
+		$ret = array();
+		$ret['status'] = '0';
+		$ret['error'] = '数据获取失败';
+
+		$ret['data'] = get_dis_club_count();
+
+		$ret['status'] = '1';
+		$ret['error'] = 'SUCCESS';
+
+		echo json_encode($ret);
+		exit();
+	}
 
 
 /**
@@ -275,6 +330,109 @@ function get_wiki_video_count($type = ‘0’)
 
 }
 
+/**
+ * 获取用户列表
+ * @param  string $type [`0`:普通用户,`1`:专家用户（体育明星）]
+ * @return [type]       [description]
+ */
+function get_user($type = '0')
+{
+
+	$db = $GLOBALS['db'];
+	$total = get_user_count($type);
+	$max_page = ceil($total/$page_size);
+
+	if($page > $max_page)
+	{
+		$page = $max_page;
+	}
+	if($page < 1)
+	{
+		$page = 1;
+	}
+
+	if($page_size < 12)
+	{
+		$page_size = 12;
+	}
+
+	$start = ($page-1)*$page_size;
+
+	$sql = "SELECT user_id, user_name, img as user_img ".
+					" FROM user ".
+					" WHERE role = '".$type."' ".
+					" ORDER BY user_id ";
+
+	$sql .= " LIMIT $start,$page_size ";
+
+	$results = $db->get_results($sql);
+
+	return $results;
+
+}
+
+/**
+ * 获取用户列表总数
+ * @param  string $type [`0`:普通用户,`1`:专家用户（体育明星）]
+ * @return [type]       [description]
+ */
+function get_user_count($type = '0')
+{
+	$sql = "SELECT count(*) FROM user WHERE role_id = '".$type."'";
+	$count = $db->get_var($sql);
+
+	return $count;
+}
+
+/**
+ * 获取俱乐部列表
+ * @return boolean [description]
+ */
+function get_dis_club()
+{
+
+	$db = $GLOBALS['db'];
+	$total = get_dis_club_count();
+	$max_page = ceil($total/$page_size);
+
+	if($page > $max_page)
+	{
+		$page = $max_page;
+	}
+	if($page < 1)
+	{
+		$page = 1;
+	}
+
+	if($page_size < 12)
+	{
+		$page_size = 12;
+	}
+
+	$start = ($page-1)*$page_size;
+
+	$sql = "SELECT club_id, club_name, img as club_img ".
+					" FROM club ".
+					" ORDER BY rank DESC ";
+
+	$sql .= " LIMIT $start,$page_size ";
+
+	$results = $db->get_results($sql);
+
+	return $results;
+
+}
+
+/**
+ * 获取俱乐部总数
+ * @return boolean [description]
+ */
+function get_dis_club_count()
+{
+	$sql = "SELECT count(*) FROM club";
+	$count = $db->get_var($sql);
+	return $count;
+}
 
 
 ?>
