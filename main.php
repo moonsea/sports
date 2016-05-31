@@ -36,33 +36,245 @@
 
 	}
 
-	//登录
-	if($api == 'login')
+	/**
+	 * 关注
+	 * @var [type]
+	 */
+	 if($api == 'favorite')
+ 	{
+ 		$token = $_POST['token'];
+ 		$user_id = $_POST['user_id'];
+ 		$page = $_POST['page'];
+ 		$page_size = $_POST['page_size'];
+
+		$ret = array();
+
+		if(is_login($token,$user_id))
+ 		{
+ 			$ret['status'] = "1";
+ 			$ret['error'] = "SUCCESS";
+ 			$ret['data'] = get_favorite($user_id,$page,$page_size);
+ 		}
+ 		else
+ 		{
+ 			$ret['status'] = 0;
+ 			$ret['error'] = '登录超时或未登录';
+ 			$ret['data'] = -1;
+ 		}
+ 		echo json_encode($ret);
+ 		exit();
+ 	}
+
+	/**
+	 * 关注总数
+	 * @var [type]
+	 */
+	if($api == 'favorite_count')
 	{
-		$phone = $_POST['name'];
-		$password = $_POST['password'];
-		if(check_login($phone,$password))
+		$token = $_POST['token'];
+ 		$user_id = $_POST['user_id'];
+
+		$ret = array();
+
+		if(is_login($token,$user_id))
+ 		{
+ 			$ret['status'] = "1";
+ 			$ret['error'] = "SUCCESS";
+ 			$ret['data'] = get_favorite_count($user_id);
+ 		}
+ 		else
+ 		{
+ 			$ret['status'] = 0;
+ 			$ret['error'] = '登录超时或未登录';
+ 			$ret['data'] = -1;
+ 		}
+ 		echo json_encode($ret);
+ 		exit();
+	}
+
+	/**
+	 * 获取百科视频
+	 * @var [type = '0' ： 获取标准动作视频]
+	 * @var [type = '0' ： 获取原创动作视频]
+	 */
+	if($api == 'wiki')
+	{
+
+		$token = $_POST['token'];
+		$user_id = $_POST['user_id'];
+
+		$ret = array();
+
+		if(is_login($token,$user_id))
 		{
-			$ret = array();
-			$ret["status"] = 1;
-			$ret["error"] = "SUCCESS";
-			$ret["token"] = md5($phone);
-			update_session($ret["token"]);
-			$ret["data"] = get_user_info($phone);
-			echo json_encode($ret);
-			exit();
+			$type = $_POST['type'];
+
+			$ret['status'] = "1";
+			$ret['error'] = "SUCCESS";
+			$ret['data'] = get_wiki_video($type);
 		}
 		else
 		{
-			$ret =array();
-			$ret["status"] = 0;
-			$ret["error"] = "登录失败";
-			$ret["token"] = 0;
-			$ret["data"] = 0;
-			echo json_encode($ret);
-			exit();
+			$ret['status'] = 0;
+			$ret['error'] = '登录超时或未登录';
+			$ret['data'] = -1;
 		}
+		echo json_encode($ret);
+		exit();
+
 	}
+
+	/**
+	 * 获取发现-体育明星
+	 * @var [type]
+	 */
+	if($api == ‘discovery’)
+	{
+		$token = $_POST['token'];
+		$user_id = $_POST['user_id'];
+
+		$ret = array();
+
+		if(is_login($token,$user_id))
+		{
+			$type = $_POST['type'];
+
+			$ret['status'] = "1";
+			$ret['error'] = "SUCCESS";
+			$ret['data'] = get_wiki_video($type);
+		}
+		else
+		{
+			$ret['status'] = 0;
+			$ret['error'] = '登录超时或未登录';
+			$ret['data'] = -1;
+		}
+		echo json_encode($ret);
+		exit();
+	}
+
+
+
+
+/**
+ * 功能函数
+ */
+
+/**
+ * 获取关注视频列表
+ * @param  [type]  $user_id   [当前登录用户id]
+ * @param  integer $page      [页数]
+ * @param  integer $page_size [每页大小description]
+ * @return [type]             [description]
+ */
+ function get_favorite($user_id,$page=1,$page_size=12)
+ {
+ 	$db = $GLOBALS['db'];
+ 	$total = get_favorite_count($user_id);
+ 	$max_page = ceil($total/$page_size);
+
+ 	if($page > $max_page)
+ 	{
+ 		$page = $max_page;
+ 	}
+ 	if($page < 1)
+ 	{
+ 		$page = 1;
+ 	}
+
+ 	if($page_size < 12)
+ 	{
+ 		$page_size = 12;
+ 	}
+
+ 	$start = ($page-1)*$page_size;
+
+	$sql = "SELECT a.user_id,a.user_name, a.img asd user_img, b.id as video_id, b.desc as video_desc, b.last_time as video_time, b.video_path ".
+					" FROM user a LEFT JOIN video b on a.user_id = b.user_id ".
+					" WHERE a.user_id IN ".
+					" (SELECT atten_id FROM favorite WHERE user_id = '" .$user_id. "') ".
+					" ORDER BY last_time DESC";
+
+	$sql .= " LIMIT $start,$page_size ";
+
+	$results = $db->get_results($sql);
+
+	return $results;
+ }
+
+/**
+ * 获取关注视频总数
+ * @param  [type] $user_id [登陆用户id]
+ * @return [type]          [description]
+ */
+function get_favorite_count($user_id)
+{
+
+	$sql = "SELECT count(*) FROM video WHERE user_id IN ";
+
+	$sql .= " (SELECT atten_id FROM favorite WHERE user_id = '".$user_id."')";
+
+	$count = $db->get_var($sql);
+
+	return $count;
+
+}
+
+/**
+ * 获取百科视频
+ * @param  string $type [`0`:获取标准动作,`1`:获取原创动作]
+ * @return [type]       [description]
+ */
+function get_wiki_video($type = '0')
+{
+	$db = $GLOBALS['db'];
+	$total = get_wiki_video_count($type);
+	$max_page = ceil($total/$page_size);
+
+	if($page > $max_page)
+	{
+		$page = $max_page;
+	}
+	if($page < 1)
+	{
+		$page = 1;
+	}
+
+	if($page_size < 12)
+	{
+		$page_size = 12;
+	}
+
+	$start = ($page-1)*$page_size;
+
+	$sql = "SELECT id ad video_id, name ad video_name, praise_count, desc as video_desc, video_path ".
+					" FROM video ".
+					" WHERE class_id = '".$type."' ".
+					" ORDER BY praise_count DESC";
+
+	$sql .= " LIMIT $start,$page_size ";
+
+	$results = $db->get_results($sql);
+
+	return $results;
+
+}
+
+/**
+ * 获取百科视频总数
+ * @param  string $type [`0`:获取标准动作,`1`:获取原创动作]
+ * @return [type]       [description]
+ */
+function get_wiki_video_count($type = ‘0’)
+{
+	$sql = "SELECT count(*) FROM video WHERE class_id = '".$type."'";
+
+	$count = $db->get_var($sql);
+
+	return $count;
+
+}
+
 
 
 ?>
