@@ -1,14 +1,16 @@
 <?php
+
+header("content-Type:text/html;charset=utf=8");
 include("init.php");
 //检查手机号码是否合法
 function check_phone($phonenumber)
 {
 	if(preg_match("/^1[34578]{1}\d{9}$/",$phonenumber))
-	{  
-    	return TRUE; 
+	{
+    	return TRUE;
 	}
 	else
-	{  
+	{
 		return FALSE;
 	}
 }
@@ -100,6 +102,10 @@ function get_user_info($phone)
 	if($ret->img == "")
 	{
 		$ret->img = "http://placeholdit.imgix.net/~text?txtsize=26&txt=%E7%82%B9%E6%88%91%E4%B8%8A%E4%BC%A0&w=200&h=200";
+	}
+	if($ret->desc == "")
+	{
+		$ret->desc = "好懒，还没有设置任何的签名信息";
 	}
 	return $ret;
 }
@@ -280,7 +286,7 @@ function get_role($user_id)
 	$role = $db->get_var($sql);
 	if(!$role)
 	{
-		return -2;//尚未认证身份	
+		return -2;//尚未认证身份
 	}
 	else
 	{
@@ -290,18 +296,51 @@ function get_role($user_id)
 	}
 }
 
+//修改密码时检查原始密码是否正确
+function check_pass_psw($user_id,$psw)
+{
+	$db = $GLOBALS['db'];
+	$psw = md5($psw);
+	$sql = "select count(*) from user where user_id={$user_id} and password='{$psw}'";
+	if($db->get_var($sql))
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}
+
+//修改密码
+function update_psw($user_id,$psw)
+{
+	$db = $GLOBALS['db'];
+	$psw = md5($psw);
+	$sql = "update user set password='{$psw}' where user_id={$user_id}";
+	if($db->query($sql))
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}
+
+//获取关注关系
+function get_follow_relation($user_id,$follow)
+{
+	$db = $GLOBALS['db'];
+	$sql = "select count(*) from follow where user_id={$user_id} and follow_user={$follow}";
+	if($db->get_var($sql)>0)
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}
+
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

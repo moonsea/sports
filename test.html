@@ -8,23 +8,26 @@
   </head>
   <body>
     <p>
-      Demo
+      <!-- Demo -->
     </p>
     <script type="text/javascript">
       $().ready(function(e){
 
         $.ajax({
-          url:"main.php",
+          url:"http://123.57.31.72/sports/search.php",
           type:"POST",
-          dataTYpe:"json",
-          data:{act:'favorite',user_id:'1'},
+          dataTYpe:"jsonp",
+          contentType: "application/x-www-form-urlencoded; charset=utf-8",
+          data:{act:'search_video',data:2},
           success:function(data){
-            alert("success");
+            //alert("success");
+            document.writeln(data);
             console.log(data);
           },
           error:function(error){
             alert("error");
-            console.log(error);
+            document.writeln(error);
+            // console.log(error);
           }
 
         })

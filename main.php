@@ -1,5 +1,5 @@
-<meta charset="utf-8"/>
 <?php
+	error_reporting(0);
 
 	/**
 	 * 主页
@@ -9,30 +9,50 @@
 	include_once("includes/init.php");
 	include_once("includes/functions.php");
 	$api = $_REQUEST["act"];
+	$db = $GLOBALS['db'];
 
 	/**
-	 *	精选
+	 *	精选-用户视频
 	 */
-	if($api == "hot")
+	if($api == "hot_user")
 	{
-		$ret = array();
+        $ret = array();
+		$ret['status'] = 0;
+		$ret['error'] = '数据获取失败';
 
-		$sql = "select a.id as video_id,a.name as video_name, a.praise_count, count(b.comment_id) as comment_count, a.desc as video_desc ".
-						"from video a left join comment b on a.id = b.video_id ";
+ 		$page = $_POST['page'];
+ 		$page_size = $_POST['page_size'];
 
-		if($db->query($sql))
-		{
-			$ret['status'] = 1;
-			$ret['error'] = 'SUCCESS';
-			$ret['data'] = $db->get_results($sql);
-		}
-		else{
-			$ret['status'] = 0;
-			$ret['error'] = '数据获取失败';
-			$ret['data'] = '';
-		}
+		$ret['data'] = get_hot_user($page,$page_size);//$db->get_results($sql);
+		$ret['status'] = 1;
+		$ret['error'] = 'SUCCESS';
+		// var_dump($db->get_results($sql));
+		// exit();
+
 		echo json_encode($ret);
 		exit();
+
+	}
+
+	/**
+	 * 获取精选-比赛视频
+	 * @var [type]
+	 */
+	if($api == "hot_game")
+	{
+        $ret = array();
+		$ret['status'] = 0;
+		$ret['error'] = '数据获取失败';
+
+ 		$page = $_POST['page'];
+ 		$page_size = $_POST['page_size'];
+
+		$ret['data'] = get_hot_game($page,$page_size);
+		$ret['status'] = 1;
+		$ret['error'] = 'SUCCESS';
+
+		echo json_encode($ret);
+		exit()	;
 
 	}
 
@@ -53,7 +73,7 @@
  		{
  			$ret['status'] = "1";
  			$ret['error'] = "SUCCESS";
- 			$ret['data'] = get_favorite($user_id,$page,$page_size);
+ 			$ret['data'] = get_fav($user_id,$page,$page_size);
  		}
  		else
  		{
@@ -80,7 +100,7 @@
  		{
  			$ret['status'] = "1";
  			$ret['error'] = "SUCCESS";
- 			$ret['data'] = get_favorite_count($user_id);
+ 			$ret['data'] = get_fav_count($user_id);
  		}
  		else
  		{
@@ -104,7 +124,10 @@
 
 		$type = $_POST['type'];
 
-		$ret['data'] = get_wiki_video($type);
+		$page = $_POST['page'];
+ 		$page_size = $_POST['page_size'];
+
+		$ret['data'] = get_wiki_video($type,$page,$page_size);
 		$ret['status'] = "1";
 		$ret['error'] = "SUCCESS";
 
@@ -139,10 +162,14 @@
 	{
 
 		$ret = array();
+		$ret['status'] = "0";
+		$ret['error'] = "数据获取失败";
 
 		$type = $_POST['type'];
+		$page = $_POST['page'];
+ 		$page_size = $_POST['page_size'];
 
-		$ret['data'] = get_user($type);
+		$ret['data'] = get_user($type,$page,$page_size);
 		$ret['status'] = "1";
 		$ret['error'] = "SUCCESS";
 
@@ -182,7 +209,10 @@
 		$ret['status'] = '0';
 		$ret['error'] = '数据获取失败';
 
-		$ret['data'] = get_dis_club();
+		$page = $_POST['page'];
+ 		$page_size = $_POST['page_size'];
+
+		$ret['data'] = get_dis_club($page,$page_size);
 
 		$ret['status'] = '1';
 		$ret['error'] = 'SUCCESS';
@@ -216,16 +246,16 @@
  */
 
 /**
- * 获取关注视频列表
- * @param  [type]  $user_id   [当前登录用户id]
- * @param  integer $page      [页数]
- * @param  integer $page_size [每页大小description]
+ * 获取精选-用户视频列表
+ * @param  integer $page      [description]
+ * @param  integer $page_size [description]
  * @return [type]             [description]
  */
- function get_favorite($user_id,$page=1,$page_size=12)
- {
+function get_hot_user($page = 1, $page_size = 12)
+{
+
  	$db = $GLOBALS['db'];
- 	$total = get_favorite_count($user_id);
+ 	$total = get_hot_user_count();
  	$max_page = ceil($total/$page_size);
 
  	if($page > $max_page)
@@ -244,7 +274,114 @@
 
  	$start = ($page-1)*$page_size;
 
-	$sql = "SELECT a.user_id,a.user_name, a.img asd user_img, b.id as video_id, b.desc as video_desc, b.last_time as video_time, b.video_path ".
+	$sql = "select a.id as video_id, 'a.video_description' as video_desc, a.video_cover, b.user_id,b.user_name,b.img as user_img ".
+						"from video a left join user b on a.user_id = b.user_id ".
+						" where a.class = '1' ".
+						" order by a.praise_count ";
+
+	$sql .= " LIMIT $start,$page_size ";
+
+	$results = $db->get_results($sql);
+
+	return $results;
+}
+
+/**
+ * 获取精选-用户视频总数
+ * @return [type] [description]
+ */
+function get_hot_user_count()
+{
+ 	$db = $GLOBALS['db'];
+	$sql = "SELECT count(*) FROM video WHERE class = '1'";
+	$count = $db->get_var($sql);
+	return $count;
+}
+
+/**
+ * 获取精选-比赛视频列表
+ * @param  integer $page      [description]
+ * @param  integer $page_size [description]
+ * @return [type]             [description]
+ */
+function get_hot_game($page = 1, $page_size = 12)
+{
+
+ 	$db = $GLOBALS['db'];
+ 	$total = get_hot_game_count();
+ 	$max_page = ceil($total/$page_size);
+
+ 	if($page > $max_page)
+ 	{
+ 		$page = $max_page;
+ 	}
+ 	if($page < 1)
+ 	{
+ 		$page = 1;
+ 	}
+
+ 	if($page_size < 12)
+ 	{
+ 		$page_size = 12;
+ 	}
+
+ 	$start = ($page-1)*$page_size;
+
+	$sql = "select a.video_id, a.video_cover, b.game_id, c.game_name ".
+			"from game_video a left join video b on a.video_id = b.video_id ".
+			" left join game c on a.game_id = c.game_id ".
+			" where class = '1'".
+			" order by b.praise_count ";
+
+	$sql .= " LIMIT $start,$page_size ";
+
+	$results = $db->get_results($sql);
+
+	return $results;
+}
+
+/**
+ * 获取精选-比斯视频总数
+ * @return [type] [description]
+ */
+function get_hot_game_count()
+{
+	$db = $GLOBALS['db'];
+	$sql = "SELECT count('a.*') FROM game_video a left join video b on a.video_id = b.video_id WHERE b.class = '1'";
+	return $count;
+	$count = $db->get_var($sql);
+}
+
+/**
+ * 获取关注视频列表
+ * @param  [type]  $user_id   [当前登录用户id]
+ * @param  integer $page      [页数]
+ * @param  integer $page_size [每页大小description]
+ * @return [type]             [description]
+ */
+ function get_fav($user_id,$page=1,$page_size=12)
+ {
+ 	$db = $GLOBALS['db'];
+ 	$total = get_fav_count($user_id);
+ 	$max_page = ceil($total/$page_size);
+
+ 	if($page > $max_page)
+ 	{
+ 		$page = $max_page;
+ 	}
+ 	if($page < 1)
+ 	{
+ 		$page = 1;
+ 	}
+
+ 	if($page_size < 12)
+ 	{
+ 		$page_size = 12;
+ 	}
+
+ 	$start = ($page-1)*$page_size;
+
+	$sql = "SELECT a.user_id,a.user_name, a.img as user_img, b.id as video_id, b.description as video_desc, b.last_time as video_time, b.video_cover ".
 					" FROM user a LEFT JOIN video b on a.user_id = b.user_id ".
 					" WHERE a.user_id IN ".
 					" (SELECT atten_id FROM favorite WHERE user_id = '" .$user_id. "') ".
@@ -262,7 +399,7 @@
  * @param  [type] $user_id [登陆用户id]
  * @return [type]          [description]
  */
-function get_favorite_count($user_id)
+function get_fav_count($user_id)
 {
 
 	$sql = "SELECT count(*) FROM video WHERE user_id IN ";
@@ -280,7 +417,7 @@ function get_favorite_count($user_id)
  * @param  string $type [`0`:获取标准动作,`1`:获取原创动作]
  * @return [type]       [description]
  */
-function get_wiki_video($type = '0')
+function get_wiki_video($type = '0',$page=1,$page_size=12)
 {
 	$db = $GLOBALS['db'];
 	$total = get_wiki_video_count($type);
@@ -302,10 +439,11 @@ function get_wiki_video($type = '0')
 
 	$start = ($page-1)*$page_size;
 
-	$sql = "SELECT id ad video_id, name ad video_name, praise_count, desc as video_desc, video_path ".
-					" FROM video ".
-					" WHERE class_id = '".$type."' ".
-					" ORDER BY praise_count DESC";
+	$sql = "SELECT a.video_id, a.user_id, b.user_name, c.praise_count, c.description as video_desc, c.video_cover ".
+					" FROM wiki a LEFT JOIN user b ON a.user_id = b.user_id ".
+					" LEFT JOIN video c ON a.video_id = c.id ".
+					" WHERE a.type = '".$type."' ".
+					" ORDER BY c.praise_count DESC";
 
 	$sql .= " LIMIT $start,$page_size ";
 
@@ -322,7 +460,9 @@ function get_wiki_video($type = '0')
  */
 function get_wiki_video_count($type = ‘0’)
 {
-	$sql = "SELECT count(*) FROM video WHERE class_id = '".$type."'";
+	$db = $GLOBALS['db'];
+
+	$sql = "SELECT count(*) FROM wiki WHERE type = '".$type."'";
 
 	$count = $db->get_var($sql);
 
@@ -335,7 +475,7 @@ function get_wiki_video_count($type = ‘0’)
  * @param  string $type [`0`:普通用户,`1`:专家用户（体育明星）]
  * @return [type]       [description]
  */
-function get_user($type = '0')
+function get_user($type = '0',$page = 1, $page_size =12)
 {
 
 	$db = $GLOBALS['db'];
@@ -388,7 +528,7 @@ function get_user_count($type = '0')
  * 获取俱乐部列表
  * @return boolean [description]
  */
-function get_dis_club()
+function get_dis_club($page = 1, $page_size =12)
 {
 
 	$db = $GLOBALS['db'];

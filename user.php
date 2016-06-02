@@ -1,9 +1,10 @@
 <?php
 	error_reporting(0);
+	header("content-Type:text/html;charset=utf=8");
 	include("includes/init.php");
 	include("includes/functions.php");
 	$api = $_POST["act"];
-	
+
 	//注册新用户
 	if($api == "regist")
 	{
@@ -48,7 +49,7 @@
 			}
 		}
 	}
-	
+
 	//登录
 	if($api == 'login')
 	{
@@ -254,18 +255,159 @@
 		echo json_encode($ret);
 		exit();
 	}
+	//修改密码
+	if($api == 'set_psw')
+	{
+		$user_id = $_POST['user_id'];
+		$psw = $_POST['psw'];
+		$token = $_POST['token'];
+		if(is_login($token,$user_id))
+		{
+			if(check_pass_psw($user_id,$psw))
+			{
+				$psw_new = $_POST['psw_new'];
+				$psw_new_confirm = $_POST['psw_new_confirm'];
+				if($psw_new == $psw_new_confirm)
+				{
+					if(check_password($psw_new))
+					{
+						if(update_psw($user_id,$psw_new))
+						{
+							$ret['status'] = "1";
+							$ret['error'] = "SUCCESS";
+							$ret['data'] = 1;
+						}
+						else
+						{
+							$ret['status'] = "0";
+							$ret['error'] = "服务器忙，请稍后重试";
+							$ret['data'] = 0;
+						}
+					}
+					else
+					{
+						$ret['status'] = "0";
+						$ret['error'] = "新密码长度小于6位";
+						$ret['data'] = 0;
+					}
+				}
+				else
+				{
+					$ret['status'] = "0";
+					$ret['error'] = "两次密码不一致";
+					$ret['data'] = 0;
+				}
+			}
+			else
+			{
+				$ret['status'] = "0";
+				$ret['error'] = "原始密码错误";
+				$ret['data'] = 0;
+			}
+		}
+		else
+		{
+			$ret['status'] = 0;
+			$ret['error'] = '登录超时或未登录';
+			$ret['data'] = 0;
+		}
+		echo json_encode($ret);
+		exit();
+	}
+	//意见反馈
+	if($api=='feedback')
+	{
+		$user_id = $_POST['user_id'];
+		$content = $_POST['content'];
+		$ret = array();
+		if($user_id>0 && strlen($content)>0)
+		{
+			$add_time = time();
+			$sql = "insert into feedback(user_id,content,add_time,status)values($user_id,'$content','$add_time',0)";
+			if($db->query($sql))
+			{
+				$ret['status'] = 1;
+				$ret['error'] = 'SUCCESS';
+				$ret['data'] = 1;
+			}
+			else
+			{
+				$ret['status'] = 0;
+				$ret['error'] = '服务器忙，请稍后重试';
+				$ret['data'] = 0;
+			}
+		}
+		else
+		{
+			$ret['status'] = 0;
+			$ret['error'] = '反馈信息不能为空';
+			$ret['data'] = 0;
+		}
+		echo json_encode($ret);
+		exit();
+	}
+	//关于项目
+	if($api == 'about')
+	{
+		$ret = array();
+		$ret['status'] = 1;
+		$ret['error'] = 'SUCCESS';
+		$ret['data'] = '我是项目的介绍信息我是项目的介绍信息我是项目的介绍信息我是项目的介绍信息我是项目的介绍信息我是项目的介绍信息';
+		echo json_encode($ret);
+		exit();
+	}
+	//退出账户
+	if($api == 'logout')
+	{
+		$user_id = $_POST['user_id'];
+		$token = $_POST['token'];
+		$ret = array();
+		if(is_login($token,$user_id))
+		{
+			$sql = "update sessions set expiry=0 where userid={$user_id} and sesskey='{$token}'";
+			if($db->query($sql))
+			{
+				$ret['status'] = 1;
+				$ret['error'] = 'SUCCESS';
+				$ret['data'] = 1;
+			}
+			else
+			{
+				$ret['status'] = 0;
+				$ret['error'] = '服务器忙，请稍后重试';
+				$ret['data'] = 0;
+			}
+		}
+		else
+		{
+			$ret['status'] = 0;
+			$ret['error'] = '您尚未登录或登录超时';
+			$ret['data'] = 0;
+		}
+		echo json_encode($ret);
+		exit();
+	}
+	//获取关注关系
+	if($api == 'get_follow_realtion')
+	{
+		$user_id = $_POST['user_id'];
+		$follow = $_POST['follow'];
+		$ret = array();
+		if(get_follow_relation($user_id,$follow))
+		{
+			$ret['status'] = 1;
+			$ret['error'] = 'SUCCESS';
+			$ret['data'] = 1;//已关注
+		}
+		else
+		{
+			$ret['status'] = 1;
+			$ret['error'] = 'SUCCESS';
+			$ret['data'] = 0;//未关注
+		}
+		echo json_encode($ret);
+		exit();
+	}
+
+
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

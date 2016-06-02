@@ -5,6 +5,6 @@
 	$db_name = "sports";
 	$db_user = "root";
 	$db_password = "";
-	$db = new ezSQL_mysql($db_user,$db_password,$db_name,$db_host);
+	$db = new ezSQL_mysql($db_user,$db_password,$db_name,$db_host,'utf-8');
 	$GLOBALS['db'] = $db;
 ?>
