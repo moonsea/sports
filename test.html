@@ -14,11 +14,12 @@
       $().ready(function(e){
 
         $.ajax({
-          url:"http://123.57.31.72/sports/search.php",
+          url:"http://123.57.31.72/sports/main.php",
           type:"POST",
           dataTYpe:"jsonp",
           contentType: "application/x-www-form-urlencoded; charset=utf-8",
-          data:{act:'search_video',data:2},
+          //data:{act:'upload',user_id:4,token:'306d0d13694aade3f16dbb58934fdc8f',video_path:'test_path',video_cover:'test_cover',type:'1',game_id:'1'},
+          data:{act:'discovery',page:'1',type:1,page_size:'12',user_id:2,token:'5250b769535328fa7e65313f92c76981'},
           success:function(data){
             //alert("success");
             document.writeln(data);

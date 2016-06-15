@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="mem_stu_add_sch" js="/webresources/script/validate.js">
+		<report id="report1" title="编辑学生信息" type="form">
+			<display labelalign="right" valuealign="left" labeltdwidth="15px">
+				<col column="mem_id" label="学生学号"
+					valuestyleproperty="style='mso-number-format:\@' width='15%',colspan='3'"
+					br="true">
+					<inputbox ></inputbox>
+				</col>
+				<col column="mem_name" label="学生姓名" valuestyleproperty="colspan='3'"
+					br="true">
+					<inputbox jsvalidate="isNotEmpty(#label#列不允许为空)"></inputbox>
+				</col>
+				<col column="mem_passwd" label="密码" valuestyleproperty="colspan='3'"
+					br="true">
+					<inputbox type="passwordbox" encodelength="7" displayon="update"></inputbox>
+				</col>
+				<col column="dep_name" label="院系名称" valuestyleproperty="colspan='3'"
+					br="true">
+					<inputbox type="selectbox">
+						<option dataset="@{select dep_name,dep_id from t_departmentinfo order by dep_order}"
+							label="dep_name" value="dep_id"></option>
+					</inputbox>
+				</col>
+				<col column="grade_name" label="学生年级" valuestyleproperty="colspan='3'"
+					br="true">
+					<inputbox type="selectbox" jsvalidate="isNotEmpty(#label#不允许为空)">
+						<option dataset="@{select grade_id,grade_name from t_gradeinfo where grade_status='是'}"
+							label="grade_name" value="grade_id">
+						</option>
+					</inputbox>
+				</col>
+				<col column="mem_major" label="学生专业" br="true"
+					valuestyleproperty="colspan='3'"></col>
+				<col column="mem_tel" label="联系方式" valuestyleproperty="colspan='3'"
+					br="true"></col>
+				<col column="mem_card_num" label="身份证号" valuestyleproperty="colspan='3'"
+					br="true"></col>
+				
+			</display>
+			<sql>
+				<select>
+					<value>
+						<![CDATA[select m.*,d.dep_name,g.grade_name from t_memberinfo m left join t_departmentinfo d  on m.mem_dep_num = d.dep_id left join t_gradeinfo g on m.mem_grade = g.grade_id where m.mem_role_id=1 and {#condition#}]]>
+					</value>
+					<condition name="mem_id" hidden="true">
+						<value>
+						<![CDATA[(mem_id = #data# )]]>
+						</value>
+					</condition>
+				</select>
+				<insert>
+					<params>
+						<param name="DEP_NUM" value="session{dep_Num}"></param>
+					</params>
+					<value>
+						insert into
+						t_memberinfo(@{mem_id},@{mem_name},mem_passwd=@{mem_id},mem_dep_num=@{dep_name},mem_grade=@{grade_name},@{mem_major},@{mem_tel},@{mem_card_num},mem_role_id=1);
+					</value>
+				</insert>
+			</sql>
+		</report>
+	</page>
+</applications>

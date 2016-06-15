@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="summary_individual_list" js="/webresources/script/validate.js">
+
+		<report id="contest_show" title="竞赛信息库" pagesize="10|15|25|-1"
+			navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+			type="editablelist">
+			<display>
+				<col column="{sequence:1}" label="序号"></col>
+				<col column="con_no" label="竞赛编号" clickorderby="true"
+					valuestyleproperty="style='mso-number-format:\@' width='15%'"
+					displaytype="hidden"></col>
+				<col column="con_name" label="竞赛名称" clickorderby="true"></col>
+				<col column="con_org" label="竞赛主办单位" filter="true" filterwidth="120px"></col>
+				<col column="dep_name" label="竞赛牵头单位" filter="true" filterwidth="120px"></col>
+				<col property="btn2" column="{non-fromdb}" label="查看总结"></col>
+
+			</display>
+			<format>
+				<imports>
+					<import>com.wabacus.util.*</import>
+					<import>com.wabacus</import>
+				</imports>
+				<value>
+			   <![CDATA[	
+			  	    String rootpath= rrequest.getRequest().getContextPath();	
+			  	    System.out.println("rootpath:"+rootpath);			
+					if(rrequest.getShowtype() == Consts.DISPLAY_ON_PAGE)
+					{
+						btn2="<a href=\""+rootpath+"/ShowReport.wx?PAGEID=summary_individual_sch&con_no="+con_no+"\"  >查看总结</a>"; 			
+					}
+				  ]]>
+				</value>
+			</format>
+			<sql>
+				<select>
+					<value>
+						<![CDATA[select c.*,d.dep_name from t_contestinfo c left join t_departmentinfo d  on c.con_auspices = d.dep_id where  {#condition#}]]>
+					</value>
+
+					<condition name="cname" label="竞赛名称">
+						<value>
+						<![CDATA[c.con_name like '%#data#%']]>
+						</value>
+					</condition>
+					<condition name="crank" label="竞赛等级">
+						<value>
+						<![CDATA[c.con_rank like '%#data#%']]>
+						</value>
+						<inputbox type="selectbox">
+							<option value="" label="竞赛等级"></option>
+							<option value="I级" label="I级"></option>
+							<option value="II级" label="II级"></option>
+							<option value="III级" label="III级"></option>
+						</inputbox>
+					</condition>
+					<condition name="c_dep_id" label="牵头单位">
+						<value>
+						<![CDATA[c.con_auspices = #data#]]>
+						</value>
+						<inputbox type="selectbox">
+							<option value="" label="全部单位"></option>
+							<option dataset="@{select dep_id,dep_name from t_departmentinfo}"
+								label="dep_name" value="dep_id"></option>
+						</inputbox>
+					</condition>
+					<condition name="cyear" label="竞赛录入年份">
+						<value>
+						<![CDATA[c.con_year like '%#data#%']]>
+						</value>
+					</condition>
+				</select>
+
+
+
+			</sql>
+
+		</report>
+
+	</page>
+</applications>

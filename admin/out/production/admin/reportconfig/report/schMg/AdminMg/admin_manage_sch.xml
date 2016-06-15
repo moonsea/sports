@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="admin_manage_sch" js="/webresources/script/validate.js">
+		<tabpanel id="tp1" margin="10px" titlestyle="2">
+			<report id="admin_sch_show" title="校团委管理人员信息库" pagesize="10|15|20|-1"
+				navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+				type="editablelist">
+				<display>
+					<col column="{sequence:1}" label="序号" width="40px"></col>
+					<col column="admin_id" label="登录名" clickorderby="true"
+						valuestyleproperty="style='mso-number-format:\@' width='15%'">
+						<inputbox jsvalidate="isNotEmpty(工号不允许为空)"></inputbox>
+					</col>
+					<col column="admin_passwd" label="密码"
+						valuestyleproperty="style='mso-number-format:\@' width='15%'">
+						<inputbox type="passwordbox" encodelength="7"
+							jsvalidate="isNotEmpty(密码不允许为空)"></inputbox>
+					</col>
+					<col column="admin_name" label="用户姓名"
+						valuestyleproperty="style='mso-number-format:\@' width='15%'">
+						<inputbox jsvalidate="isNotEmpty(姓名列不允许为空)"></inputbox>
+					</col>
+					<col column="dep_name" label="单位名称" clickorderby="true" filter="true"
+						filterwidth="120px" valuestyleproperty="style='mso-number-format:\@' width='15%'">
+						<inputbox jsvalidate="isNotEmpty(院系名称不允许为空)" type="selectbox">
+							<option dataset="@{select dep_id,dep_name from t_departmentinfo where dep_name='共青团哈尔滨工程大学委员会'}"
+								label="dep_name" value="dep_id"></option>
+						</inputbox>
+					</col>
+					<col column="admin_title" label="职务" clickorderby="true"
+						filter="true" filterwidth="120px">
+						<inputbox type="selectbox" jsvalidate="isNotEmpty(#label#不允许为空)">
+							<option value="校团书记" label="校团书记"></option>
+							<option value="校团副书记" label="校团副书记"></option>
+							<option value="科创中心" label="科创中心"></option>
+						</inputbox>
+					</col>
+					<col column="role_name" label="管理身份">
+						<inputbox jsvalidate="isNotEmpty(#label#不允许为空)" type="selectbox">
+							<option dataset="@{select role_id,role_name from t_role}"
+								label="role_name" value="role_id"></option>
+						</inputbox>
+					</col>
+					<col column="admin_phone" label="联系电话"></col>
+					<col column="admin_email" label="邮箱"></col>
+					<col column="admin_remark" label="备注"></col>
+					<col column="{editablelist-edit}" label="编辑">
+					<![CDATA[<input type="button"  value="点击进行编辑"/>]]>
+					</col>
+				</display>
+				<sql>
+					<select>
+						<value>
+						<![CDATA[select a.*,d.dep_name,r.role_name from t_admininfo a left join t_departmentinfo d  on a.admin_dep_num = d.dep_id left join t_role r on a.admin_role_id=r.role_id where a.admin_role_id=4 or admin_role_id=5 or admin_role_id=6 and {#condition#}]]>
+							<!--
+								<![CDATA[select m.* from t_memberinfo m where m.mem_role_id=1
+								and {#condition#}]]>
+							-->
+						</value>
+						<condition name="a_id" label="工号">
+							<value>
+							<![CDATA[a.admin_id like '%#data#%']]>
+							</value>
+							<inputbox>
+								<typeprompt count="15">
+									<promptcol label="admin_id" title="工号" matchmode="anywhere"></promptcol>
+									<promptcol label="admin_name" title="姓名" matchmode="anywhere"></promptcol>
+									<datasource>
+										<option
+											dataset="@{select admin_id,admin_name from t_admininfo where {#matchcondition#} and admin_role_id=4 or admin_role_id=5 or admin_role_id=6}"></option>
+									</datasource>
+								</typeprompt>
+							</inputbox>
+						</condition>
+						<condition name="a_name" label="姓名">
+							<value>
+							<![CDATA[a.admin_name like '%#data#%']]>
+							</value>
+						</condition>
+					</select>
+					<insert pageurl="report{admin_add_sch.report1}"
+					popupparams="{title:'校团委管理人员信息',width:800,height:500}" />
+				<update pageurl="report{admin_update_sch.report1}"
+					popupparams="{title:'校团委管理人员信息',width:800,height:500}" urlparams="admin_id=@{admin_id};" />
+					<delete>
+						delete from t_admininfo where admin_id=@{admin_id};
+					</delete>
+				</sql>
+
+			</report>
+			
+			<report id="admin_dep_show" title="院系管理人员信息库" pagesize="10|15|20|-1"
+				navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+				type="editablelist">
+				<display>
+					<col column="{sequence:1}" label="序号"></col>
+					<col column="admin_id" label="工号" clickorderby="true"
+						valuestyleproperty="style='mso-number-format:\@' width='15%'">
+						<inputbox jsvalidate="isNotEmpty(工号不允许为空)"></inputbox>
+					</col>
+					<col column="admin_name" label="姓名"
+						valuestyleproperty="style='mso-number-format:\@' width='15%'">
+						<inputbox jsvalidate="isNotEmpty(姓名列不允许为空)"></inputbox>
+					</col>
+					<col column="admin_passwd" label="密码"
+						valuestyleproperty="style='mso-number-format:\@' width='15%'">
+						<inputbox type="passwordbox" encodelength="7"
+							jsvalidate="isNotEmpty(密码不允许为空)"></inputbox>
+					</col>
+					<col column="dep_name" label="单位名称" clickorderby="true" filter="true"
+						filterwidth="120px" valuestyleproperty="style='mso-number-format:\@' width='15%'">
+						<inputbox jsvalidate="isNotEmpty(院系名称不允许为空)" type="selectbox">
+							<option dataset="@{select dep_id,dep_name from t_departmentinfo}"
+								label="dep_name" value="dep_id"></option>
+						</inputbox>
+					</col>
+					<col column="admin_title" label="职务" clickorderby="true"
+						filter="true" filterwidth="120px">
+						<inputbox type="selectbox" jsvalidate="isNotEmpty(#label#不允许为空)">
+							<option value="院团书记" label="院团书记"></option>
+							<option value="院团副书记" label="院团副书记"></option>
+							<option value="院团老师" label="院团老师"></option>
+						</inputbox>
+					</col>
+					<col column="role_name" label="管理身份">
+						<inputbox jsvalidate="isNotEmpty(#label#不允许为空)" type="selectbox">
+							<option dataset="@{select role_id,role_name from t_role}"
+								label="role_name" value="role_id"></option>
+						</inputbox>
+					</col>
+					<col column="admin_phone" label="联系电话"></col>
+					<col column="admin_email" label="邮箱"></col>
+					<col column="admin_remark" label="备注"></col>
+					<col column="{editablelist-edit}" label="编辑">
+					<![CDATA[<input type="button"  value="点击进行编辑"/>]]>
+					</col>
+				</display>
+				<sql>
+					<select>
+						<value>
+						<![CDATA[select a.*,d.dep_name,r.role_name from t_admininfo a left join t_departmentinfo d  on a.admin_dep_num = d.dep_id left join t_role r on a.admin_role_id=r.role_id where a.admin_role_id=3 and {#condition#}]]>
+							<!--
+								<![CDATA[select m.* from t_memberinfo m where m.mem_role_id=1
+								and {#condition#}]]>
+							-->
+						</value>
+						<condition name="a_id" label="工号">
+							<value>
+							<![CDATA[a.admin_id like '%#data#%']]>
+							</value>
+							<inputbox>
+								<typeprompt count="15">
+									<promptcol label="admin_id" title="工号" matchmode="anywhere"></promptcol>
+									<promptcol label="admin_name" title="姓名" matchmode="anywhere"></promptcol>
+									<datasource>
+										<option
+											dataset="@{select admin_id,admin_name from t_admininfo where {#matchcondition#} and admin_role_id=3}"></option>
+									</datasource>
+								</typeprompt>
+							</inputbox>
+						</condition>
+						<condition name="a_name" label="姓名">
+							<value>
+							<![CDATA[a.admin_name like '%#data#%']]>
+							</value>
+						</condition>
+						<condition name="d_name" label="单位名称">
+							<value>
+							<![CDATA[(a.admin_dep_num =#data#)]]>
+							</value>
+							<inputbox type="selectbox">
+								<option value="" label="全部单位"></option>
+								<option dataset="@{select dep_name,dep_id from t_departmentinfo}"
+									label="dep_name" value="dep_id"></option>
+							</inputbox>
+						</condition>
+					</select>
+					<insert pageurl="report{admin_add_dep.report1}"
+					popupparams="{title:'院系管理人员信息',width:800,height:500}" />
+				<update pageurl="report{admin_update_dep.report1}"
+					popupparams="{title:'院系管理人员信息',width:800,height:500}" urlparams="admin_id=@{admin_id};" />
+					<delete>
+						delete from t_admininfo where admin_id=@{admin_id};
+					</delete>
+				</sql>
+
+			</report>
+		</tabpanel>
+	</page>
+</applications>

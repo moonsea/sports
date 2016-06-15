@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="department_manage" js="/webresources/script/validate.js">
+		<report id="department_show" title="院系信息" pagesize="10|15|20|-1"
+			navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+			type="editablelist2" rowselect="checkbox">
+			<display>
+				<col column="dep_id" label="院系编号" clickorderby="true"
+					valuestyleproperty="style='mso-number-format:\@' width='15%'">
+					<inputbox jsvalidate="isNotEmpty(#label#列不允许为空)"></inputbox>
+				</col>
+				<col column="dep_name" label="院系名称" clickorderby="true"></col>
+				<col column="dep_order" label="院系排序" clickorderby="true"></col>
+			</display>
+			<sql>
+				<select>
+					<value>
+							<![CDATA[select * from t_departmentinfo where  {#condition#} order by dep_order]]>
+					</value>
+					<condition name="name" label="院系名称">
+						<value>
+									<![CDATA[dep_name like '%#data#%']]>
+						</value>
+					</condition>
+				</select>
+				<insert>
+					insert into t_departmentinfo(@{dep_id},@{dep_name},@{dep_order});
+					</insert>
+				<update>
+					update t_departmentinfo(@{dep_id},@{dep_name},@{dep_order}) where dep_id=@{dep_id};
+					</update>
+				<delete>
+					delete from t_departmentinfo where dep_id=@{dep_id};
+					</delete>
+			</sql>
+
+		</report>
+
+	</page>
+</applications>

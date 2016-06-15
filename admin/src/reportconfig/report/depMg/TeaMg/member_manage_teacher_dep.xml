@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="member_manage_teacher_dep" js="/webresources/script/validate.js">
+			
+			<framepanel id="fp1" title="教师信息导入" margin="10px">
+					    <jsp id="jsp2" belongto="member_teacher_show">
+						/jsp/dataimport/teacherimport.jsp
+					</jsp>
+			</framepanel>
+		<report id="member_teacher_show" title="教师信息库" pagesize="10|25|20|-1"
+			navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+			type="editablelist" rowselect="checkbox">
+			<display>
+				<col column="tea_id" label="工号" clickorderby="true"
+					valuestyleproperty="style='mso-number-format:\@' width='15%'">
+					<inputbox jsvalidate="isNotEmpty(工号不允许为空)"></inputbox>
+				</col>
+				<col column="tea_name" label="姓名"
+					valuestyleproperty="style='mso-number-format:\@' width='15%'">
+					<inputbox jsvalidate="isNotEmpty(姓名列不允许为空)"></inputbox>
+				</col>
+				<col column="tea_passwd" label="密码"
+					valuestyleproperty="style='mso-number-format:\@' width='15%'">
+					<inputbox type="passwordbox" encodelength="7"
+						jsvalidate="isNotEmpty(密码不允许为空)"></inputbox>
+				</col>
+				<!--
+					<col column="dep_name" label="院系名称" clickorderby="true"
+					filter="true" filterwidth="120px"
+					valuestyleproperty="style='mso-number-format:\@' width='15%'">
+					<inputbox jsvalidate="isNotEmpty(院系名称不允许为空)" type="selectbox">
+					<option dataset="@{select dep_id,dep_name from t_departmentinfo}"
+					label="dep_name" value="dep_id"></option> </inputbox> </col>
+				-->
+				<col column="tea_title" label="职称" clickorderby="true" filter="true"
+					filterwidth="120px"></col>
+				<col column="tea_research" label="研究方向"></col>
+				<col column="tea_tel" label="联系方式"></col>
+				<col column="tea_email" label="邮箱"></col>
+				<col column="tea_remark" label="备注"></col>
+				<col column="{editablelist-edit}" label="编辑">
+					<![CDATA[<input type="button"  value="点击进行编辑"/>]]>
+				</col>
+			</display>
+			<sql>
+				<select>
+					<value>
+						<![CDATA[select t.* from t_teacherinfo t where t.tea_role_id=2 and {#condition#}]]>
+					</value>
+					<condition name="dep_number" source="session{dep_Num}">
+						<value>
+							<![CDATA[t.tea_dep_num = #data# ]]>
+						</value>
+					</condition>
+					<condition name="t_id" label="教师工号">
+						<value>
+							<![CDATA[t.tea_id like '%#data#%']]>
+						</value>
+						<inputbox>
+							<typeprompt count="15">
+								<promptcol label="tea_id" title="工号" matchmode="anywhere"></promptcol>
+								<promptcol label="tea_name" title="姓名" matchmode="anywhere"></promptcol>
+								<datasource>
+									<option
+										dataset="@{select tea_id,tea_name from t_teacherinfo where {#matchcondition#} and tea_role_id=2}"></option>
+								</datasource>
+							</typeprompt>
+						</inputbox>
+					</condition>
+					<condition name="t_name" label="教师姓名">
+						<value>
+							<![CDATA[t.tea_name like '%#data#%']]>
+						</value>
+					</condition>
+					<condition name="t_title" label="职称">
+						<value>
+							<![CDATA[t.tea_title like '%#data#%']]>
+						</value>
+					</condition>
+				</select>
+				<!--
+					<insert> insert into
+					t_teacherinfo(@{tea_id},@{tea_passwd},@{tea_name},tea_dep_num=@{dep_name},@{tea_title},@{tea_research},@{tea_tel},@{tea_email},tea_role_id=2,@{tea_remark});
+					</insert>
+				-->
+				<insert pageurl="report{mem_tea_add_dep.report1}"
+					popupparams="{title:'教师信息',width:800,height:500}" />
+				<update pageurl="report{mem_tea_update_dep.report1}"
+					popupparams="{title:'教师信息',width:800,height:500}" urlparams="tea_id=@{tea_id};" />
+
+				<delete>
+					delete from t_teacherinfo where tea_id=@{tea_id};
+					</delete>
+			</sql>
+
+		</report>
+
+	</page>
+</applications>

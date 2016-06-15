@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="projectexport" js="/webresources/script/validate.js,/js/stuMg/stuMg.js,/js/ProjectApplyCheckDep/testcallback.js
+	">
+	
+		<print type="lodop"
+			include="report1;report2;"
+			preview="true" jobname="同时打印二个报表" printpagesize="1,2380,3380,''">
+			<subpage>
+					<![CDATA[
+					    <wx:title componentid="report2"/>					
+						<wx:data componentid="report2"/>	
+						<wx:data componentid="report1"/>
+																
+					]]>
+			</subpage>
+
+		</print>
+		
+		<report id="report2" title="竞赛信息" type="detail"
+			template="/jsp/schMg/projectexporthidden.jsp">
+			<display labelalign="right" valuealign="left" labeltdwidth="100px" >
+				<col column="con_no" label="竞赛编号" clickorderby="true"
+					displaytype="hidden" valuestyleproperty="style='mso-number-format:\@' width='15%'">
+				</col>
+				<col column="con_name" label="竞赛名称" clickorderby="true">
+				</col>
+				<col column="con_rank" label="竞赛等级" br="true">
+				</col>
+				<col column="con_org" label="竞赛主办单位">
+				</col>
+				<col column="con_auspices" label="竞赛牵头单位" displaytype="hidden" >					
+				</col>
+				<col column="dep_name" label="竞赛牵头单位" br="true">					
+				</col>
+				
+				<col column="con_year" label="竞赛年份" br="true"></col>
+				<col column="con_desc" label="竞赛简介" br="true"
+					valuestyleproperty="colspan='3'">
+					<inputbox type="textareabox" styleproperty="rows='3'"></inputbox>
+				</col>
+				<col column="con_remark" label="备注" valuestyleproperty="colspan='3'">
+					<inputbox type="textareabox" styleproperty="rows='3'"></inputbox>
+				</col>
+			</display>
+
+			<sql>
+				<select>
+					<value>
+						<![CDATA[select * from t_contestinfo c  left join t_departmentinfo d  on c.con_auspices = d.dep_id where  {#condition#}]]>
+					</value>
+					<condition name="con_no" hidden="true">
+						<value>
+							<![CDATA[(con_no = '#data#' )]]>
+						</value>
+					</condition>
+				</select>
+			</sql>
+		</report>
+		<report id="report1" title="参赛作品5" template="/jsp/schMg/projectexport.jsp"
+			 navigate="${navigatepagesizepage1.report3.navigate}" pagesize="-1"
+			dataexport="richexcel|plainexcel|word" type="editablelist">
+			<display >
+				<col column="{sequence:1}" label="序号" width="80px"></col>
+				<col column="Pro_ID" label="作品编号" clickorderby="true"
+					valuestyleproperty="style='mso-number-format:\@' width='15%'"></col>
+				<col column="pro_name" label="作品名称" clickorderby="true"></col>
+				<col column="con_name" label="竞赛名称"></col>
+				<col column="pro_date_sub" label="作品申报日期" width="100px"></col>
+				<!-- <col column="team_mem_dep" label="学院"></col> -->
+			</display>
+			<format>
+				<imports>
+					<import>com.wabacus.util.*</import>
+					<import>com.wabacus</import>
+				</imports>
+				<value>
+			   <![CDATA[
+					
+					if(rrequest.getShowtype() == Consts.DISPLAY_ON_PAGE)
+					{//如果是显示在html页面上，则显示输入框
+					 	pro_name="<a href=\"#\"   value=\"查看详情\" title=\"点击查看作品详情\" onclick=\"showProDetailSchOperation('"+Pro_ID+"')\" >" +pro_name+"</a>"; 
+					}
+					
+				  ]]>
+				</value>
+			</format>
+			<sql>
+				<select>
+					<value>
+						<![CDATA[select * from T_ProjectInfo p left join T_ContestInfo c on p.Pro_Con_Num = c.Con_No  where {#condition#} ]]>
+					</value><!-- and t.team_mem_role="队长" --><!-- left join t_teaminfo t on p.Pro_ID = t.team_pro_id left join t_memberinfo m on t.team_mem_num = m.mem_id -->
+					<condition name="con_no" label="竞赛编号" hidden="true">
+						<value>
+							<![CDATA[c.Con_No = '#data#' ]]>
+						</value>
+					</condition>
+					<condition name="Pro_Con_Num" label="竞赛名称">
+						<value>
+							<![CDATA[p.Pro_Con_Num = '#data#' ]]>
+						</value>
+					</condition>
+					<!-- <condition name="dep_id" label="院系">
+						<value>
+							<![CDATA[m.mem_dep_num = '#data#'  ]]>
+						</value>
+						<inputbox type="selectbox">
+							<option label="全部院系" value=""></option>
+							<option dataset="@{select * from t_departmentinfo}" label="dep_name"
+								value="dep_id"></option>
+						</inputbox>
+					</condition> -->
+				</select>
+				<delete>
+					<value>
+					<![CDATA[delete from T_ProjectInfo where Pro_ID=@{Pro_ID};]]>
+					</value>
+				</delete>   
+				<!-- <delete>
+					delete from t_projectinfo where Pro_ID=@{Pro_ID};
+				</delete>   
+				 -->
+			</sql>
+			<!-- <delete>
+					<value>
+					<![CDATA[delete from T_ProjectInfo where Pro_ID=@{Pro_ID};]]>
+					</value>
+				</delete>   -->
+		</report>
+
+		
+	</page>
+</applications>

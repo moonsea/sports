@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="submitContest" js="/webresources/script/validate.js,/js/stuMg/stuMg.js">
+		<interceptor>
+			<imports>
+				<import>com.wabacus.util.*</import>
+				<import>java.text.*</import>
+				<import>java.util.*</import>
+			</imports>
+			<preaction>
+				Format dateFormat = new SimpleDateFormat("yyMMddHHmmss");
+				long currentTime = System.currentTimeMillis();
+				Date da = new
+				Date(currentTime);
+				rrequest.getRequest().setAttribute("pro_id",
+				dateFormat.format(da));
+				rrequest.getRequest().getSession().setAttribute("Pro_ID",dateFormat.format(da));
+
+				System.out.println(dateFormat.format(da));
+			</preaction>
+		</interceptor>
+
+		<report id="report1" title="作品信息" type="form"
+			template="/jsp/stuMg/submitCont/submitContestReport1.jsp"
+			savebinding="report1;report2" pagesize="50|30|15|-1"
+			navigate="${navigatepagesizepage1.report3.navigate}">
+			<display labelalign="right" valuealign="left" labeltdwidth="100px">
+				<col column="Pro_ID" label="作品编号" valuestyleproperty="colspan='3'"
+					br="true" />
+				<col column="Pro_Name" label="作品名称" valuestyleproperty="colspan='3'"
+					br="true">
+					<inputbox jsvalidate="isNotEmpty(#label#列不允许为空)"
+						styleproperty="style='width:350px'"></inputbox>
+				</col>
+				<col column="Pro_Con_Num" label="参加竞赛" br="true"
+					valuestyleproperty="colspan='3'">
+					<inputbox type="selectbox" styleproperty="style='width:100%'">
+						<option
+							dataset="@{select c.con_name,c.con_no from T_ContestInfo c where c.con_sta_pub='已发布' and c.con_time>curdate()}"
+							label="con_name" value="con_no">
+							<!-- 再加个条件， 比赛日期在当然日期范围内 -->
+							<!-- <datasetconditions>
+								<condition name="con1" source="session{currentyear}">
+									<value>c.con_year > #data#</value>
+								</condition>
+							</datasetconditions> -->
+						</option>
+					</inputbox>
+				</col>
+				<col column="Pro_Fund_Sou_ID" label="经费来源">
+					<inputbox type="selectbox">
+						<option
+							dataset="@{select Fund_Sou_ID,Fund_Sou_Name from T_FundSourceInfo}"
+							label="Fund_Sou_Name" value="Fund_Sou_ID"></option>
+					</inputbox>
+				</col>
+				<col column="Pro_Sou_ID" label="项目来源" br="true">
+					<inputbox type="selectbox">
+
+						<option
+							dataset="@{select Pro_Sou_ID,Pro_Sou_Name from T_ProjectSourceInfo}"
+							label="Pro_Sou_Name" value="Pro_Sou_ID"></option>
+					</inputbox>
+				</col>
+
+				<col column="pro_desc" label="作品简介" br="true"
+					valuestyleproperty="colspan='3'">
+					<inputbox type="textareabox" styleproperty="rows='3'"></inputbox>
+				</col>
+
+
+
+			</display>
+
+			<format>
+				<imports>
+					<import>com.wabacus.util.*</import>
+					<import>com.wabacus</import>
+					<import>java.util</import>
+					<import>java.text.*</import>
+				</imports>
+				<value>
+			   <![CDATA[			
+				  Pro_ID=  rrequest.getRequest().getSession().getAttribute("Pro_ID")==null?"":rrequest.getRequest().getSession().getAttribute("Pro_ID").toString();
+				  ]]>
+				</value>
+			</format>
+			<sql>
+				<insert>
+					<params>
+						<param name="Pro_ID" value="request{pro_id}"></param>
+
+					</params>
+					insert into T_ProjectInfo
+					(Pro_ID=#{Pro_ID},@{Pro_Name},@{Pro_Con_Num},@{Pro_Fund_Sou_ID},@{Pro_Sou_ID},@{pro_desc});
+				</insert>
+
+			</sql>
+			<buttons buttonspacing="2">
+				<button name="button1" position="title" label="保存">
+					saveEditableReportData({pageid:'submitContest',savingReportIds:[{reportid:'report1',updatetype:'save'},{reportid:'report2',updatetype:'save'},{reportid:'report3',updatetype:'save'}]});
+				</button>
+			</buttons>
+		</report>
+
+		<report id="report2" title="学生团队信息" type="listform"
+			template="/jsp/stuMg/submitCont/submitContest.jsp" pagesize="50|30|15|-1"
+			navigate="${navigatepagesizepage1.report3.navigate}" >
+			<display valuetdwidth="100px" labeltdwidth="80px">
+				<col column="Team_Mem_ID" label="团队成员id" displaytype="hidden" />
+				<col column="Team_Pro_ID" label="作品ID" displaytype="hidden"></col>
+				<col column="Team_Mem_Order" label="队员排序">
+					<inputbox jsvalidate="isNotEmpty(#label#列不允许为空);isNumeric(${invalid.number})"
+						type="selectbox">
+						<option value="1" label="第一位"></option>
+						<option value="2" label="第二位"></option>
+						<option value="3" label="第三位"></option>
+						<option value="4" label="第四位"></option>
+						<option value="5" label="第五位"></option>
+						<option value="6" label="第六位"></option>
+						<option value="7" label="第七位"></option>
+						<option value="8" label="第八位"></option>
+						<option value="9" label="第九位"></option>
+						<option value="10" label="第十位"></option>
+						<option value="11" label="第十一位"></option>
+						<option value="12" label="第十二位"></option>
+						<option value="13" label="第十三位"></option>
+						<option value="14" label="第十四位"></option>
+						<option value="15" label="第十五位"></option>
+						<option value="16" label="第十六位"></option>
+						<option value="17" label="第十七位"></option>
+						<option value="18" label="第十八位"></option>
+						<option value="19" label="第十九位"></option>
+						<option value="20" label="第二十位"></option>
+						<option value="21" label="第二十一位"></option>
+						<option value="22" label="第二十二位"></option>
+						<option value="23" label="第二十三位"></option>
+						<option value="24" label="第二十四位"></option>
+						<option value="25" label="第二十五位"></option>
+						<option value="26" label="第二十六位"></option>
+						<option value="27" label="第二十七位"></option>
+						<option value="28" label="第二十八位"></option>
+						<option value="29" label="第二十九位"></option>
+						<option value="30" label="第三十位"></option>
+						<option value="31" label="第三十一位"></option>
+						<option value="32" label="第三十二位"></option>
+						<option value="33" label="第三十三位"></option>
+						<option value="34" label="第三十四位"></option>
+						<option value="35" label="第三十五位"></option>
+						<option value="36" label="第三十六位"></option>
+						<option value="37" label="第三十七位"></option>
+						<option value="38" label="第三十八位"></option>
+						<option value="39" label="第三十九位"></option>
+						<option value="40" label="第四十位"></option>
+						
+					</inputbox>
+				</col>
+				<col column="Team_Mem_Num" label="学号" br="true">
+					<inputbox jsvalidate="isNotEmpty(#label#列不允许为空)">
+						<autocomplete
+							columns="Team_Mem_Num;Team_Mem_Major;mem_name;Team_Mem_Grade;Team_Mem_Dep;Team_Mem_Tel;Team_Mem_Card_Num"
+							colvaluecondition="Team_Mem_Num;"
+							dataset="class{cn.edu.hrbeu.stuMg.SubmitCont.SubmitConMemAutoComplete}" />
+					</inputbox>
+				</col>
+
+				<col column="mem_name" label="姓名">
+					<inputbox jsvalidate="isNotEmpty(学号输入不正确，请重新输入)"></inputbox>
+				</col>
+				<col column="Team_Mem_Dep" label="单位"></col>
+				<col column="Team_Mem_Major" label="专业" br="true" />
+				<col column="Team_Mem_Grade" label="&lt;font color=red&gt;*&lt;/font&gt;年级" jsvalidate="isNotEmpty(年级输入不正确，请重新输入)">
+				 <inputbox type="selectbox"  jsvalidate="isNotEmpty(年级输入不正确，请重新输入)">
+						<option
+							dataset="@{select grade_id,grade_name from t_gradeinfo where grade_status='是'}"
+							label="grade_name" value="grade_id"></option>
+					</inputbox> 
+				</col>
+				<col column="Team_Mem_Class" label="&lt;font color=red&gt;*&lt;/font&gt;班级" br="true">
+				<inputbox jsvalidate="isNotEmpty(班级不允许为空)"></inputbox></col>
+				<col column="Team_Mem_Tel" label="&lt;font color=red&gt;*&lt;/font&gt;联系电话" br="true">
+				<inputbox jsvalidate="isNotEmpty(联系电话不允许为空)"></inputbox></col>
+				<col column="Team_Mem_Card_Num" label="&lt;font color=red&gt;*&lt;/font&gt;身份证号" br="true">
+				<inputbox jsvalidate="isNotEmpty(身份证号不允许为空)"></inputbox></col>
+				<col column="Team_Mem_Email" label="&lt;font color=red&gt;*&lt;/font&gt;邮箱" br="true">
+				<inputbox jsvalidate="isNotEmpty(邮箱不允许为空)"></inputbox></col>
+				<col column="Team_Mem_Work" label="&lt;font color=red&gt;*&lt;/font&gt;承担工作" br="true">
+				<inputbox jsvalidate="isNotEmpty(承担工作不允许为空)"></inputbox></col>
+				<col column="Team_Mem_Role" label="&lt;font color=red&gt;*&lt;/font&gt;角色">
+					<inputbox type="selectbox">
+						<option value="队员" label="队员"></option>
+						<option value="队长" label="队长"></option>
+					</inputbox>
+				</col>
+
+			</display>
+			<sql beforesave ="SubmitStuProBeforeSaveCheck">
+				<select>
+					<value>
+					<![CDATA[SELECT t.*,m.mem_name,g.grade_name FROM T_TeamInfo t left join  t_memberinfo m on t.Team_Mem_Num = m.mem_id left join t_gradeinfo g on m.mem_grade = g.grade_id where Team_Pro_ID='1']]>
+					</value>
+				</select>
+				<insert>
+					<params>
+						<param name="Pro_ID" value="request{pro_id}"></param>
+					</params>
+					insert into T_TeamInfo
+					(Team_Mem_ID=uuid{},Team_Pro_ID=#{Pro_ID},@{Team_Mem_Order},@{Team_Mem_Num},@{Team_Mem_Dep},@{Team_Mem_Class},@{Team_Mem_Major},@{Team_Mem_Grade},@{Team_Mem_Tel},@{Team_Mem_Card_Num},@{Team_Mem_Email},@{Team_Mem_Role},@{Team_Mem_Work});
+				</insert>
+				<delete>
+					delete from T_TeamInfo where Team_Mem_ID=@{Team_Mem_ID};
+				</delete>
+			</sql>
+			<!--
+				<buttons buttonspacing="5"> <button name="button1" position="title"
+				label="添加"> var datasObj =
+				getEditableReportColValues('submitContest','report2'); var i =0;
+				if(datasObj!=null) { i= datasObj.length; } var authorOrder = {};
+				authorOrder.Team_Mem_Order= '第'+(parseInt(i)+1)+'作者';
+
+				addListReportNewDataRow('submitContest','report2',authorOrder);
+				</button> </buttons>
+			-->
+		</report>
+		<report id="report3" title="教师团队信息" type="listform"
+			template="/jsp/stuMg/submitCont/submitContest.jsp" pagesize="50|30|15|-1"
+			navigate="${navigatepagesizepage1.report3.navigate}">
+			<display valuetdwidth="100px" labeltdwidth="80px">
+				<col column="Team_Tea_ID" label="教师成员id" displaytype="hidden" />
+				<col column="Team_Pro_ID" label="作品ID" displaytype="hidden"></col>
+				<col column="Team_Tea_Order" label="教师排序">
+					<inputbox type="selectbox"
+						jsvalidate="isNotEmpty(#label#列不允许为空);isNumeric(${invalid.number})">
+						<option value="1" label="第一位"></option>
+						<option value="2" label="第二位"></option>
+						<option value="3" label="第三位"></option>
+						<option value="4" label="第四位"></option>
+						<option value="5" label="第五位"></option>
+						<option value="6" label="第六位"></option>
+						<option value="7" label="第七位"></option>
+						<option value="8" label="第八位"></option>
+						<option value="9" label="第九位"></option>
+						<option value="10" label="第十位"></option>
+					</inputbox>
+				</col>
+				<col column="Team_Tea_Num" label="工号" br="true">
+					<inputbox jsvalidate="isNotEmpty(#label#列不允许为空)">
+						<autocomplete
+							columns="Team_Tea_Num;tea_name;Team_Tea_Dep;team_tea_research;Team_Tea_Tel;Team_Tea_Card_Num;Team_Tea_Email"
+							colvaluecondition="Team_Tea_Num;"
+							dataset="class{cn.edu.hrbeu.stuMg.SubmitCont.SubmitConTeaAutoComplete}" />
+					</inputbox>
+				</col>
+				<col column="tea_name" label="姓名"></col>
+				<!-- <col column="team_tea_title" label="职称"></col> -->
+				<col column="team_tea_title" label="&lt;font color=red&gt;*&lt;/font&gt;职称" br="true">
+				<inputbox jsvalidate="isNotEmpty(职称不允许为空)"></inputbox></col>
+				<col column="Team_Tea_Dep" label="单位"></col>
+				<!-- <col column="team_tea_research" label="研究方向"></col> -->
+				<col column="team_tea_research" label="&lt;font color=red&gt;*&lt;/font&gt;研究方向" br="true">
+				<inputbox jsvalidate="isNotEmpty(研究方向不允许为空)"></inputbox></col>
+				<col column="Team_Tea_Tel" label="&lt;font color=red&gt;*&lt;/font&gt;联系电话">
+				<inputbox jsvalidate="isNotEmpty(#label#列不允许为空)"></inputbox></col>
+				<col column="Team_Tea_Card_Num" label="&lt;font color=red&gt;*&lt;/font&gt;身份证号">
+				<inputbox jsvalidate="isNotEmpty(#label#列不允许为空)"></inputbox>
+				</col>
+				<!-- <col column="Team_Tea_Email" label="邮箱"></col> -->
+				<col column="Team_Tea_Email" label="&lt;font color=red&gt;*&lt;/font&gt;邮箱" br="true">
+				<inputbox jsvalidate="isNotEmpty(邮箱不允许为空)"></inputbox></col>
+
+			</display>
+			<sql beforesave ="SubmitTeaProBeforeSaveCheck">
+				<select>
+					<value>
+					<![CDATA[SELECT * FROM T_TeamTeaInfo where  Team_Tea_ID='1']]>
+					</value>
+				</select>
+				<insert>
+					<params>
+						<param name="Pro_ID" value="request{pro_id}"></param>
+					</params>
+					insert into T_TeamTeaInfo
+					(Team_Tea_ID=uuid{},Team_Pro_ID=#{Pro_ID},@{Team_Tea_Order},@{Team_Tea_Num},@{Team_Tea_Dep},@{Team_Tea_Tel},@{Team_Tea_Card_Num},@{Team_Tea_Email},@{team_tea_title},@{team_tea_research});
+				</insert>
+				<delete>
+					delete from T_TeamTeaInfo where Team_Tea_ID=@{Team_Tea_ID};
+				</delete>
+			</sql>
+		</report>
+		<footer><![CDATA[<br/><font color='#ff0000'>填写说明：</font><font color='#0000FF'>团队成员添加时输入学号/工号，即可自动关联其他信息，可根据当前信息进行修改。</font>]]></footer>
+	</page>
+</applications>
+

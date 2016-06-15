@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="admin_update_sch" js="/webresources/script/validate.js">
+		<report id="report1" title="编辑校团委管理人员信息" type="form">
+			<display labelalign="right" valuealign="left" labeltdwidth="15px">
+				
+					<col column="admin_id" label="工号" clickorderby="true"
+						valuestyleproperty="style='mso-number-format:\@' width='15%'" br="true">
+						<inputbox jsvalidate="isNotEmpty(工号不允许为空)"></inputbox>
+					</col>
+					<col column="admin_name" label="姓名"
+						valuestyleproperty="style='mso-number-format:\@' width='15%'" br="true">
+						<inputbox jsvalidate="isNotEmpty(姓名列不允许为空)"></inputbox>
+					</col>
+					<col column="admin_passwd" label="密码"
+						valuestyleproperty="style='mso-number-format:\@' width='15%'" br="true">
+						<inputbox type="passwordbox" encodelength="7"
+							jsvalidate="isNotEmpty(密码不允许为空)"></inputbox>
+					</col>
+					<col column="admin_dep_num" label="单位名称" clickorderby="true" filter="true"
+						filterwidth="120px" valuestyleproperty="style='mso-number-format:\@' width='15%'" br="true">
+						<inputbox jsvalidate="isNotEmpty(院系名称不允许为空)" type="selectbox">
+							<option dataset="@{select dep_id,dep_name from t_departmentinfo where dep_name='共青团哈尔滨工程大学委员会'}"
+								label="dep_name" value="dep_id"></option>
+						</inputbox>
+					</col>
+					<col column="admin_title" label="职务" clickorderby="true"
+						filter="true" filterwidth="120px" br="true">
+						<inputbox type="selectbox" jsvalidate="isNotEmpty(#label#不允许为空)">
+							<option value="校团书记" label="校团书记"></option>
+							<option value="校团副书记" label="校团副书记"></option>
+							<option value="科创中心" label="科创中心"></option>
+						</inputbox>
+					</col>
+					<col column="admin_role_id" label="管理身份" br="true">
+						<inputbox jsvalidate="isNotEmpty(#label#不允许为空)" type="selectbox">
+							<option dataset="@{select role_id,role_name from t_role where role_id=4 or role_id=5 or role_id=6}"
+								label="role_name" value="role_id"></option>
+						</inputbox>
+					</col>
+					<col column="admin_phone" label="联系电话" br="true"></col>
+					<col column="admin_email" label="邮箱" br="true"></col>
+					<col column="admin_remark" label="备注" br="true"></col>
+				
+			</display>
+			<sql>
+				<select>
+					<value>
+						<![CDATA[select * from t_admininfo where {#condition#}]]>
+					</value>
+					<condition name="admin_id" hidden="true">
+						<value>
+						<![CDATA[(admin_id = #data# )]]>
+						</value>
+					</condition>
+				</select>
+				<update>
+					<value>
+						
+						<![CDATA[update t_admininfo (@{admin_id},@{admin_passwd},@{admin_name},admin_dep_num=@{admin_dep_num},@{admin_title},@{admin_phone},@{admin_email},admin_role_id=@{admin_role_id},@{admin_remark}) where admin_id=@{admin_id} ]]>
+					</value>
+				</update>
+			</sql>
+		</report>
+	</page>
+</applications>

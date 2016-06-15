@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="passwd_change_dep" js="/webresources/script/validate.js,/js/stuMg/stuMg.js">
+		<report id="passwd_change" title="密码修改" pagesize="5|10|15|-1"
+			navigate="${navigatepagesizepage1.report3.navigate}" type="form"
+			servervalidateclass="cn.edu.hrbeu.checkpasswd.CheckPasswd">
+			<display labelalign="right" valuealign="left" labeltdwidth="100px">
+				<col column="admin_id" label="工号" br="true">
+					<inputbox styleproperty="disabled='disabled'"></inputbox>
+				</col>
+				<col column="admin_name" label="姓名" br="true"></col>
+				<col property="current_passwd" column="{non-fromdb}" label="输入当前密码"
+					br="true">
+					<inputbox type="passwordbox" encodelength="7" displayon="update"
+						servervalidate="isNotEmpty(当前密码不允许为空);isRightAdminPasswd(errormess:{当前密码不正确},methodparams:{\'username\':\'session{user}\'})"
+						servervalidatetype="both"></inputbox>
+				</col>
+				<col column="mem_passwd" label="新密码" br="true">
+					<inputbox type="passwordbox" encodelength="7" displayon="update"></inputbox>
+				</col>
+				<!--
+					<col property="passwd" column="{non-fromdb}" label="新密码" br="true">
+					<inputbox type="passwordbox" encodelength="7"
+					displayon="update"></inputbox> </col>
+				-->
+				<col property="passwd_confirm" column="{non-fromdb}" label="再次输入密码"
+					br="true">
+					<inputbox type="passwordbox" encodelength="7" displayon="update"></inputbox>
+				</col>
+			</display>
+			<format>
+				<imports>
+					<import>com.wabacus.util.*</import>
+					<import>com.wabacus</import>
+				</imports>
+				<value>
+			   <![CDATA[
+				
+					if(rrequest.getShowtype() == Consts.DISPLAY_ON_PAGE)
+					{
+					 	mem_passwd=""; 
+					}
+				  ]]>
+				</value>
+			</format>
+			<sql beforesave="validatePassswdChangeInput">
+				<select>
+					<value>
+						<![CDATA[select admin_id,admin_name,admin_passwd mem_passwd from t_admininfo where {#condition#} and admin_role_id="3"]]>
+					</value>
+					<condition name="admin_id" source="session{user}">
+						<value>
+							<![CDATA[admin_id = #data# ]]>
+						</value>
+					</condition>
+				</select>
+				<update>
+					<value>
+					<![CDATA[update t_admininfo set admin_passwd=@{mem_passwd} where admin_id=@{admin_id}]]>
+					</value>
+				</update>
+			</sql>
+		</report>
+	</page>
+</applications>

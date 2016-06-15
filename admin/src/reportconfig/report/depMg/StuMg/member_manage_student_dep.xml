@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="member_manage_student_dep" js="/webresources/script/validate.js">
+	
+			<framepanel id="fp1" title="学生信息导入" margin="10px">
+					    <jsp id="jsp2" belongto="member_student_show">
+						/jsp/dataimport/studentimport.jsp
+					</jsp>
+			</framepanel>
+	
+		<report id="member_student_show" title="学生信息库" pagesize="10|15|20|-1"
+			navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+			type="editablelist" rowselect="checkbox">
+			<display>
+				<col column="mem_id" label="学号" clickorderby="true"
+					valuestyleproperty="style='mso-number-format:\@' width='15%'">
+					<inputbox jsvalidate="isNotEmpty(学号不允许为空)"></inputbox>
+				</col>
+				<col column="mem_name" label="姓名"
+					valuestyleproperty="style='mso-number-format:\@' width='15%'">
+					<inputbox jsvalidate="isNotEmpty(姓名不允许为空)"></inputbox>
+				</col>
+				<col column="mem_passwd" label="密码"
+					valuestyleproperty="style='mso-number-format:\@' width='15%'">
+					<inputbox type="passwordbox" encodelength="7"
+						jsvalidate="isNotEmpty(密码不允许为空)"></inputbox>
+				</col>
+				<col column="mem_class" label="班级" clickorderby="true" filter="true"
+					filterwidth="120px"></col>
+				<col column="grade_name" label="年级" clickorderby="true" filter="true"
+					filterwidth="120px">
+					<inputbox type="selectbox" jsvalidate="isNotEmpty(#label#不允许为空)">
+						<option dataset="@{select grade_id,grade_name from t_gradeinfo}"
+							label="grade_name" value="grade_id">
+						</option>
+					</inputbox>
+				</col>
+				<col column="mem_major" label="专业"></col>
+				<col column="mem_tel" label="联系方式"></col>
+				<col column="mem_card_num" label="身份证号"></col>
+				<col column="{editablelist-edit}" label="编辑">
+					<![CDATA[<input type="button"  value="点击进行编辑"/>]]>
+				</col>
+			</display>
+			<sql>
+				<select>
+					<value>
+						<![CDATA[select m.*,g.grade_name from t_memberinfo m left join t_gradeinfo g on m.mem_grade=g.grade_id where m.mem_role_id=1 and {#condition#}]]>
+					</value>
+					<condition name="dep_number" source="session{dep_Num}">
+						<value>
+							<![CDATA[m.mem_dep_num = #data# ]]>
+						</value>
+					</condition>
+					<condition name="m_id" label="学生学号">
+						<value>
+							<![CDATA[m.mem_id like '%#data#%']]>
+						</value>
+						<inputbox>
+							<typeprompt count="15">
+								<promptcol label="mem_id" title="学号" matchmode="anywhere"></promptcol>
+								<promptcol label="mem_name" title="姓名" matchmode="anywhere"></promptcol>
+								<datasource>
+									<option
+										dataset="@{select mem_id,mem_name from t_memberinfo where {#matchcondition#} and mem_role_id=1}"></option>
+								</datasource>
+							</typeprompt>
+						</inputbox>
+					</condition>
+					<condition name="m_name" label="学生姓名">
+						<value>
+							<![CDATA[m.mem_name like '%#data#%']]>
+						</value>
+					</condition>
+					<condition name="m_class" label="班级">
+						<value>2011111112
+							<![CDATA[(m.mem_class =#data#)]]>
+						</value>
+					</condition>
+					<condition name="m_grade" label="年级">
+						<value>
+							<![CDATA[(m.mem_grade = #data#)]]>
+						</value>
+						<inputbox type="selectbox" jsvalidate="isNotEmpty(#label#不允许为空)">
+							<option dataset="@{select grade_id,grade_name from t_gradeinfo}"
+								label="grade_name" value="grade_id">
+							</option>
+						</inputbox>
+					</condition>
+				</select>
+				<!--
+					> <insert pageurl="report{mem_stu_add_dep.report1}" pagewidth="620"
+					pageheight="400"></insert>
+				-->
+
+				<insert pageurl="report{mem_stu_add_dep.report1}"
+					popupparams="{title:'学生信息',width:800,height:500}" />
+				<update pageurl="report{mem_stu_update_dep.report1}"
+					popupparams="{title:'学生信息',width:800,height:500}" urlparams="mem_id=@{mem_id};" />
+
+				<!--
+					<update> update
+					t_memberinfo(@{mem_id},@{mem_passwd},@{mem_name},@{mem_class},mem_grade=@{grade_name},@{mem_major},@{mem_tel},@{mem_card_num},mem_role_id=1)
+					where mem_id=@{mem_id}; </update>
+				-->
+				<delete>
+					delete from t_memberinfo where mem_id=@{mem_id};
+					</delete>
+			</sql>
+
+		</report>
+
+	</page>
+</applications>

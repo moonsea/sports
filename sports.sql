@@ -29,7 +29,7 @@ CREATE TABLE `ad` (
   `ad_url` text,
   `remark` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ad_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,7 +81,7 @@ CREATE TABLE `club` (
   `rank` varchar(32) NOT NULL DEFAULT '0',
   `remark` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`club_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,7 +90,7 @@ CREATE TABLE `club` (
 
 LOCK TABLES `club` WRITE;
 /*!40000 ALTER TABLE `club` DISABLE KEYS */;
-INSERT INTO `club` VALUES (1,'TEST1',NULL,'0',NULL),(2,'TEST2',NULL,'0',NULL);
+INSERT INTO `club` VALUES (1,'俱乐部1',NULL,'0',NULL),(2,'俱乐部2',NULL,'0',NULL);
 /*!40000 ALTER TABLE `club` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -106,8 +106,9 @@ CREATE TABLE `comment` (
   `user_id` varchar(32) DEFAULT NULL,
   `video_id` varchar(32) DEFAULT NULL,
   `content` text,
+  `create_time` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`comment_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,6 +117,7 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
+INSERT INTO `comment` VALUES (1,'4','2','评论内容','1464872221');
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,7 +134,7 @@ CREATE TABLE `favorite` (
   `atten_id` varchar(32) DEFAULT NULL COMMENT '被关注用户的id',
   `remark` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`favo_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,6 +143,7 @@ CREATE TABLE `favorite` (
 
 LOCK TABLES `favorite` WRITE;
 /*!40000 ALTER TABLE `favorite` DISABLE KEYS */;
+INSERT INTO `favorite` VALUES (1,'2','1',NULL),(2,'2','3',NULL),(3,'2','2',NULL),(4,'2','1',NULL),(5,'2','3',NULL),(6,'2','3',NULL),(7,'2','1',NULL),(8,'2','2',NULL),(9,'2','3',NULL),(10,'2','3',NULL),(11,'2','1',NULL),(12,'2','3',NULL),(13,'2','2',NULL),(14,'2','2',NULL),(15,'2','1',NULL),(16,'2','3',NULL),(17,'2','1',NULL),(18,'2','2',NULL),(19,'2','3',NULL),(20,'2','1',NULL),(21,'2','3',NULL),(22,'2','2',NULL),(23,'2','3',NULL),(24,'2','1',NULL),(25,'2','2',NULL),(26,'2','2',NULL),(27,'2','2',NULL),(28,'2','2',NULL),(29,'2','2',NULL),(30,'2','2',NULL),(31,'2','2',NULL),(32,'2','1',NULL);
 /*!40000 ALTER TABLE `favorite` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,7 +187,7 @@ CREATE TABLE `follow` (
   `follow_user` varchar(32) DEFAULT NULL COMMENT 'follow的id',
   `remark` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`follow_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -193,6 +196,7 @@ CREATE TABLE `follow` (
 
 LOCK TABLES `follow` WRITE;
 /*!40000 ALTER TABLE `follow` DISABLE KEYS */;
+INSERT INTO `follow` VALUES (1,'2','3',NULL),(2,'1','2',NULL);
 /*!40000 ALTER TABLE `follow` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,11 +210,12 @@ DROP TABLE IF EXISTS `game`;
 CREATE TABLE `game` (
   `game_id` int(32) NOT NULL AUTO_INCREMENT,
   `game_name` varchar(500) DEFAULT NULL,
+  `game_img` varchar(100) DEFAULT NULL,
   `user_id` varchar(32) DEFAULT NULL COMMENT '发起人',
-  `wiki_id` varchar(32) DEFAULT NULL,
   `type_id` varchar(32) DEFAULT NULL,
+  `is_hot` tinyint(2) DEFAULT '0',
   PRIMARY KEY (`game_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -235,7 +240,7 @@ CREATE TABLE `game_rank` (
   `rank` varchar(32) DEFAULT NULL COMMENT '比赛名次',
   `user_id` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -258,7 +263,7 @@ CREATE TABLE `game_type` (
   `type_id` int(32) NOT NULL AUTO_INCREMENT,
   `type_name` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -283,7 +288,7 @@ CREATE TABLE `game_video` (
   `game_id` varchar(32) DEFAULT NULL,
   `video_type` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -292,6 +297,7 @@ CREATE TABLE `game_video` (
 
 LOCK TABLES `game_video` WRITE;
 /*!40000 ALTER TABLE `game_video` DISABLE KEYS */;
+INSERT INTO `game_video` VALUES (1,'6','1','0');
 /*!40000 ALTER TABLE `game_video` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -308,7 +314,7 @@ CREATE TABLE `item` (
   `user_id` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`item_id`),
   KEY `user_id` (`user_id`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -333,7 +339,7 @@ CREATE TABLE `join_club` (
   `club_id` varchar(32) DEFAULT NULL,
   `remark` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`join_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -359,7 +365,7 @@ CREATE TABLE `joined_game` (
   `game_id` varchar(32) DEFAULT NULL COMMENT '参加比赛的id',
   `remark` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`joined_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -368,6 +374,7 @@ CREATE TABLE `joined_game` (
 
 LOCK TABLES `joined_game` WRITE;
 /*!40000 ALTER TABLE `joined_game` DISABLE KEYS */;
+INSERT INTO `joined_game` VALUES (1,'1','1',NULL),(2,'2','1',NULL),(3,'1','2',NULL);
 /*!40000 ALTER TABLE `joined_game` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -386,7 +393,7 @@ CREATE TABLE `message` (
   `update_time` varchar(100) DEFAULT NULL,
   `remark` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`message_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -407,10 +414,10 @@ DROP TABLE IF EXISTS `role`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `role` (
   `role_id` int(32) NOT NULL AUTO_INCREMENT,
-  `role_name` varchar(100) DEFAULT NULL,
+  `role_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `remark` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`role_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -419,8 +426,34 @@ CREATE TABLE `role` (
 
 LOCK TABLES `role` WRITE;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
-INSERT INTO `role` VALUES (1,'TEST ROLE',NULL);
+INSERT INTO `role` VALUES (0,'普通用户',NULL),(1,'专家用户',NULL),(2,'俱乐部会员',NULL);
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `search_record`
+--
+
+DROP TABLE IF EXISTS `search_record`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `search_record` (
+  `search_id` int(32) NOT NULL AUTO_INCREMENT,
+  `search_content` varchar(255) DEFAULT NULL,
+  `search_user` varchar(32) DEFAULT NULL,
+  `search_time` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`search_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `search_record`
+--
+
+LOCK TABLES `search_record` WRITE;
+/*!40000 ALTER TABLE `search_record` DISABLE KEYS */;
+INSERT INTO `search_record` VALUES (2,'1','-1','1464845335'),(3,'1','-1','1464845433'),(4,'1','-1','1464845644'),(5,'1','-1','1464845671'),(6,'2','-1','1464845733');
+/*!40000 ALTER TABLE `search_record` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -452,7 +485,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('5250b769535328fa7e65313f92c76981',1464688178,2,0,'','',0,0.00,'','');
+INSERT INTO `sessions` VALUES ('5250b769535328fa7e65313f92c76981',1464943002,2,0,'','',0,0.00,'',''),('b3e2048d6e5378173713705fde6a93da',1464778912,3,0,'','',0,0.00,'',''),('306d0d13694aade3f16dbb58934fdc8f',1464925770,4,0,'','',0,0.00,'','');
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -465,21 +498,23 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `user_id` int(32) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(100) NOT NULL,
+  `user_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `password` varchar(500) NOT NULL,
   `desc` text COMMENT '用户介绍',
   `medal` varchar(32) NOT NULL DEFAULT '0' COMMENT '金牌数',
   `img` text COMMENT '头像',
   `champion` varchar(32) NOT NULL DEFAULT '0' COMMENT '冠军币',
   `rank` varchar(32) NOT NULL DEFAULT '0' COMMENT '等级',
-  `role` int(32) DEFAULT NULL COMMENT '身份认证',
+  `role` int(32) DEFAULT '0' COMMENT '身份认证',
   `sex` varchar(32) DEFAULT NULL,
   `birthday` varchar(32) DEFAULT NULL,
   `location` varchar(32) DEFAULT NULL,
   `mobile` varchar(32) DEFAULT NULL,
+  `is_hot` tinyint(2) DEFAULT '0',
+  `game_type` varchar(32) DEFAULT '-1',
   PRIMARY KEY (`user_id`),
   KEY `role` (`role`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -488,7 +523,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'test','test',NULL,'0',NULL,'0','0',NULL,NULL,NULL,NULL,NULL),(2,'æ–°æ³¨å†Œç”¨æˆ·','c33367701511b4f6020ec61ded352059',NULL,'0',NULL,'0','1',1,NULL,NULL,NULL,'13810332931');
+INSERT INTO `user` VALUES (1,'test','test',NULL,'0',NULL,'0','0',0,NULL,NULL,NULL,NULL,0,'-1'),(2,'KingDragon0826','c33367701511b4f6020ec61ded352059','大爷今儿个心情好 再改个签名','0','http://o83f02wso.bkt.clouddn.com/FoMpXF4QWVUF4nbBTvyBDo4P6oe2','10010','1',1,NULL,NULL,NULL,'13810332931',0,'-1'),(3,'来个中文名','e10adc3949ba59abbe56e057f20f883e',NULL,'0',NULL,'0','0',0,NULL,NULL,NULL,'15555555555',0,'3'),(4,'Moonsea','c33367701511b4f6020ec61ded352059',NULL,'0','http://o83f02wso.bkt.clouddn.com/FvfM0W8XgqdyCX7Lb0FYCcW5Ri8L','0','0',0,NULL,NULL,NULL,'18811565795',1,'4');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -508,12 +543,13 @@ CREATE TABLE `video` (
   `praise_count` varchar(32) NOT NULL DEFAULT '0',
   `add_time` varchar(32) DEFAULT NULL,
   `last_time` varchar(32) DEFAULT NULL,
-  `desc` varchar(100) DEFAULT NULL COMMENT '视频简介',
+  `description` varchar(100) DEFAULT NULL COMMENT '视频简介',
   `source_id` int(32) DEFAULT NULL,
-  `class_id` varchar(32) DEFAULT NULL,
+  `class` tinyint(4) DEFAULT NULL,
   `video_path` varchar(255) DEFAULT NULL,
+  `video_cover` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -522,7 +558,7 @@ CREATE TABLE `video` (
 
 LOCK TABLES `video` WRITE;
 /*!40000 ALTER TABLE `video` DISABLE KEYS */;
-INSERT INTO `video` VALUES (1,NULL,NULL,NULL,'0','0',NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `video` VALUES (1,'test1','1','test1','0','0','1464700117','1464700117','test1',NULL,1,'https://link.zhihu.com/?target=http%3A//developer.qiniu.com/samples/%25E9%25BB%2591%25E5%2590%258D%25E5%258D%2595-S01E12.flv',NULL),(2,'test2','1','test2','0','0','1464700117','1464700117','test2',NULL,1,'http://7o50kb.com2.z0.glb.qiniucdn.com/c1.1.mp4',NULL),(3,'test3','2','test3','0','0','1464700117','1464700117','test3',NULL,1,'http://7xt3xy.com2.z0.glb.clouddn.com/download_and_setup_sublime_text_3_for_win.mp4',NULL),(4,NULL,'4','','0','0','1464857198','1464857198','',NULL,0,'test_path','test_cover'),(5,NULL,'4','','0','0','1464857198','1464857198','',NULL,0,'test_path','test_cover'),(6,NULL,'4','','0','0','1464857292','1464857292','',NULL,0,'test_path','test_cover');
 /*!40000 ALTER TABLE `video` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -537,7 +573,7 @@ CREATE TABLE `video_class` (
   `class_id` int(32) NOT NULL AUTO_INCREMENT,
   `class_name` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`class_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -560,7 +596,7 @@ CREATE TABLE `video_source` (
   `source_id` int(32) NOT NULL AUTO_INCREMENT,
   `source_name` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`source_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -583,7 +619,7 @@ CREATE TABLE `video_type` (
   `type_id` int(32) NOT NULL AUTO_INCREMENT,
   `type_name` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -605,9 +641,12 @@ DROP TABLE IF EXISTS `wiki`;
 CREATE TABLE `wiki` (
   `wiki_id` int(32) NOT NULL AUTO_INCREMENT,
   `wiki_name` varchar(100) DEFAULT NULL,
-  `remark` varchar(100) DEFAULT NULL,
+  `video_id` int(32) DEFAULT NULL,
+  `type` tinyint(2) DEFAULT NULL,
+  `remark` varchar(255) DEFAULT NULL,
+  `user_id` int(32) DEFAULT NULL,
   PRIMARY KEY (`wiki_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -628,4 +667,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-31 16:13:00
+-- Dump completed on 2016-06-03 15:04:38

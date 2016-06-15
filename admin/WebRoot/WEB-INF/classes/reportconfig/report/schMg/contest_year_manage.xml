@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="contest_year_manage" js="/webresources/script/validate.js,/js/stuMg/stuMg.js">
+		<report id="contest_year_show" title="竞赛年份信息" pagesize="5|10|15|-1"
+			navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+			type="editablelist2">
+			<display labelalign="right" valuealign="left" labeltdwidth="100px">
+				<col column="{sequence:1}" label="序号"></col>
+				<col column="con_year" label="竞赛年份" clickorderby="true"
+					valuestyleproperty="style='mso-number-format:\@' width='15%'">
+				</col>
+				<col column="cnt" label="竞赛数目"></col>
+				<col property="btn" column="{non-fromdb}" label="查看详情"></col>
+			</display>
+			<format>
+				<imports>
+					<import>com.wabacus.util.*</import>
+					<import>com.wabacus</import>
+				</imports>
+				<value>
+			   <![CDATA[
+					
+					if(rrequest.getShowtype() == Consts.DISPLAY_ON_PAGE)
+					{//如果是显示在html页面上，则显示输入框
+					 	
+					 	btn="<input type=\"button\" value=\"查看详情\" onclick=\"showContestYearDetail('"+con_year+"')\" >";
+					 	
+					 	 
+					}
+				  ]]>
+				</value>
+			</format>
+			<sql>
+				<select>
+					<value>
+						<![CDATA[select ta.con_year,count(tb.con_no) as cnt from t_conyearinfo ta left join t_contestinfo tb on ta.con_year=tb.con_year where {#condition#}  group by ta.con_year order by ta.con_year]]>
+					</value>
+
+					<condition name="c_year" label="竞赛年份">
+						<value>
+							<![CDATA[ta.con_year like '%#data#%']]>
+						</value>
+					</condition>
+				</select>
+				<insert>
+					insert into t_conyearinfo(@{con_year});
+				</insert>
+				<update>
+					update t_conyearinfo(@{con_year}) where
+					con_year=@{con_year};
+					</update>
+				<delete>
+					delete from t_conyearinfo where con_year=@{con_year};
+					</delete>
+			</sql>
+
+		</report>
+
+	</page>
+</applications>

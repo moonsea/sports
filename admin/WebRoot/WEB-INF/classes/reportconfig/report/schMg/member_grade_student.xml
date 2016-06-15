@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="mmeber_grade_student" js="/webresources/script/validate.js">
+		<report id="member_grade_show" title="学生年级信息" pagesize="15|-1" rowselect="checkbox"
+			navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+			type="editablelist2">
+			<display labelalign="right"   valuealign="left" labeltdwidth="100px">
+				<col column="{sequence:1}" label="序号"></col>
+				<col column="grade_id" label="年级编号" displaytype="hidden" clickorderby="true"
+					valuestyleproperty="style='mso-number-format:\@' width='15%'">
+				</col>
+				<col column="grade_name" label="年级名称" ></col>
+				<col column="grade_status" label="是否显示">
+				<inputbox type="selectbox">
+					<option value="是" label="是"></option>
+					<option value="否" label="否"></option>
+				</inputbox>
+				</col>
+				<col column="grade_remark" label="备注" clickorderby="true" filter="true" filterwidth="120px"></col>
+			</display>
+			<sql>
+				<select>
+					<value>
+						<![CDATA[select * from t_gradeinfo where {#condition#} order by grade_name]]>
+					</value>
+
+					<condition name="g_name" label="年级名称">
+						<value>
+							<![CDATA[grade_name like '%#data#%']]>
+						</value>
+					</condition>
+				</select>
+				<insert>
+					insert into t_gradeinfo(grade_id=uuid{},@{grade_name},@{grade_remark},@{grade_status});
+				</insert>
+				<update>
+					update t_gradeinfo(@{grade_name},@{grade_remark},@{grade_status}) where
+					grade_id=@{grade_id};
+					</update>
+				<delete>
+					delete from t_gradeinfo where grade_id=@{grade_id};
+					</delete>
+			</sql>
+
+		</report>
+
+	</page>
+</applications>

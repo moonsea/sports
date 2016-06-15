@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="sum_ind_update_stu" js="/webresources/script/validate.js">
+		<report id="report1" title="个人总结" type="form">
+			<display labelalign="right" valuealign="left">
+				<col column="sum_id" label="总结编号" displaytype="hidden"></col>
+				<col column="sum_pro_id" label="作品编号" valuestyleproperty="colspan='2'">
+					<inputbox styleproperty="style='width:100%'"></inputbox>
+				</col>
+				<col column="pro_name" label="作品名称" br="true"
+					valuestyleproperty="colspan='2'">
+					<inputbox styleproperty="style='width:100%'"></inputbox>
+				</col>
+				<col column="sum_mem_id" label="学号" valuestyleproperty="colspan='2'">
+					<inputbox styleproperty="style='width:100%'"></inputbox>
+				</col>
+				<col column="sum_ind_name" label="姓名" valuestyleproperty="colspan='2'"
+					br="true">
+					<inputbox styleproperty="style='width:100%'"></inputbox>
+				</col>
+				<col column="sum_ind_tel" label="联系方式" valuestyleproperty="colspan='2'">
+					<inputbox styleproperty="style='width:100%'"></inputbox>
+				</col>
+				<col column="sum_ind_email" label="电子邮箱" valuestyleproperty="colspan='2'"
+					br="true">
+					<inputbox styleproperty="style='width:100%'"></inputbox>
+				</col>
+				<col column="sum_ind_dep" label="院系" valuestyleproperty="colspan='2'">
+					<inputbox type="selectbox" styleproperty="style='width:100%'">
+						<option dataset="@{select dep_name,dep_id from t_departmentinfo}"
+							label="dep_name" value="dep_id"></option>
+					</inputbox>
+				</col>
+				<col column="sum_ind_class" label="班级" br="true"
+					valuestyleproperty="colspan='2'">
+					<inputbox styleproperty="style='width:100%'"></inputbox>
+				</col>
+				<col column="sum_ind_major" label="专业" br="true"
+					valuestyleproperty="colspan='5'">
+					<inputbox styleproperty="style='width:100%'"></inputbox>
+				</col>
+				<col column="sum_work" label="赛事承担工作" br="true"
+					valuestyleproperty="colspan='5'">
+					<inputbox jsvalidate="isNotEmpty(赛事承担工作不允许为空);checkLen100(#label#长度不允许超过100)"
+						styleproperty="style='width:100%'"></inputbox>
+				</col>
+				<col column="sum_ztsh" label="参赛总体收获" filter="true" filterwidth="120px"
+					br="true" valuestyleproperty="colspan='5'">
+					<inputbox type="textareabox" styleproperty="rows='5'" jsvalidate="isNotEmpty(#label#列不允许为空);checkLen300(#label#长度不允许超过300)"></inputbox>
+				</col>
+				<col column="sum_jlth" label="参赛交流体会" filter="true" filterwidth="120px"
+					br="true" valuestyleproperty="colspan='5'">
+					<inputbox type="textareabox" styleproperty="rows='5'" jsvalidate="isNotEmpty(#label#列不允许为空);checkLen300(#label#长度不允许超过300)"></inputbox>
+				</col>
+				<col column="sum_cbzj" label="前期筹备情况总结" filter="true"
+					filterwidth="120px" br="true" valuestyleproperty="colspan='5'">
+					<inputbox type="textareabox" styleproperty="rows='5'" jsvalidate="isNotEmpty(#label#列不允许为空);checkLen300(#label#长度不允许超过300)"></inputbox>
+				</col>
+				<col column="sum_cszjfx" label="参赛情况总结分析" filter="true"
+					filterwidth="120px" br="true" valuestyleproperty="colspan='5'">
+					<inputbox type="textareabox" styleproperty="rows='5'" jsvalidate="isNotEmpty(#label#列不允许为空);checkLen300(#label#长度不允许超过300)"></inputbox>
+				</col>
+				<col column="sum_hqdc" label="后期对策分析" filter="true" filterwidth="120px"
+					br="true" valuestyleproperty="colspan='5'">
+					<inputbox type="textareabox" styleproperty="rows='5'" jsvalidate="isNotEmpty(#label#列不允许为空);checkLen300(#label#长度不允许超过300)"></inputbox>
+				</col>
+				<col column="sum_qtjy" label="其他信息、分析、建议" filter="true"
+					filterwidth="120px" br="true" valuestyleproperty="colspan='5'">
+					<inputbox type="textareabox" styleproperty="rows='5'" jsvalidate="isNotEmpty(#label#列不允许为空);checkLen300(#label#长度不允许超过300)"></inputbox>
+				</col>
+				<col column="sum_date" label="总结时间" displaytype="hidden"></col>
+				<col column="sum_status" label="总结状态" displaytype="hidden"></col>
+				<col column="sum_remark" label="备注" valuestyleproperty="colspan='5'">
+					<inputbox type="textareabox" styleproperty="rows='5'" jsvalidate="checkLen300(#label#长度不允许超过300)"></inputbox>
+				</col>
+			</display>
+			<sql>
+				<select>
+					<value>
+						<![CDATA[select s.*,p.pro_name from t_summary s left join t_projectinfo p on s.sum_pro_id = p.pro_id where  {#condition#}]]>
+					</value>
+					<condition name="sum_id" hidden="true">
+						<value>
+						<![CDATA[(s.sum_id = #data# )]]>
+						</value>
+					</condition>
+				</select>
+				<!--
+					<insert> <value> insert into
+					t_contestinfo(con_no=uuid{},@{con_name},@{con_desc},@{con_type},@{con_org},@{con_auspices},@{con_remark});
+
+					</value> </insert>
+				-->
+				<update>
+					<params>
+						<param name="currentdate" value="now{}" datatype="date{yyyy-MM-dd}"></param>
+					</params>
+					<value>
+						<![CDATA[update t_summary set sum_ind_name=@{sum_ind_name},sum_ind_tel=@{sum_ind_tel},sum_ind_dep=@{sum_ind_dep},sum_ind_class=@{sum_ind_class},sum_ind_major=@{sum_ind_major},sum_ind_email=@{sum_ind_email},sum_work=@{sum_work},sum_ztsh=@{sum_ztsh},sum_jlth=@{sum_jlth},sum_cbzj=@{sum_cbzj},sum_cszjfx=@{sum_cszjfx},sum_hqdc=@{sum_hqdc},sum_qtjy=@{sum_qtjy},sum_date=#{currentdate},sum_status="已总结",sum_remark=@{sum_remark} where sum_id=@{sum_id}  ]]>
+					</value>
+				</update>
+			</sql>
+		</report>
+	</page>
+</applications>

@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="project_apply_sch_con_3rd3"
+		js="/webresources/script/validate.js,/js/stuMg/stuMg.js,/js/ProjectApplyCheckDep/testcallback.js">
+		<interceptor>
+			<imports>
+				<import>com.wabacus.util.*</import>
+			</imports>
+			<preaction>
+				rrequest.getRequest().getSession().setAttribute("Con_No",rrequest.getRequest().getParameter("Con_No"));
+			</preaction>
+		</interceptor>
+		<report id="report1" title="申请参赛信息33" type="form"
+			interceptor="cn.edu.hrbeu.sch.interceptor.ProjectApplySchCon33">
+			<display labelalign="right" valuealign="left" labeltdwidth="100px">
+				<col column="con_no" label="竞赛编号" displaytype="hidden"></col>
+				<col column="con_name" label="竞赛名称" valuestyleproperty="colspan='4'"
+					br="true" />
+				<col column="con_sta_check" label="审核状态" valuestyleproperty="colspan='4'"
+					br="true">
+					<inputbox type="selectbox" styleproperty="style='width:100%'">
+						<option value="校团委书记审核通过" label="审核通过"></option>
+						<option value="校团委书记审核不通过" label="审核不通过"></option>
+					</inputbox>
+				</col>
+				<col column="con_time" label="举办时间" datatype="date{yyyy-MM-dd}">
+					<inputbox type="datepicker" jsvalidate="isDate(#data#格式不对，必须为yyyy-MM-dd格式)"
+						styleproperty="style='width:100%'"></inputbox>
+				</col>
+				<col column="con_fund_budget" label="预算总计" valuestyleproperty="colspan='2'"
+					br="true">
+					<inputbox jsvalidate="isNotEmpty(#label#列不允许为空)"
+						styleproperty="style='width:100%'"></inputbox>
+				</col>
+				<col column="con_loc" label="举办地" valuestyleproperty="colspan='4'"
+					br="true">
+					<inputbox jsvalidate="isNotEmpty(#label#列不允许为空)"
+						styleproperty="style='width:100%'"></inputbox>
+				</col>
+				<col column="con_time_start" label="拟出发时间" datatype="date{yyyy-MM-dd}"
+					valuestyleproperty="colspan='1'">
+					<inputbox type="datepicker"
+						jsvalidate="isDate(#data#格式不对，必须为yyyy-MM-dd格式);isNotEmpty(#label#列不允许为空)"></inputbox>
+				</col>
+				<col column="con_time_end" label="拟返回时间" br="true"
+					valuestyleproperty="colspan='2'">
+					<inputbox type="datepicker"
+						jsvalidate="isDate(#data#格式不对，必须为yyyy-MM-dd格式);isNotEmpty(#label#列不允许为空)"></inputbox>
+				</col>
+
+			</display>
+
+			<!-- <sql savebinding="report2;report3;report4;report5;report6">-->
+			<sql
+				savebinding="report2;report3;report4;report5;report6;report7;report8;report9;"
+				aftersave="refTab('project_apply_check_sch_3rd','2')">
+				<select>
+					<value>
+					<![CDATA[SELECT * FROM t_contestinfo where {#condition#}]]>
+					</value>
+					<condition name="Con_No" hidden="true">
+						<value> 
+    						<![CDATA[(con_no = '#data#')]]>
+						</value>
+					</condition>
+				</select>
+				<update>
+
+					update
+					t_contestinfo(@{con_loc},@{con_time},@{con_time_start},@{con_time_end},@{con_sta_check},@{con_fund_budget})
+					where con_no=@{con_no};
+
+				</update>
+
+			</sql>
+		</report>
+
+		<report id="report2" title="申报作品信息" type="listform" pagesize="-1">
+			<display valuetdwidth="100px" labeltdwidth="80px">
+				<col column="pro_id" label="作品编号" />
+				<col column="pro_name" label="作品名称" />
+				<col column="fund_sou_name" label="作品经费来源">
+					<intputbox type="selectbox">
+						<option
+							dataset="@{select fund_sou_name,fund_sou_id from t_fundsourceinfo order by dun_sou_id}"
+							label="fund_cou_name" value="fund_sou_id"></option>
+					</intputbox>
+				</col>
+				<col property="team_member" column="{non-fromdb}" label="作品成员"></col>
+				<col column="pro_exc_grade" label="作品预期成绩"></col>
+			</display>
+			<format>
+				<imports>
+					<import>com.wabacus.util.*</import>
+					<import>com.wabacus</import>
+				</imports>
+				<value>
+			   <![CDATA[	
+			   if(rrequest.getShowtype() == Consts.DISPLAY_ON_PAGE)
+					{
+					 	//btn="<input type=\"button\" value=\"院系审核\" onclick=\"showConApplyDetailOperation('"+con_no+"')\">";
+					 	pro_name="<a href=\"#\"   value=\"查看详情\" title=\"点击查看作品详情\" onclick=\"showProDepDetailOperation('"+pro_id+"')\" >" +pro_name+"</a>";
+					 	//con_name="<a href=\"#\"   value=\"查看详情\" title=\"点击查看竞赛申报详情\" onclick=\"showConApplyDetailOperation('"+con_no+"')\" >" +con_name+"</a>";
+					 	
+					}				
+					String name="";
+				  	team_member="";
+					java.sql.Connection  conn = rrequest.getConnection(rbean.getSbean().getDatasource());
+					java.sql.PreparedStatement pstmt = conn.prepareStatement("select m.mem_name from t_teaminfo t left join t_memberinfo m on t.team_mem_num = m.mem_id where t.team_pro_id = ? order by t.team_mem_order");
+					pstmt.setString(1,pro_id);
+					java.sql.ResultSet rs =  pstmt.executeQuery();
+					while(rs.next()){
+						name = rs.getString("mem_name");
+						//num = rs.getString("mem_id");
+						team_member = team_member+name+"、";
+					}
+					if(team_member.length()>0)
+						team_member=team_member.substring(0,team_member.length()-1);
+					//mem_name = mem_name+"<br>";
+					//System.out.println(mem_name);
+					rs.close();
+					pstmt.close();
+					
+				  ]]>
+				</value>
+			</format>
+			<sql aftersave="refTab('project_apply_check_sch_3rd','2')">
+				<select>
+					<value>
+					<![CDATA[SELECT p.*,f.fund_sou_name FROM t_projectinfo p left join t_fundsourceinfo f on p.pro_fund_sou_id = f.fund_sou_id where {#condition#}]]>
+					</value>
+					<condition name="Con_No" hidden="true">
+						<value> 
+    						<![CDATA[(p.pro_con_num = '#data#')]]>
+						</value>
+					</condition>
+				</select>
+			</sql>
+		</report>
+
+		<report id="report3" title="带队教师信息" type="editablelist2"
+			pagesize="-1">
+			<display maxrownum="1">
+				<col column="lead_id" label="带队教师信息表id" displaytype="hidden" />
+				<col column="lead_con_no" label="竞赛编号" displaytype="hidden" />
+				<col column="lead_tea_id" label="教师工号">
+					<inputbox jsvalidate="isNotEmpty(#label#列不允许为空)">
+						<autocomplete
+							columns="lead_tea_id;tea_name;team_tea_title;Team_Tea_Dep;team_tea_research;Team_Tea_Tel;Team_Tea_Card_Num;Team_Tea_Email"
+							colvaluecondition="lead_tea_id;"
+							dataset="class{cn.edu.hrbeu.stuMg.SubmitCont.SubmitConTeaAutoComplete}" />
+					</inputbox>
+				</col>
+				<col column="tea_name" label="姓名"></col>
+				<col column="team_tea_title" label="职称"></col>
+				<col column="Team_Tea_Dep" label="单位"></col>
+				<col column="team_tea_research" label="研究方向" displaytype="hidden"></col>
+				<col column="Team_Tea_Tel" label="联系电话">
+				</col>
+				<col column="Team_Tea_Card_Num" label="身份证号"></col>
+				<col column="Team_Tea_Email" label="邮箱" displaytype="hidden"></col>
+
+			</display>
+			<sql aftersave="refTab('project_apply_check_sch_3rd','2')">
+				<select>
+					<value>
+					<![CDATA[SELECT l.lead_con_no,l.lead_id,l.lead_tea_id,l.lead_tea_title team_tea_title,l.lead_tea_dep Team_Tea_Dep,l.lead_tea_research team_tea_research,l.lead_tea_tel Team_Tea_Tel,l.lead_tea_card_num Team_Tea_Card_Num,l.lead_tea_email Team_Tea_Email,t.tea_name FROM t_leadteainfo l left join t_teacherinfo t on l.lead_tea_id=t.tea_id where  {#condition#}]]>
+					</value>
+					<condition name="Con_No" hidden="true">
+						<value> 
+    						<![CDATA[(l.lead_con_no = '#data#')]]>
+						</value>
+					</condition>
+				</select>
+				<insert>
+					<params>
+						<param name="Con_No" value="session{Con_No}"></param>
+					</params>
+					insert into t_leadteainfo
+					(lead_id=#{Con_No},lead_con_no=#{Con_No},@{lead_tea_id},lead_tea_title=@{team_tea_title},lead_tea_dep=@{Team_Tea_Dep},lead_tea_tel=@{Team_Tea_Tel},lead_tea_card_num=@{Team_Tea_Card_Num},lead_tea_email=@{Team_Tea_Email},lead_tea_research=@{team_tea_research});
+				</insert>
+				<update>
+					update t_leadteainfo
+					(@{lead_tea_id},lead_tea_title=@{team_tea_title},lead_tea_dep=@{Team_Tea_Dep},lead_tea_tel=@{Team_Tea_Tel},lead_tea_card_num=@{Team_Tea_Card_Num},lead_tea_email=@{Team_Tea_Email},lead_tea_research=@{team_tea_research})
+					where lead_con_no=@{lead_con_no};
+				</update>
+
+			</sql>
+		</report>
+
+		<report id="report9" title="带队教师出行费用预算" type="listform"
+			pagesize="-1">
+			<display valuetdwidth="100px" labeltdwidth="80px">
+				<col column="id" label="id" displaytype="hidden" />
+				<col property="temp" column="{non-fromdb}" label="" displaytype="hidden"></col>
+				<col column="fund_type_id" label="支出科目" br="true">
+					<inputbox type="selectbox">
+						<option
+							dataset="@{select Fund_Type_ID,Fund_Type_Name from t_fundtypeinfo}"
+							label="Fund_Type_Name" value="Fund_Type_ID">
+						</option>
+					</inputbox>
+				</col>
+				<col column="con_price" label="单价(元)">
+					<inputbox styleproperty="onblur='coutValue(this)'"></inputbox>
+				</col>
+				<col column="con_amount" label="数量">
+					<inputbox styleproperty="onblur='coutValue(this)'"></inputbox>
+				</col>
+				<col column="con_total" label="合计(元)" br="true">
+					<inputbox styleproperty="disabled='disabled'"></inputbox>
+				</col>
+				<col column="con_exp" label="说明"></col>
+
+			</display>
+			<format>
+				<imports>
+					<import>com.wabacus.util.*</import>
+					<import>com.wabacus</import>
+				</imports>
+				<value>
+			   <![CDATA[
+			   
+					java.sql.Connection  conn = rrequest.getConnection(rbean.getSbean().getDatasource());
+					java.sql.PreparedStatement pstmt = conn.prepareStatement("select fund_type_name from t_fundtypeinfo where fund_type_id = ?");
+						
+					pstmt.setString(1,fund_type_id);
+					java.sql.ResultSet rs =  pstmt.executeQuery();
+					while(rs.next()){
+						fund_type_id = rs.getString("fund_type_name");
+					}
+					
+					rs.close();
+					pstmt.close();
+					}
+				  ]]>
+				</value>
+			</format>
+			<subdisplay>
+				<statitems><!-- 定义要用到的统计项 -->
+					<statitem property="item7" value="sum(con_total)"
+						datatype="float"></statitem>
+				</statitems>
+				<subrow displaytype="page|report">
+					<subcol property="sprop1" colspan="5"
+						valuestyleproperty="bgcolor='#CCFAFF' align='right'"></subcol>
+					<!--
+						<subcol property="sprop2" colspan="1"
+						valuestyleproperty="bgcolor='#CCFAFF' align='right'"></subcol>
+					-->
+				</subrow>
+				<format>
+					<imports>
+						<import>com.wabacus.util.*</import>
+					</imports>
+					<value>
+						<![CDATA[
+							sprop1="带队教师出行费用总预算： "+item7+"";
+						]]>
+					</value>
+				</format>
+			</subdisplay>
+			<sql>
+				<select>
+					<value>
+					<![CDATA[SELECT * FROM t_fundinfo2  where {#condition#} ]]>
+					</value>
+					<condition name="Con_No" hidden="true">
+						<value> 
+    						<![CDATA[(con_no = '#data#')]]>
+						</value>
+					</condition>
+				</select>
+				<insert>
+					<params>
+						<param name="Con_No" value="session{Con_No}"></param>
+					</params>
+					insert into t_fundinfo2
+					( id=uuid{},con_no =
+					#{Con_No},@{fund_type_id},@{con_price},@{con_amount},@{con_total},@{con_exp});
+				</insert>
+				<update>
+					update
+					t_fundinfo2(@{fund_type_id},@{con_price},@{con_amount},@{con_total},@{con_exp})
+					where id = @{id};					
+			  </update>
+				<delete>
+					delete from t_fundinfo2 where id=@{id};
+				</delete>
+			</sql>
+		</report>
+
+		<report id="report4" title="参赛学生信息" type="listform" pagesize="-1">
+			<display valuetdwidth="70px" labeltdwidth="80px">
+				<col column="Team_Mem_ID" label="团队成员id" displaytype="hidden" />
+				<col column="Team_Pro_ID" label="作品ID" displaytype="hidden"></col>
+				<col column="Team_Mem_Num" label="学号" clickorderby="true">
+				</col>
+				<col column="mem_name" label="姓名">
+				</col>
+				<col column="Team_Mem_Dep" label="院系"></col>
+				<col column="Team_Mem_Major" label="专业"></col>
+				<col column="Team_Mem_Tel" label="联系方式"></col>
+				<col column="Team_Mem_Card_Num" label="身份证号"></col>
+			</display>
+			<sql aftersave="refTab('project_apply_check_sch_3rd','2')">
+				<select>
+					<value> 
+					<![CDATA[SELECT	t.Team_Pro_ID,t.Team_Mem_Dep,t.Team_Mem_Major,t.Team_Mem_Tel,t.Team_Mem_Card_Num,t.Team_Mem_Num,T.Team_Mem_ID,m.mem_name FROM T_TeamInfo t left join t_memberinfo m on t.Team_Mem_Num = m.mem_id left join t_projectinfo p on t.team_pro_id=p.pro_id where {#condition#} and t.team_status_join='是' group by t.Team_Mem_Num order by t.Team_Mem_Num]]>
+					</value>
+					<condition name="Con_No" hidden="true">
+						<value> 
+							<![CDATA[(p.pro_con_num = '#data#')]]>
+						</value>
+					</condition>
+				</select>
+			</sql>
+		</report>
+
+		<report id="report5" title="参赛教师信息" type="listform" pagesize="-1">
+			<display valuetdwidth="60px" labeltdwidth="80px">
+				<col column="Team_Tea_ID" label="教师成员id" displaytype="hidden" />
+				<col column="Team_Pro_ID" label="作品ID" displaytype="hidden"></col>
+				<col column="Team_Tea_Num" label="工号">
+				</col>
+				<col column="tea_name" label="姓名">
+				</col>
+				<col column="Team_Tea_Dep" label="单位"></col>
+				<col column="Team_Tea_Title" label="职称"></col>
+				<col column="Team_Tea_Tel" label="联系方式"></col>
+				<col column="Team_Tea_Card_Num" label="身份证号"></col>
+			</display>
+			<sql aftersave="refTab('project_apply_check_sch_3rd','2')">
+				<select>
+					<value> 
+					<![CDATA[SELECT	t.Team_Pro_ID,t.Team_Tea_Dep,t.Team_Tea_Title,t.Team_Tea_Tel,t.Team_Tea_Card_Num,t.Team_Tea_Num,T.Team_Tea_ID,tea.tea_name FROM T_TeamTeaInfo t left join t_teacherinfo tea on t.Team_Tea_Num = tea.tea_id left join t_projectinfo p on t.team_pro_id=p.pro_id where {#condition#} and t.team_status_join='是' group by t.Team_Tea_Num order by t.Team_Tea_Num]]>
+					</value>
+					<condition name="Con_No" hidden="true">
+						<value> 
+							<![CDATA[(p.pro_con_num = '#data#')]]>
+						</value>
+					</condition>
+				</select>
+			</sql>
+		</report>
+
+		<report id="report6" title="参赛出行学生费用预算" type="editablelist2"
+			pagesize="-1">
+			<display valuetdwidth="80px" labeltdwidth="80px" labelalign="right"
+				valuealign="left">
+				<col column="pro_con_num" label="竞赛编号" displaytype="hidden" />
+				<col column="Fund_ID" label="经费id" displaytype="hidden" />
+				<col column="fund_type_id" label="经费类型id" displaytype="hidden" />
+				<col column="Fund_Pro_ID" label="项目id" displaytype="hidden"></col>
+				<col column="fund_type_name" label="支出科目" br="true">
+					<inputbox type="selectbox">
+						<option
+							dataset="@{select Fund_Type_ID,Fund_Type_Name from t_fundtypeinfo}"
+							label="Fund_Type_Name" value="Fund_Type_ID">
+						</option>
+					</inputbox>
+				</col>
+				<col column="Fund_Price" label="单价(元)"></col>
+				<col column="Fund_Amount" label="数量"></col>
+				<col column="Fund_Total" label="合计(元)">
+				</col>
+			</display>
+			
+			<subdisplay>
+				<statitems><!-- 定义要用到的统计项 -->
+					<statitem property="item7" value="sum(Fund_Total)"
+						datatype="float"></statitem>
+				</statitems>
+				<subrow displaytype="page|report">
+					<subcol property="sprop" colspan="4"
+						valuestyleproperty="bgcolor='#CCFAFF' align='right'"></subcol>
+				</subrow>
+				<format>
+					<imports>
+						<import>com.wabacus.util.*</import>
+					</imports>
+					<value>
+						<![CDATA[
+							sprop="总费用："+Tools.formatDouble(String.valueOf(item7),"#,###0.00");
+						]]>
+					</value>
+				</format>
+			</subdisplay>
+			<sql aftersave="refTab('project_apply_check_dep','1')">
+				<select>
+					<value> <![CDATA[
+					SELECT p.pro_con_num,f.fund_id,f.fund_type_id,f.fund_pro_id,ft.fund_type_name,round((sum(f.fund_total)/sum(f.fund_amount)),2) as fund_price,round(sum(f.fund_amount),2) as fund_amount,round(sum(f.fund_total),2) as fund_total FROM T_FundInfo f left join t_fundtypeinfo ft on f.fund_type_id = ft.fund_type_id left join t_projectinfo p on f.fund_pro_id = p.pro_id left join t_contestinfo tc on p.pro_con_num = tc.con_no where {#condition#} and Fund_Role='学生' group by f.fund_type_id order by fund_type_id]]>
+					</value>
+					<condition name="Con_No" hidden="true">
+						<value> <![CDATA[(p.pro_con_num = '#data#')]]>
+						</value>
+					</condition>
+				</select>
+			</sql>
+		</report>
+
+		<report id="report7" title="参赛出行教师费用预算" type="listform"
+			pagesize="-1">
+			<display valuetdwidth="80px" labeltdwidth="80px" labelalign="right"
+				valuealign="left">
+				<col column="pro_con_num" label="竞赛编号" displaytype="hidden" />
+				<col column="Fund_ID" label="经费id" displaytype="hidden" />
+				<col column="Fund_Pro_ID" label="项目id" displaytype="hidden"></col>
+				<col column="fund_type_name" label="支出科目" br="true">
+					<inputbox type="selectbox">
+						<option
+							dataset="@{select Fund_Type_ID,Fund_Type_Name from t_fundtypeinfo}"
+							label="Fund_Type_Name" value="Fund_Type_ID">
+						</option>
+					</inputbox>
+				</col>
+				<col column="Fund_Price" label="单价(元)"></col>
+				<col column="Fund_Amount" label="数量"></col>
+				<col column="Fund_Total" label="合计(元)">
+				</col>
+			</display>
+			
+			<subdisplay>
+				<statitems><!-- 定义要用到的统计项 -->
+					<statitem property="item7" value="sum(Fund_Total)"
+						datatype="float"></statitem>
+				</statitems>
+				<subrow displaytype="page|report">
+					<subcol property="sprop" colspan="4"
+						valuestyleproperty="bgcolor='#CCFAFF' align='right'"></subcol>
+				</subrow>
+				<format>
+					<imports>
+						<import>com.wabacus.util.*</import>
+					</imports>
+					<value>
+						<![CDATA[
+							sprop="总费用："+Tools.formatDouble(String.valueOf(item7),"#,###0.00");
+						]]>
+					</value>
+				</format>
+			</subdisplay>
+			<sql aftersave="refTab('project_apply_check_dep','1')">
+				<select>
+					<value> <![CDATA[
+						SELECT p.pro_con_num,f.fund_id,f.fund_type_id,f.fund_pro_id,ft.fund_type_name,round((sum(f.fund_total)/sum(f.fund_amount)),2) as fund_price,round(sum(f.fund_amount),2) as fund_amount,round(sum(f.fund_total),2) as fund_total FROM T_FundInfo f left join t_fundtypeinfo ft on f.fund_type_id = ft.fund_type_id left join t_projectinfo p on f.fund_pro_id = p.pro_id left join t_contestinfo tc on p.pro_con_num = tc.con_no where {#condition#} and Fund_Role='教师' group by f.fund_type_id order by fund_type_id]]>
+					</value>
+					<condition name="Con_No" hidden="true">
+						<value> <![CDATA[(p.pro_con_num = '#data#')]]>
+						</value>
+					</condition>
+				</select>
+			</sql>
+		</report>
+
+		<report id="report8" title="校团委审批意见" type="form">
+			<display labelalign="center" valuealign="left" labeltdwidth="70px">
+				<col column="con_no" label="竞赛编号" displaytype="hidden"></col>
+				<col column="con_adv_com_1st" label="科创中心审批意见"
+					valuestyleproperty="colspan='4'" br="true">
+					<inputbox jsvalidate="checkLen300(#label#长度不允许超过300)"
+						type="textareabox" styleproperty="rows='4'"></inputbox>
+				</col>
+				<col column="con_adv_com_2nd" label="校团副书记审批意见"
+					valuestyleproperty="colspan='4'" br="true">
+					<inputbox jsvalidate="checkLen300(#label#长度不允许超过300)"
+						type="textareabox" styleproperty="rows='4'"></inputbox>
+				</col>
+				<col column="con_adv_com_3rd" label="校团书记审批意见"
+					valuestyleproperty="colspan='4'" br="true">
+					<inputbox jsvalidate="checkLen300(#label#长度不允许超过300)"
+						type="textareabox" styleproperty="rows='4'"></inputbox>
+				</col>
+			</display>
+
+			<sql aftersave="refTab('project_apply_check_sch_3rd','2')">
+				<select>
+					<value>
+					<![CDATA[SELECT * FROM t_contestinfo where {#condition#}]]>
+					</value>
+					<condition name="Con_No" hidden="true">
+						<value> 
+    						<![CDATA[(con_no = '#data#')]]>
+						</value>
+					</condition>
+				</select>
+				<update>
+
+					update
+					t_contestinfo(@{con_adv_com_3rd})
+					where
+					con_no=@{con_no};
+
+				</update>
+
+			</sql>
+		</report>
+	</page>
+</applications>
+

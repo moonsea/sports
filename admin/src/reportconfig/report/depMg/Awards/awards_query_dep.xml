@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="awards_query_dep"
+		js="/webresources/script/validate.js,/js/stuMg/stuMg.js,/js/stuMg/stuSumMg.js">
+		<report id="project_complete_show" title="参赛作品" parenttitle="已提交获奖认定作品列表"
+			pagesize="5|10|15|-1" navigate="${navigatepagesizepage1.report3.navigate}"
+			dataexport="richexcel|plainexcel|word" type="editablelist">
+			<display>
+				<col column="{sequence:1}" label="序号"></col>
+				<col column="pro_id" label="作品编号" clickorderby="true"
+					valuestyleproperty="style='mso-number-format:\@' width='15%'"></col>
+				<col column="pro_name" label="作品名称" clickorderby="true"></col>
+				<col column="con_no" label="竞赛编号" displaytype="hidden"></col>
+				<col column="con_name" label="竞赛名称"></col>
+				<col column="pro_date_sub" label="作品申报日期"></col>
+				<col column="{editablelist-edit}" label="获奖认定"></col>
+				<col column="pro_awards" label="作品获奖"></col>
+				<col column="pro_remark" label="备注"></col>
+				<col column="pro_sta_awards" label="当前状态"></col>
+				<col property="btn" column="{non-fromdb}" label="查看详情"></col>
+			</display>
+			<format>
+				<imports>
+					<import>com.wabacus.util.*</import>
+					<import>com.wabacus</import>
+				</imports>
+				<value>
+			   <![CDATA[
+					
+					if(rrequest.getShowtype() == Consts.DISPLAY_ON_PAGE)
+					{//如果是显示在html页面上，则显示输入框
+					 	pro_name="<a href=\"#\"   value=\"查看详情\" title=\"点击查看作品详情\" onclick=\"showProAwardsDetailOperation('"+pro_id+"')\" >" +pro_name+"</a>";
+					 	btn="<input type=\"button\" value=\"查看详情\" onclick=\"showProAwardsDetailOperation('"+pro_id+"')\" >";
+					 	con_name="<a href=\"#\"   value=\"查看详情\" title=\"点击查看竞赛详情\" onclick=\"showConDetailOperation('"+con_no+"')\" >" +con_name+"</a>";
+					 	 
+					}
+				  ]]>
+				</value>
+			</format>
+			<sql>
+				<select>
+					<value>
+						<![CDATA[select c.con_no,p.pro_id,p.pro_name,p.pro_date_sub,p.pro_remark,p.pro_sta_awards,p.pro_awards,c.con_name from t_projectinfo p left join t_contestinfo c on p.pro_con_num = c.con_no where {#condition#} and p.pro_sta_awards="校团委审核通过" and p.pro_date_sub!=""]]>
+					</value>
+					<condition name="dep_number" source="session{dep_num}">
+						<value>
+							<![CDATA[c.con_auspices = #data# ]]>
+						</value>
+					</condition>
+					<condition name="pro_num" label="作品编号">
+						<value>
+							<![CDATA[p.pro_id like '%#data#%' ]]>
+						</value>
+					</condition>
+					<condition name="pro_name" label="作品名称">
+						<value>
+							<![CDATA[p.pro_name like '%#data#%' ]]>
+						</value>
+					</condition>
+					<condition name="con_name" label="竞赛名称">
+						<value>
+							<![CDATA[c.con_name like '%#data#%' ]]>
+						</value>
+					</condition>
+				</select>
+			</sql>
+		</report>
+	</page>
+</applications>

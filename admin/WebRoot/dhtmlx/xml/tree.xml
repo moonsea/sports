@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<tree id="0">
+	<item text="项目管理" id="1" open="1" im0="tombs.gif" im1="tombs.gif" im2="iconSafe.gif" call="1" select="1">
+		<item text="规划管理" id="11" im0="folderClosed.gif" im1="folderOpen.gif" im2="folderClosed.gif">
+			<item text="规划文件上报" id="111" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+			<item text="规划查看" id="112" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif" />
+		</item>
+		<item text="立项管理" id="12" im0="folderClosed.gif" im1="folderOpen.gif" im2="folderClosed.gif">
+			<item text="项目基本信息" id="121" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+			<item text="项目建议书" id="122" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+			<item text="项目可研报告" id="123" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+			<item text="项目合同(任务书)" id="124" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+			<item text="项目审核" id="125" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+		</item>
+		<item text="过程管理" id="13" im0="folderClosed.gif" im1="folderOpen.gif" im2="folderClosed.gif">
+			<item text="执行情况表上报" id="131" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+			<item text="执行情况查看" id="132" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+		</item>
+		<item text="结项管理" id="14" im0="folderClosed.gif" im1="folderOpen.gif" im2="folderClosed.gif">
+			<item text="项目竣工报告" id="141" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+			<item text="项目验收申请" id="142" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+			<item text="项目验收意见" id="143" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+			<item text="项目经费决算报告" id="144" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+		</item>
+		<item text="统计查询" id="15" im0="folderClosed.gif" im1="folderOpen.gif" im2="folderClosed.gif">
+			<item text="按年度查询" id="151" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+			<item text="按单位查询" id="152" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+		</item>
+	</item>
+	<item text="成果管理" id="2" open="1" im0="tombs.gif" im1="tombs.gif" im2="iconSafe.gif">
+		<item text="科技进步奖管理" id="21" im0="folderClosed.gif" im1="folderOpen.gif" im2="folderClosed.gif">
+			<item text="项目基本情况" id="211" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+			<item text="推荐书" id="212" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif" />
+			<item text="汇总审核" id="213" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+			<item text="统计查询" id="214" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif" />
+		</item>
+		<item text="专利管理" id="22" im0="folderClosed.gif" im1="folderOpen.gif" im2="folderClosed.gif">
+			<item text="申请文件上传" id="221" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+			<item text="汇总审核" id="222" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+			<item text="统计查询" id="223" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif" />
+		</item>
+		<item text="QC成果管理" id="23" im0="folderClosed.gif" im1="folderOpen.gif" im2="folderClosed.gif">
+			<item text="QC小组基本信息" id="231" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+			<item text="QC小组课题注册" id="232" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif" />
+			<item text="成果发布" id="233" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+			<item text="成果评审" id="234" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+			<item text="统计查询" id="235" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif" />
+		</item>
+		<item text="合理化建议" id="24" im0="folderClosed.gif" im1="folderOpen.gif" im2="folderClosed.gif">
+			<item text="上报" id="241" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif" />
+			<item text="汇总审核" id="242" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+			<item text="统计查询" id="243" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif" />
+		</item>
+	</item>
+	<item text="综合管理" id="3" open="1" im0="tombs.gif" im1="tombs.gif" im2="iconSafe.gif">
+		<item text="下载专区" id="31" im0="folderClosed.gif" im1="folderOpen.gif" im2="folderClosed.gif">
+			<item text="资源上传" id="311" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif" />
+			<item text="资源维护" id="312" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+			<item text="资源下载" id="313" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif" />
+		</item>
+	</item>
+	<item text="系统管理" id="4" open="1" im0="tombs.gif" im1="tombs.gif" im2="iconSafe.gif">
+		<item text="单位/部门管理" id="41" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif" />
+		<item text="角色管理" id="42" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif"/>
+		<item text="用户管理" id="43" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif" />
+		<item text="参数管理" id="44" im0="book_titel.gif" im1="book.gif" im2="book_titel.gif" />
+	</item>
+</tree> 

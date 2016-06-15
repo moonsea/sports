@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="awards_con_info_sch" js="/webresources/script/validate.js,/js/stuMg/stuMg.js,/js/stuMg/stuSumMg.js">
+		<tabpanel id="tp1" margin="10px" titlestyle="2">
+			<vpanel id="vp1" parenttitle="饼状图统计结果">
+				<report id="report1" title="各院系获奖情况统计" type="fusioncharts"
+					width="1000px" chartheight="500" chartwidth="1000" chartype="Pie3D.swf"
+					chartstyleproperty="showValues='0' baseFontSize='15'">
+					<display>
+						<col column="1xi" label="船舶工程学院" datatype="double"></col>
+						<col column="2xi" label="航天与建筑工程学院" datatype="double"></col>
+						<col column="3xi" label="动力与能源工程学院" datatype="double"></col>
+						<col column="4xi" label="自动化学院" datatype="double"></col>
+						<col column="5xi" label="水声工程学院" datatype="double"></col>
+						<col column="6xi" label="计算机科学与技术学院" datatype="double"></col>
+						<col property="constant1" column="{non-fromdb}">
+						<![CDATA[
+							 <vLine color='FF5904' thickness='2'/>
+						]]>
+						</col>
+						<col column="7xi" label="机电工程学院" datatype="double"></col>
+						<col column="8xi" label="信息与通信工程学院" datatype="double"></col>
+						<col column="9xi" label="经济管理学院" datatype="double"></col>
+						<col column="10xi" label="材料科学与化学工程学院" datatype="double"></col>
+						<col column="11xi" label="理学院" datatype="double"></col>
+						<col column="12xi" label="外语系" datatype="double"></col>
+						<col column="13xi" label="人文社会科学学院" datatype="double"></col>
+						<col column="14xi" label="国际合作教育学院" datatype="double"></col>
+						<col column="15xi" label="核科学与技术学院" datatype="double"></col>
+						<col column="16xi" label="体育部" datatype="double"></col>
+						<col column="17xi" label="工程训练中心" datatype="double"></col>
+						<col column="18xi" label="国防教育学院" datatype="double"></col>
+						<col column="19xi" label="软件学院" datatype="double"></col>
+						<col column="20xi" label="国家保密学院" datatype="double"></col>
+						<col column="21xi" label="马克思主义学院" datatype="double"></col>
+					</display>
+					<subdisplay>
+					<![CDATA[
+						<trendlines>             
+							<line startValue='40000' color='00cc00' displayValue='平均值' />     
+						</trendlines>     
+					]]>
+					</subdisplay>
+					<sql>
+						<value>
+					<![CDATA[select ( select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and tc.dep_id= 10100) as 1xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and tc.dep_id= 10200 ) as 2xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 10300) as 3xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 10400 ) as 4xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 10500) as 5xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 10600) as 6xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 10700) as 7xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 10800) as 8xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 10900) as 9xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 11000) as 10xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 11100) as 11xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 11200) as 12xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 11300) as 13xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 11400) as 14xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 11500) as 15xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 11600) as 16xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 11700) as 17xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 11800) as 18xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 12000) as 19xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 12100) as 20xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 12200) as 21xi]]>
+						</value>
+					</sql>
+				</report>
+			</vpanel>
+			<vpanel id="vp2" parenttitle="柱状图统计结果">
+				<report id="report2" title="各院系获奖情况统计" type="fusioncharts"
+					width="1000px" chartheight="500" chartwidth="1000" chartype="Column3D.swf"
+					chartstyleproperty="showValues='0' baseFontSize='15' numberSuffix ='人'  ">
+					<display>
+						<col column="1xi" label="船舶工程学院" datatype="double"></col>
+						<col column="2xi" label="航天与建筑工程学院" datatype="double"></col>
+						<col column="3xi" label="动力与能源工程学院" datatype="double"></col>
+						<col column="4xi" label="自动化学院" datatype="double"></col>
+						<col column="5xi" label="水声工程学院" datatype="double"></col>
+						<col column="6xi" label="计算机科学与技术学院" datatype="double"></col>
+						<col property="constant1" column="{non-fromdb}">
+						<![CDATA[
+							 <vLine color='FF5904' thickness='2'/>
+						]]>
+						</col>
+						<col column="7xi" label="机电工程学院" datatype="double"></col>
+						<col column="8xi" label="信息与通信工程学院" datatype="double"></col>
+						<col column="9xi" label="经济管理学院" datatype="double"></col>
+						<col column="10xi" label="材料科学与化学工程学院" datatype="double"></col>
+						<col column="11xi" label="理学院" datatype="double"></col>
+						<col column="12xi" label="外语系" datatype="double"></col>
+						<col column="13xi" label="人文社会科学学院" datatype="double"></col>
+						<col column="14xi" label="国际合作教育学院" datatype="double"></col>
+						<col column="15xi" label="核科学与技术学院" datatype="double"></col>
+						<col column="16xi" label="体育部" datatype="double"></col>
+						<col column="17xi" label="工程训练中心" datatype="double"></col>
+						<col column="18xi" label="国防教育学院" datatype="double"></col>
+						<col column="19xi" label="软件学院" datatype="double"></col>
+						<col column="20xi" label="国家保密学院" datatype="double"></col>
+						<col column="21xi" label="马克思主义学院" datatype="double"></col>
+					</display>
+					<subdisplay>
+					<![CDATA[
+						<trendlines>             
+							<line startValue='40000' color='00cc00' displayValue='平均值' />     
+						</trendlines>     
+					]]>
+					</subdisplay>
+					<sql>
+						<value>
+					<![CDATA[select ( select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and tc.dep_id= 10100) as 1xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and tc.dep_id= 10200 ) as 2xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 10300) as 3xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 10400 ) as 4xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 10500) as 5xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 10600) as 6xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 10700) as 7xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 10800) as 8xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 10900) as 9xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 11000) as 10xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 11100) as 11xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 11200) as 12xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 11300) as 13xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 11400) as 14xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 11500) as 15xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 11600) as 16xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 11700) as 17xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 11800) as 18xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 12000) as 19xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 12100) as 20xi, (select count(*) from t_projectinfo as ta left join t_teaminfo as tb  on  ta.pro_id=tb.team_pro_id left join t_departmentinfo as tc on tc.dep_name=tb.team_mem_dep  where ta.pro_sta_awards="校团委审核通过" and  tc.dep_id= 12200) as 21xi]]>
+						</value>
+					</sql>
+				</report>
+			</vpanel>
+			<vpanel id="vp3" parenttitle="年份段获奖作品查询">
+				<report id="report3" title="参赛作品" parenttitle="已认定获奖作品列表"
+			pagesize="5|10|15|-1" navigate="${navigatepagesizepage1.report3.navigate}"
+			dataexport="richexcel|plainexcel|word" type="editablelist">
+			<display>
+				<col column="{sequence:1}" label="序号"></col>
+				<col column="pro_id" label="作品编号" clickorderby="true"
+					valuestyleproperty="style='mso-number-format:\@' width='15%'"></col>
+				<col column="pro_name" label="作品名称" clickorderby="true"></col>
+				<col column="con_no" label="竞赛编号" displaytype="hidden"></col>
+				<col column="con_name" label="竞赛名称"></col>
+				<col column="pro_date_sub" label="作品申报日期"></col>
+				<col column="{editablelist-edit}" label="获奖认定"></col>
+				<col column="pro_awards" label="作品获奖"></col>
+				<col column="pro_remark" label="备注"></col>
+				<col column="pro_sta_awards" label="当前状态" displaytype="hidden"></col>
+				<col property="btn" column="{non-fromdb}" label="查看详情"></col>
+			</display>
+			<format>
+				<imports>
+					<import>com.wabacus.util.*</import>
+					<import>com.wabacus</import>
+				</imports>
+				<value>
+			   <![CDATA[
+					
+					if(rrequest.getShowtype() == Consts.DISPLAY_ON_PAGE)
+					{//如果是显示在html页面上，则显示输入框
+					 	pro_name="<a href=\"#\"   value=\"查看详情\" title=\"点击查看作品详情\" onclick=\"showProAwardsDetailOperation('"+pro_id+"')\" >" +pro_name+"</a>";
+					 	btn="<input type=\"button\" value=\"查看详情\" onclick=\"showProAwardsDetailOperation('"+pro_id+"')\" >";
+					 	con_name="<a href=\"#\"   value=\"查看详情\" title=\"点击查看竞赛详情\" onclick=\"showConDetailOperation('"+con_no+"')\" >" +con_name+"</a>";
+					 	 
+					}
+				  ]]>
+				</value>
+			</format>
+			<sql>
+				<select>
+					<value>
+						<![CDATA[select c.con_no,p.pro_id,p.pro_name,p.pro_date_sub,p.pro_remark,p.pro_sta_awards,p.pro_awards,c.con_name from t_projectinfo p left join t_contestinfo c on p.pro_con_num = c.con_no where {#condition#} and p.pro_sta_awards="校团委审核通过" and p.pro_date_sub!=""]]>
+					</value>
+					<condition name="begin_year" label="起始年份">
+						<value>
+							<![CDATA[c.con_year >= '#data#' ]]>
+						</value>
+					</condition>
+					<condition name="finish_year" label="终止年份">
+						<value>
+							<![CDATA[c.con_year <= '#data#' ]]>
+						</value>
+					</condition>
+				</select>
+			</sql>
+		</report>
+			</vpanel>
+		</tabpanel>
+	</page>
+</applications>

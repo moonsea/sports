@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="project_apply_dep" js="/webresources/script/validate.js,/js/stuMg/stuMg.js">
+		<report id="project_apply_show" title="院系申报竞赛" pagesize="5|10|15|-1"
+			navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+			type="editablelist2">
+			<display>
+				<col column="{sequence:1}" label="序号" width="40px"></col>
+				<col column="con_no" label="竞赛编号" displaytype="hidden"></col>
+				<col column="con_name" label="竞赛名称"></col>
+				<col column="con_org" label="竞赛主办单位" filter="true" filterwidth="120px"></col>
+				<col column="dep_name" label="竞赛牵头单位" filter="true" filterwidth="120px" width="130px"></col>
+			
+				<col property="proNum" column="{non-fromdb}" label="作品数量" width="80px"></col>
+				<col column="con_sta_check" label="审核状态" displaytype="hidden"></col>
+				<col property="btn" column="{non-fromdb}" label="查看作品" width="80px"></col> 
+			</display>
+			<format>
+				<imports>
+					<import>com.wabacus.util.*</import>
+					<import>com.wabacus</import>
+				</imports>
+				<value>
+			   <![CDATA[
+			   
+			   if(con_no!=null&&con_no!="")
+			   {
+			   String proToalNum="";
+		
+					java.sql.Connection  conn = rrequest.getConnection(rbean.getSbean().getDatasource());
+					java.sql.PreparedStatement pstmt = conn.prepareStatement("select count(*) as proToalNum from T_ProjectInfo where Pro_Con_Num = ?");
+					pstmt.setString(1,con_no);
+					java.sql.ResultSet rs =  pstmt.executeQuery();
+					while(rs.next()){
+						proToalNum = rs.getString("proToalNum");
+										
+						proNum = proToalNum;
+					}
+					
+					rs.close();
+					pstmt.close();
+				}
+					if(rrequest.getShowtype() == Consts.DISPLAY_ON_PAGE)
+					{
+						String rootpath= rrequest.getRequest().getContextPath();	
+					
+						btn="<a href=\""+rootpath+"/ShowReport.wx?PAGEID=dep_projectexport&con_no="+con_no+"\"  >查看作品</a>"; 			
+					 	//btn="<input type=\"button\" value=\"查看作品\" onclick=\"showDepConApplyDetailOperation('"+con_no+"')\">";
+					 	//pro_name="<a href=\"#\"   value=\"查看详情\" title=\"点击查看作品详情\" onclick=\"showProDetailOperation('"+pro_id+"')\" >" +pro_name+"</a>";
+					 	//con_name="<a href=\"#\"   value=\"查看详情\" title=\"点击查看竞赛申报详情\" onclick=\"showConDetailOperation('"+con_no+"')\" >" +con_name+"</a>";
+					}
+				  ]]>
+				</value>
+			</format>
+			<sql>
+				<select>
+					<value>
+						<![CDATA[select c.*,d.dep_name from t_contestinfo c left join t_departmentinfo d  on c.con_auspices = d.dep_id where  {#condition#}]]>
+					</value><!-- and con_sta_pub="已发布" and con_sta_check='院系待审核' order by con_year desc -->
+					<condition name="dep_number" source="session{dep_Num}">
+						<value>
+							<![CDATA[con_auspices = #data# ]]>
+						</value>
+					</condition>
+					<condition name="cname" label="竞赛名称">
+						<value>
+						<![CDATA[con_name like '%#data#%']]>
+						</value>
+					</condition>
+					<condition name="cloc" label="竞赛地点">
+						<value>
+						<![CDATA[con_loc like '%#data#%']]>
+						</value>
+					</condition>
+					<!-- <condition name="cyear" label="竞赛年份">
+						<value>
+								<![CDATA[con_year = #data#]]>
+						</value>
+						<inputbox type="selectbox">
+							<option value="" label="竞赛年份"></option>
+							<option dataset="@{select con_year from t_conyearinfo}"
+								label="con_year" value="con_year"></option>
+						</inputbox>
+					</condition> -->
+				</select>
+			</sql>
+		</report>
+
+	</page>
+</applications>

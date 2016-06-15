@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="awards_con_sch_2nd"
+		js="/webresources/script/validate.js,/js/stuMg/stuMg.js,/js/stuMg/stuSumMg.js">
+		<tabpanel id="tp1" margin="27px" titlestyle="2">
+			<report id="project_incomplete_show" title="参赛作品" parenttitle="未审核作品列表"
+				pagesize="15|20|25|-1" navigate="${navigatepagesizepage1.report3.navigate}"
+				dataexport="richexcel|plainexcel|word" type="editablelist">
+				<display>
+					<col column="{sequence:1}" label="序号"></col>
+					<col column="pro_id" label="作品编号" clickorderby="true"
+						valuestyleproperty="style='mso-number-format:\@' width='15%'"></col>
+					<col column="pro_name" label="作品名称" clickorderby="true"></col>
+					<col column="con_no" label="竞赛编号" displaytype="hidden"></col>
+					<col column="con_name" label="竞赛名称"></col>
+					<col column="dep_name" label="牵头单位"></col>
+					<col column="pro_date_sub" label="作品申报日期"></col>
+					<col column="pro_awards" label="作品获奖"></col>
+					<col column="pro_sta_awards" label="当前状态"></col>
+					<col property="btn" column="{non-fromdb}" label="获奖认定"></col>
+				</display>
+				<format>
+					<imports>
+						<import>com.wabacus.util.*</import>
+						<import>com.wabacus</import>
+					</imports>
+					<value>
+			   <![CDATA[
+					
+					if(rrequest.getShowtype() == Consts.DISPLAY_ON_PAGE)
+					{//如果是显示在html页面上，则显示输入框
+					 	pro_name="<a href=\"#\"   value=\"查看详情\" title=\"点击查看作品详情\" onclick=\"showProDetailOperation('"+pro_id+"')\" >" +pro_name+"</a>";
+					 	con_name="<a href=\"#\"   value=\"查看详情\" title=\"点击查看竞赛详情\" onclick=\"showConDetailOperation('"+con_no+"')\" >" +con_name+"</a>";
+					 	
+					 		String status = pro_sta_awards.trim();
+					 	if(status.equals("校团委审核通过"))
+					 	{
+					 		btn="<input type=\"button\" value=\"点击进行认定\" disabled=\"disabled\"/>"; 
+					 	}
+					 	else
+					 	{
+					 		btn="<input type=\"button\" value=\"点击进行认定\" onclick=\"show2ndAwardsCheckOperation('"+pro_id+"')\" >";
+					 	}
+					 	 
+					}
+				  ]]>
+					</value>
+				</format>
+				<sql>
+					<select>
+						<value>
+						<![CDATA[select p.pro_sta_awards,p.pro_id,p.pro_name,p.pro_date_sub,p.pro_awards,c.con_name,c.con_no,d.dep_name from t_projectinfo p left join t_contestinfo c on p.pro_con_num = c.con_no left join t_departmentinfo d on c.con_auspices = d.dep_id where {#condition#} and p.pro_sta_awards="校团委待认定" or p.pro_sta_awards = "校团副书记待认定" or p.pro_sta_awards = "科创中心审核不通过" or p.pro_sta_awards="校团副书记审核不通过" and p.pro_date_sub!="" union select p.pro_sta_awards,p.pro_id,p.pro_name,p.pro_date_sub,p.pro_awards,c.con_name,c.con_no,d.dep_name from t_projectinfo p left join t_contestinfo c on p.pro_con_num = c.con_no left join t_departmentinfo d on c.con_auspices = d.dep_id where {#condition#} and p.pro_sta_awards="院系待认定" and d.dep_name like '%共青团哈尔滨工程大学委员会%' and p.pro_date_sub!=""]]>
+						</value>
+						<condition name="pro_num" label="作品编号">
+							<value>
+							<![CDATA[p.pro_id like '%#data#%' ]]>
+							</value>
+						</condition>
+						<condition name="pro_name" label="作品名称">
+							<value>
+							<![CDATA[p.pro_name like '%#data#%' ]]>
+							</value>
+						</condition>
+						<condition name="con_name" label="竞赛名称">
+							<value>
+							<![CDATA[c.con_name like '%#data#%' ]]>
+							</value>
+						</condition>
+					</select>
+					<!--
+						<update pageurl="report{awards_update_stu_2nd.report1}"
+						urlparams="Pro_ID=@{pro_id};" pagewidth="100%"
+						pageheight="400"></update>
+					-->
+					
+
+				</sql>
+			</report>
+			<report id="project_complete_show" title="参赛作品" parenttitle="审核已通过作品列表"
+				pagesize="15|20|25|-1" navigate="${navigatepagesizepage1.report3.navigate}"
+				dataexport="richexcel|plainexcel|word" type="editablelist">
+				<display>
+					<col column="{sequence:1}" label="序号"></col>
+					<col column="pro_id" label="作品编号" clickorderby="true"
+						valuestyleproperty="style='mso-number-format:\@' width='15%'"></col>
+					<col column="pro_name" label="作品名称" clickorderby="true"></col>
+					<col column="con_no" label="竞赛编号" displaytype="hidden"></col>
+					<col column="con_name" label="竞赛名称"></col>
+					<col column="dep_name" label="牵头单位"></col>
+					<col column="pro_date_sub" label="作品申报日期"></col>
+					<col column="pro_awards" label="作品获奖"></col>
+					<col column="pro_remark" label="备注"></col>
+					<col column="pro_sta_awards" label="当前状态"></col>
+					<col property="btn" column="{non-fromdb}" label="获奖认定"></col>
+				</display>
+				<format>
+					<imports>
+						<import>com.wabacus.util.*</import>
+						<import>com.wabacus</import>
+					</imports>
+					<value>
+			   <![CDATA[
+					
+					if(rrequest.getShowtype() == Consts.DISPLAY_ON_PAGE)
+					{//如果是显示在html页面上，则显示输入框
+					 	pro_name="<a href=\"#\"   value=\"查看详情\" title=\"点击查看作品详情\" onclick=\"showProDetailOperation('"+pro_id+"')\" >" +pro_name+"</a>";
+					 	//btn="<input type=\"button\" value=\"查看详情\" onclick=\"showProDetailOperation('"+pro_id+"')\" >";
+					 	con_name="<a href=\"#\"   value=\"查看详情\" title=\"点击查看竞赛详情\" onclick=\"showConDetailOperation('"+con_no+"')\" >" +con_name+"</a>";
+					  	
+					  	String status = pro_sta_awards.trim();
+					 	if(status.equals("校团委审核通过"))
+					 	{
+					 		btn="<input type=\"button\" value=\"点击进行认定\" disabled=\"disabled\"/>"; 
+					 	}
+					 	else
+					 	{
+					 		btn="<input type=\"button\" value=\"点击进行认定\" onclick=\"show2nd2AwardsCheckOperation('"+pro_id+"')\" >";
+					 	}
+					}
+				  ]]>
+					</value>
+				</format>
+				<sql>
+					<select>
+						<value>
+						<![CDATA[select d.dep_name,c.con_no,p.pro_id,p.pro_name,p.pro_date_sub,p.pro_awards,p.pro_remark,p.pro_sta_awards,c.con_name from t_projectinfo p left join t_contestinfo c on p.pro_con_num = c.con_no left join t_departmentinfo d on c.con_auspices = d.dep_id where {#condition#} and p.pro_sta_awards="校团书记待认定" or p.pro_sta_awards="校团书记审核不通过" or p.pro_sta_awards="校团委审核通过" and p.pro_date_sub!=""]]>
+						</value>
+						<condition name="pro_num" label="作品编号">
+							<value>
+							<![CDATA[p.pro_id like '%#data#%' ]]>
+							</value>
+						</condition>
+						<condition name="pro_name" label="作品名称">
+							<value>
+							<![CDATA[p.pro_name like '%#data#%' ]]>
+							</value>
+						</condition>
+						<condition name="con_name" label="竞赛名称">
+							<value>
+							<![CDATA[c.con_name like '%#data#%' ]]>
+							</value>
+						</condition>
+					</select>
+				</sql>
+			</report>
+		</tabpanel>
+	</page>
+</applications>

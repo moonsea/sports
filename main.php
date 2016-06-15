@@ -20,8 +20,8 @@
 		$ret['status'] = 0;
 		$ret['error'] = '数据获取失败';
 
- 		$page = $_POST['page'];
- 		$page_size = $_POST['page_size'];
+ 		$page = empty($_POST['page'])? '1':trim($_POST['page']);
+ 		$page_size = empty($_POST['page_size'])? '12':trim($_POST['page_size']);
 
 		$ret['data'] = get_hot_user($page,$page_size);//$db->get_results($sql);
 		$ret['status'] = 1;
@@ -44,8 +44,8 @@
 		$ret['status'] = 0;
 		$ret['error'] = '数据获取失败';
 
- 		$page = $_POST['page'];
- 		$page_size = $_POST['page_size'];
+ 		$page = empty($_POST['page'])? '1':trim($_POST['page']);
+ 		$page_size = empty($_POST['page_size'])? '12':trim($_POST['page_size']);
 
 		$ret['data'] = get_hot_game($page,$page_size);
 		$ret['status'] = 1;
@@ -64,8 +64,8 @@
  	{
  		$token = $_POST['token'];
  		$user_id = $_POST['user_id'];
- 		$page = $_POST['page'];
- 		$page_size = $_POST['page_size'];
+ 		$page = empty($_POST['page'])? '1':trim($_POST['page']);
+ 		$page_size = empty($_POST['page_size'])? '12':trim($_POST['page_size']);
 
 		$ret = array();
 
@@ -124,8 +124,8 @@
 
 		$type = $_POST['type'];
 
-		$page = $_POST['page'];
- 		$page_size = $_POST['page_size'];
+ 		$page = empty($_POST['page'])? '1':trim($_POST['page']);
+ 		$page_size = empty($_POST['page_size'])? '12':trim($_POST['page_size']);
 
 		$ret['data'] = get_wiki_video($type,$page,$page_size);
 		$ret['status'] = "1";
@@ -157,17 +157,17 @@
 	/**
 	 * 获取发现-体育明星-普通用户
 	 * @var [`0`:普通用户,`1`:专家用户（体育明星）]
-	 */
-	if($api == ‘discovery’)
+	 **/
+	if($api == 'discovery')
 	{
 
 		$ret = array();
 		$ret['status'] = "0";
 		$ret['error'] = "数据获取失败";
 
-		$type = $_POST['type'];
-		$page = $_POST['page'];
- 		$page_size = $_POST['page_size'];
+ 		$type = empty($_POST['type'])? '0':trim($_POST['type']);
+ 		$page = empty($_POST['page'])? '1':trim($_POST['page']);
+ 		$page_size = empty($_POST['page_size'])? '12':trim($_POST['page_size']);
 
 		$ret['data'] = get_user($type,$page,$page_size);
 		$ret['status'] = "1";
@@ -209,8 +209,8 @@
 		$ret['status'] = '0';
 		$ret['error'] = '数据获取失败';
 
-		$page = $_POST['page'];
- 		$page_size = $_POST['page_size'];
+ 		$page = empty($_POST['page'])? '1':trim($_POST['page']);
+ 		$page_size = empty($_POST['page_size'])? '12':trim($_POST['page_size']);
 
 		$ret['data'] = get_dis_club($page,$page_size);
 
@@ -258,9 +258,10 @@ function get_hot_user($page = 1, $page_size = 12)
  	$total = get_hot_user_count();
  	$max_page = ceil($total/$page_size);
 
+
  	if($page > $max_page)
  	{
- 		$page = $max_page;
+		return null;
  	}
  	if($page < 1)
  	{
@@ -274,7 +275,7 @@ function get_hot_user($page = 1, $page_size = 12)
 
  	$start = ($page-1)*$page_size;
 
-	$sql = "select a.id as video_id, 'a.video_description' as video_desc, a.video_cover, b.user_id,b.user_name,b.img as user_img ".
+	$sql = "select a.id as video_id, a.name as video_name, 'a.video_description' as video_desc, a.video_cover, b.user_id,b.user_name,b.img as user_img ".
 						"from video a left join user b on a.user_id = b.user_id ".
 						" where a.class = '1' ".
 						" order by a.praise_count ";
@@ -313,7 +314,7 @@ function get_hot_game($page = 1, $page_size = 12)
 
  	if($page > $max_page)
  	{
- 		$page = $max_page;
+ 		return null;
  	}
  	if($page < 1)
  	{
@@ -327,10 +328,10 @@ function get_hot_game($page = 1, $page_size = 12)
 
  	$start = ($page-1)*$page_size;
 
-	$sql = "select a.video_id, a.video_cover, b.game_id, c.game_name ".
-			"from game_video a left join video b on a.video_id = b.video_id ".
+	$sql = "select a.video_id, b.video_cover, a.game_id, c.game_name ".
+			"from game_video a left join video b on a.video_id = b.id ".
 			" left join game c on a.game_id = c.game_id ".
-			" where class = '1'".
+			" where b.class = '1'".
 			" order by b.praise_count ";
 
 	$sql .= " LIMIT $start,$page_size ";
@@ -347,9 +348,9 @@ function get_hot_game($page = 1, $page_size = 12)
 function get_hot_game_count()
 {
 	$db = $GLOBALS['db'];
-	$sql = "SELECT count('a.*') FROM game_video a left join video b on a.video_id = b.video_id WHERE b.class = '1'";
-	return $count;
+	$sql = "SELECT count('a.*') FROM game_video a left join video b on a.video_id = b.id WHERE b.class = '1'";
 	$count = $db->get_var($sql);
+	return $count;
 }
 
 /**
@@ -367,7 +368,7 @@ function get_hot_game_count()
 
  	if($page > $max_page)
  	{
- 		$page = $max_page;
+		return null;
  	}
  	if($page < 1)
  	{
@@ -381,8 +382,8 @@ function get_hot_game_count()
 
  	$start = ($page-1)*$page_size;
 
-	$sql = "SELECT a.user_id,a.user_name, a.img as user_img, b.id as video_id, b.description as video_desc, b.last_time as video_time, b.video_cover ".
-					" FROM user a LEFT JOIN video b on a.user_id = b.user_id ".
+	$sql = "SELECT a.user_id,a.user_name, a.img as user_img, b.id as video_id, b.description as video_desc, FROM_UNIXTIME(b.last_time,'%Y-%m-%d %H:%i') as video_time, b.video_cover ".
+					" FROM user a INNER JOIN video b on a.user_id = b.user_id ".
 					" WHERE a.user_id IN ".
 					" (SELECT atten_id FROM favorite WHERE user_id = '" .$user_id. "') ".
 					" ORDER BY last_time DESC";
@@ -401,6 +402,7 @@ function get_hot_game_count()
  */
 function get_fav_count($user_id)
 {
+	$db = $GLOBALS['db'];
 
 	$sql = "SELECT count(*) FROM video WHERE user_id IN ";
 
@@ -425,7 +427,7 @@ function get_wiki_video($type = '0',$page=1,$page_size=12)
 
 	if($page > $max_page)
 	{
-		$page = $max_page;
+		return null;
 	}
 	if($page < 1)
 	{
@@ -484,7 +486,7 @@ function get_user($type = '0',$page = 1, $page_size =12)
 
 	if($page > $max_page)
 	{
-		$page = $max_page;
+		return null;
 	}
 	if($page < 1)
 	{
@@ -518,7 +520,9 @@ function get_user($type = '0',$page = 1, $page_size =12)
  */
 function get_user_count($type = '0')
 {
-	$sql = "SELECT count(*) FROM user WHERE role_id = '".$type."'";
+	$db = $GLOBALS['db'];
+
+	$sql = "SELECT count(*) FROM user WHERE role = '".$type."'";
 	$count = $db->get_var($sql);
 
 	return $count;
@@ -537,7 +541,7 @@ function get_dis_club($page = 1, $page_size =12)
 
 	if($page > $max_page)
 	{
-		$page = $max_page;
+		return null;
 	}
 	if($page < 1)
 	{
@@ -569,6 +573,7 @@ function get_dis_club($page = 1, $page_size =12)
  */
 function get_dis_club_count()
 {
+	$db = $GLOBALS['db'];
 	$sql = "SELECT count(*) FROM club";
 	$count = $db->get_var($sql);
 	return $count;

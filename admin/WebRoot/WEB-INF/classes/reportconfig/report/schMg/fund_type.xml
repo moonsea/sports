@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+			   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			   xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="fund_type" js="/webresources/script/validate.js">	
+			<report id="fund_show" title="经费类型信息" pagesize="5|10|15|-1" navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word" type="editablelist2">
+				<display>
+					<col column="fund_type_id" label="经费类型编号" clickorderby="true" valuestyleproperty="style='mso-number-format:\@' width='15%'">
+						
+					</col>
+					<col column="fund_type_name" label="经费类型" clickorderby="true"></col>
+				</display>
+				<sql>
+					<select>
+						<value>
+						<![CDATA[select * from t_fundtypeinfo where  {#condition#} order by fund_type_id]]>
+						</value>
+					
+					<condition name="fund_type_name" label="经费类型">
+						<value>
+							<![CDATA[fund_type_name like '%#data#%']]>
+						</value>
+					</condition>
+					</select>
+					<insert>
+				  		insert into t_fundtypeinfo(@{fund_type_name});
+					</insert>
+					<update>
+						update t_fundtypeinfo(@{fund_type_name}) where fund_type_id=@{fund_type_id};
+					</update>
+					<delete>
+					 	delete from t_fundtypeinfo where fund_type_id=@{fund_type_id};
+					</delete>
+				</sql>
+				
+			</report>
+		
+	</page>
+</applications>

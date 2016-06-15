@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="submitContestDetail_Stu"
+		js="/webresources/script/validate.js,/js/stuMg/stuMg.js,/js/ProjectApplyCheckDep/testcallback.js">
+		<interceptor>
+			<imports>
+				<import>com.wabacus.util.*</import>
+			</imports>
+			<preaction>
+				rrequest.getRequest().getSession().setAttribute("Pro_ID",rrequest.getRequest().getParameter("Pro_ID"));
+			</preaction>
+		</interceptor>
+
+		<report id="report1" title="作品详情1" type="form">
+			<display valuetdwidth="100px" labeltdwidth="80px" labelalign="right"
+				valuealign="left">
+				<col column="Pro_ID" label="作品编号" valuestyleproperty="colspan='3'"
+					br="true" />
+				<col column="Pro_Name" label="参赛作品名称" valuestyleproperty="colspan='3'"
+					br="true">
+					<inputbox jsvalidate="isNotEmpty(#label#列不允许为空)"
+						styleproperty="style='width:350px'"></inputbox>
+				</col>
+				<col column="con_name" label="参加竞赛" valuestyleproperty="colspan='3'"
+					br="true"></col>
+				<col column="Con_Session" label="竞赛届次" valuestyleproperty="colspan='3'"
+					br="true"></col>
+				<col column="Con_Loc" label="竞赛地点" valuestyleproperty="colspan='3'"
+					br="true">
+					<inputbox jsvalidate="isNotEmpty(#label#列不允许为空)"
+						styleproperty="style='width:350px'"></inputbox>
+				</col>
+				<col column="Con_Time_Start" label="拟出发时间" datatype="date{yyyy-MM-dd}">
+					<inputbox type="datepicker" jsvalidate="isDate(#data#格式不对，必须为yyyy-MM-dd格式)"></inputbox>
+				</col>
+				<col column="Con_Time_End" label="拟返回时间" br="true">
+					<inputbox type="datepicker" jsvalidate="isDate(#data#格式不对，必须为yyyy-MM-dd格式)"></inputbox>
+				</col>
+
+				<col column="Fund_Sou_Name" label="经费来源"></col>
+				<col column="Pro_Sou_Name" label="项目来源" br="true"></col>
+				<col column="Pro_Exc_Grade" label="预期成绩"></col>
+				<col column="Pro_Gro_Type" label="项目组别" br="true" />
+				<col column="pro_desc" label="作品简介" br="true"
+					valuestyleproperty="colspan='3'">
+					<inputbox type="textareabox" styleproperty="rows='3'"></inputbox>
+				</col>
+			</display>
+
+			<sql savebinding="report1;report2;report5;report3;report4"
+				aftersave="testAfterSaveCallback">
+				<select>
+					<value>
+					<![CDATA[SELECT p.*,c.*,f.Fund_Sou_Name,s.Pro_Sou_Name FROM T_ProjectInfo p left join t_contestinfo c on p.pro_con_num =c.con_no  left join t_fundsourceinfo   f on p.Pro_Fund_Sou_ID =f.fund_sou_id  left join  T_ProjectSourceInfo s on p.Pro_Sou_ID =s.Pro_Sou_ID where  {#condition#} ]]>
+					</value>
+					<condition name="Pro_ID" hidden="true">
+						<value> 
+    						<![CDATA[(p.Pro_ID = '#data#')]]>
+						</value>
+					</condition>
+				</select>
+			</sql>
+		</report>
+		<report id="report2" title="学生团队信息1" type="editablelist2"
+			pagesize="-1">
+			<display valuetdwidth="100px" labeltdwidth="80px">
+				<col column="Team_Mem_ID" label="团队成员id" displaytype="hidden" />
+				<col column="Team_Pro_ID" label="作品ID" displaytype="hidden"></col>
+				<col column="Team_Mem_Order" label="队员排序">
+					<inputbox jsvalidate="isNotEmpty(#label#列不允许为空);isNumeric(${invalid.number})">
+						<option value="1" label="第一位"></option>
+						<option value="2" label="第二位"></option>
+						<option value="3" label="第三位"></option>
+						<option value="4" label="第四位"></option>
+						<option value="5" label="第五位"></option>
+						<option value="6" label="第六位"></option>
+						<option value="7" label="第七位"></option>
+						<option value="8" label="第八位"></option>
+						<option value="9" label="第九位"></option>
+						<option value="10" label="第十位"></option>
+						<option value="11" label="第十一位"></option>
+						<option value="12" label="第十二位"></option>
+						<option value="13" label="第十三位"></option>
+						<option value="14" label="第十四位"></option>
+						<option value="15" label="第十五位"></option>
+						<option value="16" label="第十六位"></option>
+						<option value="17" label="第十七位"></option>
+						<option value="18" label="第十八位"></option>
+						<option value="19" label="第十九位"></option>
+						<option value="20" label="第二十位"></option>
+						<option value="21" label="第二十一位"></option>
+						<option value="22" label="第二十二位"></option>
+						<option value="23" label="第二十三位"></option>
+						<option value="24" label="第二十四位"></option>
+						<option value="25" label="第二十五位"></option>
+						<option value="26" label="第二十六位"></option>
+						<option value="27" label="第二十七位"></option>
+						<option value="28" label="第二十八位"></option>
+						<option value="29" label="第二十九位"></option>
+						<option value="30" label="第三十位"></option>
+						<option value="31" label="第三十一位"></option>
+						<option value="32" label="第三十二位"></option>
+						<option value="33" label="第三十三位"></option>
+						<option value="34" label="第三十四位"></option>
+						<option value="35" label="第三十五位"></option>
+						<option value="36" label="第三十六位"></option>
+						<option value="37" label="第三十七位"></option>
+						<option value="38" label="第三十八位"></option>
+						<option value="39" label="第三十九位"></option>
+						<option value="40" label="第四十位"></option>
+					</inputbox>
+				</col>
+				<col column="Team_Mem_Num" label="学号">
+				</col>
+				<col column="mem_name" label="姓名">
+				</col>
+				<col column="Team_Mem_Dep" label="单位"></col>
+				<col column="Team_Mem_Major" label="专业" br="true" />
+				<col column="grade_name" label="年级"></col>
+				<col column="Team_Mem_Class" label="班级"></col>
+				<col column="Team_Mem_Tel" label="联系电话"></col>
+				<col column="Team_Mem_Card_Num" label="身份证号">
+					<inputbox styleproperty="style='width:100%'" jsvalidate="isNotEmpty(#label#不能为空)">
+					</inputbox>
+				</col>
+				<!-- <col column="Team_Mem_Card_Num" label="身份证号"></col> -->
+				<col column="Team_Mem_Email" label="邮箱"></col>
+				<col column="Team_Mem_Work" label="承担工作"></col>
+				<col column="Team_Mem_Role" label="角色">
+					<inputbox type="selectbox">
+						<option value="队长" label="队长"></option>
+						<option value="队员" label="队员"></option>
+					</inputbox>
+				</col>
+				<col column="Team_Status_Join" label="参赛状态"></col>
+
+				<col property="btn2" column="{non-fromdb}" label="是否参赛"
+					displaytype="hidden"></col>
+
+
+			</display>
+			<format>
+				<imports>
+					<import>com.wabacus.util.*</import>
+					<import>com.wabacus</import>
+				</imports>
+				<value>
+			   <![CDATA[					
+					if(rrequest.getShowtype() == Consts.DISPLAY_ON_PAGE)
+					{
+						Team_Status_Join=Team_Status_Join==null?"否":Team_Status_Join.trim();		
+						System.out.println("Team_Status_Join:"+Team_Status_Join);				
+						if(Team_Status_Join.equals("是"))
+						{
+	 						btn2="<input type=\"button\" value=\"取消参赛\" onclick=\"invokeServerActionForComponent('submitContestAttendDetail','report2','cn.edu.hrbeu.stuMg.SubmitCont.updateMemAndTeaAttendState',{memid:'"+Team_Mem_ID+"',tag:'学生',state:'否'},true,testInvokeCallbackMethod1)\">"; 											
+						}
+						else
+						{
+	 						btn2="<input type=\"button\" value=\"点击参赛\" onclick=\"invokeServerActionForComponent('submitContestAttendDetail','report2','cn.edu.hrbeu.stuMg.SubmitCont.updateMemAndTeaAttendState',{memid:'"+Team_Mem_ID+"',tag:'学生',state:'是'},true,testInvokeCallbackMethod1)\">"; 											
+							
+						}
+					}
+				  ]]>
+				</value>
+			</format>
+			<sql aftersave="testAfterSaveCallback">
+				<select>
+					<value>
+					<![CDATA[SELECT t.*,m.mem_name,g.grade_name FROM T_TeamInfo t left join  t_memberinfo m on t.Team_Mem_Num = m.mem_id left join t_gradeinfo g on m.mem_grade=g.grade_id where  {#condition#}]]>
+					</value>
+					<condition name="Pro_ID" hidden="true">
+						<value> 
+    						<![CDATA[(Team_Pro_ID = '#data#')]]>
+						</value>
+					</condition>
+				</select>
+				<!--
+					<update> <value> update
+					T_TeamInfo(@{Team_Mem_Dep},@{Team_Mem_Class},@{Team_Mem_Tel},@{Team_Mem_Card_Num},
+					@{Team_Mem_Email},@{Team_Mem_Work},@{Team_Mem_Role}) where
+					Team_Pro_ID=@{Team_Pro_ID} ; </value> </update> <delete> <value>
+					<![CDATA[delete from T_TeamInfo where
+					Team_Mem_ID=@{Team_Mem_ID};]]> </value> </delete>
+				-->
+			</sql>
+		</report>
+
+		<report id="report5" title="教师团队信息" type="editablelist2"
+			pagesize="-1">
+			<display valuetdwidth="100px" labeltdwidth="80px">
+				<col column="Team_Tea_ID" label="教师成员id" displaytype="hidden" />
+				<col column="Team_Pro_ID" label="作品ID" displaytype="hidden"></col>
+				<col column="Team_Tea_Order" label="教师排序">
+					<inputbox type="selectbox"
+						jsvalidate="isNotEmpty(#label#列不允许为空);isNumeric(${invalid.number})">
+						<option value="1" label="1"></option>
+						<option value="2" label="2"></option>
+						<option value="3" label="3"></option>
+						<option value="4" label="4"></option>
+						<option value="5" label="5"></option>
+						<option value="6" label="6"></option>
+						<option value="7" label="7"></option>
+						<option value="8" label="8"></option>
+						<option value="9" label="9"></option>
+						<option value="10" label="10"></option>
+					</inputbox>
+				</col>
+				<col column="Team_Tea_Num" label="工号" br="true">
+					<inputbox jsvalidate="isNotEmpty(#label#列不允许为空)">
+						<autocomplete
+							columns="Team_Tea_Num;tea_name;Team_Tea_Dep;team_tea_research;Team_Tea_Tel;Team_Tea_Card_Num;Team_Tea_Email"
+							colvaluecondition="Team_Tea_Num;"
+							dataset="class{cn.edu.hrbeu.stuMg.SubmitCont.SubmitConTeaAutoComplete}" />
+					</inputbox>
+				</col>
+				<col column="tea_name" label="姓名"></col>
+				<col column="Team_Tea_Dep" label="单位"></col>
+				<col column="team_tea_research" label="研究方向"></col>
+
+				<col column="Team_Tea_Tel" label="联系电话">
+				</col>
+				<col column="Team_Tea_Card_Num" label="身份证号"></col>
+				<col column="Team_Tea_Email" label="邮箱"></col>
+
+			</display>
+			<sql>
+				<select>
+					<value>
+					<![CDATA[SELECT t.*,tea.tea_name FROM T_TeamTeaInfo t left join t_teacherinfo tea on t.team_tea_num = tea.tea_id where {#condition#} order by Team_Tea_Order  ]]>
+					</value>
+					<condition name="Pro_ID" hidden="true">
+						<value>
+						<![CDATA[(t.Team_Pro_ID = '#data#' )]]>
+						</value>
+					</condition>
+				</select>
+
+				<!--
+					<insert> <params> <param name="Pro_ID"
+					value="session{Pro_ID}"></param> </params> insert into
+					T_TeamTeaInfo lead_id=#{Pro_ID},
+					(Team_Tea_ID=uuid{},Team_Pro_ID=#{Pro_ID},@{Team_Tea_Order},@{Team_Tea_Num},@{Team_Tea_Dep},@{Team_Tea_Tel},@{Team_Tea_Card_Num},@{Team_Tea_Email},@{team_tea_research});
+					</insert> <update> <value> <![CDATA[update T_TeamTeaInfo set
+					Team_Tea_Order=@{Team_Tea_Order},Team_Tea_Num=@{Team_Tea_Num},Team_Tea_Dep=@{Team_Tea_Dep},team_tea_research=@{team_tea_research},Team_Tea_Tel=@{Team_Tea_Tel},
+					Team_Tea_Card_Num=@{Team_Tea_Card_Num},Team_Tea_Email=@{Team_Tea_Email}
+					where Team_Tea_ID=@{Team_Tea_ID}]]> </value> </update> <delete>
+					<value> <![CDATA[delete from T_TeamTeaInfo where
+					Team_Tea_ID=@{Team_Tea_ID};]]> </value> </delete>
+				-->
+			</sql>
+		</report>
+		<report id="report3" title="参赛出行学生费用预算" type="listform"
+			depends="report1" dependsparams="txtreport2_Pro_ID=@{Pro_ID}">
+			<display valuetdwidth="100px" labeltdwidth="80px" labelalign="right"
+				valuealign="left">
+				<col column="Fund_ID" label="经费id" displaytype="hidden" />
+				<col column="Fund_Pro_ID" label="项目id" displaytype="hidden"></col>
+				<col column="fund_type_name" label="支出科目">
+
+				</col>
+				<col column="Fund_Price" label="单价(元)">
+					<inputbox styleproperty="onblur='coutValue(this)'"></inputbox>
+				</col>
+				<col column="Fund_Amount" label="数量">
+					<inputbox styleproperty="onblur='coutValue(this)'"></inputbox>
+				</col>
+				<col column="Fund_Total" label="合计(元)" br="true">
+					<inputbox styleproperty="disabled='disabled'"></inputbox>
+				</col>
+				<col column="Fund_Exp" label="说明"></col>
+
+			</display>
+			<subdisplay>
+				<statitems><!-- 定义要用到的统计项 -->
+					<statitem property="item7" value="sum(Fund_Total)"
+						datatype="float"></statitem>
+				</statitems>
+				<subrow displaytype="page|report">
+					<subcol property="sprop1" colspan="4"
+						valuestyleproperty="bgcolor='#CCFAFF' align='right'"></subcol>
+					<subcol property="sprop2" colspan="1"
+						valuestyleproperty="bgcolor='#CCFAFF' align='right'"></subcol>
+				</subrow>
+				<format>
+					<imports>
+						<import>com.wabacus.util.*</import>
+					</imports>
+					<value>
+						<![CDATA[
+							sprop1="学生出行总预算： "+item7+"";
+						]]>
+					</value>
+				</format>
+			</subdisplay>
+			<sql>
+				<select>
+					<value>
+					<![CDATA[SELECT f.*,t.fund_type_name FROM T_FundInfo f left join t_fundtypeinfo t on f.fund_type_id = t.fund_type_id where  {#condition#} and fund_role='学生']]>
+					</value>
+					<condition name="txtreport2_Pro_ID" label="项目编号" hidden="true">
+						<value>
+						<![CDATA[(Fund_Pro_ID =  '#data#' )]]>
+						</value>
+					</condition>
+				</select>
+				<!--
+					<update> update
+					T_FundInfo(@{Fund_Price},@{Fund_Amount},@{Fund_Total},@{Fund_Exp})
+					where Fund_ID=@{Fund_ID}; </update> <delete> <value> delete from
+					T_FundInfo where Fund_ID=@{Fund_ID}; </value> </delete>
+				-->
+			</sql>
+		</report>
+
+
+		<report id="report4" title="教师出行费用预算" type="listform" depends="report1"
+			dependsparams="txtreport2_Pro_ID=@{Pro_ID}">
+			<display valuetdwidth="100px" labeltdwidth="80px" labelalign="right"
+				valuealign="left">
+				<col column="Fund_ID" label="经费id" displaytype="hidden" />
+				<col column="Fund_Pro_ID" label="项目id" displaytype="hidden"></col>
+				<col column="fund_type_name" label="支出科目">
+				</col>
+				<col column="Fund_Price" label="单价(元)">
+					<inputbox styleproperty="onblur='coutValue(this)'"></inputbox>
+				</col>
+				<col column="Fund_Amount" label="数量">
+					<inputbox styleproperty="onblur='coutValue(this)'"></inputbox>
+				</col>
+				<col column="Fund_Total" label="合计(元)" br="true">
+					<inputbox styleproperty="disabled='disabled'"></inputbox>
+				</col>
+				<col column="Fund_Exp" label="说明"></col>
+
+			</display>
+			<subdisplay>
+				<statitems><!-- 定义要用到的统计项 -->
+					<statitem property="item7" value="sum(Fund_Total)"
+						datatype="float"></statitem>
+				</statitems>
+				<subrow displaytype="page|report">
+					<subcol property="sprop1" colspan="4"
+						valuestyleproperty="bgcolor='#CCFAFF' align='right'"></subcol>
+					<subcol property="sprop2" colspan="1"
+						valuestyleproperty="bgcolor='#CCFAFF' align='right'"></subcol>
+
+				</subrow>
+				<format>
+					<imports>
+						<import>com.wabacus.util.*</import>
+					</imports>
+					<value>
+						<![CDATA[
+							sprop1="教师出行总预算： "+item7+"";
+						]]>
+					</value>
+				</format>
+			</subdisplay>
+			<sql>
+				<select>
+					<value>
+					<![CDATA[SELECT f.*,t.fund_type_name FROM T_FundInfo f left join t_fundtypeinfo t on f.fund_type_id = t.fund_type_id where  {#condition#} and fund_role='教师']]>
+					</value>
+					<condition name="txtreport2_Pro_ID" label="项目编号" hidden="true">
+						<value>
+						<![CDATA[(Fund_Pro_ID =  '#data#' )]]>
+						</value>
+					</condition>
+				</select>
+				<!--
+					<update> update
+					T_FundInfo(@{Fund_Price},@{Fund_Amount},@{Fund_Total},@{Fund_Exp})
+					where Fund_ID=@{Fund_ID}; </update> <delete> delete from T_FundInfo
+					where Fund_ID=@{Fund_ID}; </delete>
+				-->
+			</sql>
+		</report>
+	</page>
+</applications>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="addcontestpage" js="/webresources/script/validate.js">
+		<report id="report1" title="添加竞赛" type="form">
+			<display labelalign="right" valuealign="left" labeltdwidth="110px">
+				<col column="con_no" label="竞赛编号" clickorderby="true"
+					displaytype="hidden" valuestyleproperty="style='mso-number-format:\@' width='15%'">
+					<inputbox jsvalidate="isNotEmpty(#label#列不允许为空)"></inputbox>
+				</col>
+				<col column="con_name" label="竞赛名称" br="true"
+					valuestyleproperty="colspan='3'">
+					<inputbox jsvalidate="isNotEmpty(#label#列不允许为空)"
+						styleproperty="style='width:100%'"></inputbox>
+				</col>
+				<col column="con_org" label="竞赛主办单位" br="true"
+					valuestyleproperty="colspan='3'">
+					<inputbox jsvalidate="isNotEmpty(#label#列不允许为空)"
+						styleproperty="style='width:100%'"></inputbox>
+				</col>
+				<col column="con_org_co" label="竞赛承办单位" br="true"
+					valuestyleproperty="colspan='3'">
+					<inputbox jsvalidate="isNotEmpty(#label#列不允许为空)"
+						styleproperty="style='width:100%'"></inputbox>
+				</col>
+				<col column="con_auspices" label="竞赛牵头单位" valuestyleproperty="colspan='3'"
+					br="true">
+					<inputbox jsvalidate="isNotEmpty(#label#列不允许为空)" type="selectbox"
+						styleproperty="style='width:100%'">
+						<option dataset="@{select dep_name,dep_id from t_departmentinfo}"
+							label="dep_name" value="dep_id"></option>
+					</inputbox>
+				</col>
+				<col column="con_rank" label="竞赛等级">
+					<inputbox type="selectbox" jsvalidate="isNotEmpty(#label#列不允许为空)"
+						styleproperty="style='width:50%'">
+						<option label="I级" value="I级"></option>
+						<option label="II级" value="II级"></option>
+						<option label="III级" value="III级"></option>
+					</inputbox>
+				</col>
+				<col column="con_year" label="竞赛年份" br="true">
+					<inputbox type="selectbox" styleproperty="style='width:50%'">
+						<option dataset="@{select con_year from t_conyearinfo}"
+							label="con_year" value="con_year"></option>
+					</inputbox>
+				</col>
+				<col column="con_session" label="竞赛届数"></col>
+				<col column="con_time" label="竞赛时间" datatype="date{yyyy-MM-dd}"
+					br="true">
+					<inputbox type="datepicker" jsvalidate="isDate(#data#格式不对，必须为yyyy-MM-dd格式)"></inputbox>
+				</col>
+				<col column="con_loc" label="竞赛地点" br="true" valuestyleproperty="colspan='3'">
+					<inputbox styleproperty="style='width:100%'"></inputbox>
+				</col>
+				<col column="con_fund_budget" label="竞赛经费预算总计"
+					valuestyleproperty="style='mso-number-format:\@' width='15%'">
+					<inputbox jsvalidate="isNotEmpty(#label#列不允许为空)"></inputbox>
+				</col>
+				<col column="con_sta_pub" label="竞赛发布状态" br="true">
+					<inputbox type="selectbox" styleproperty="style='width:50%'">
+						<option label="未发布" value="未发布"></option>
+						<option label="已发布" value="已发布"></option>
+					</inputbox>
+				</col>
+				<col column="con_desc" label="竞赛简介" br="true"
+					valuestyleproperty="colspan='3'">
+					<inputbox type="textareabox" styleproperty="rows='3'"></inputbox>
+				</col>
+				<col column="con_remark" label="备注" valuestyleproperty="colspan='3'">
+					<inputbox type="textareabox" styleproperty="rows='3'"></inputbox>
+				</col>
+			</display>
+			<sql>
+				<insert>
+					<value>
+						insert into
+						t_contestinfo(con_no=uuid{},@{con_name},@{con_desc},@{con_rank},@{con_org},@{con_org_co},@{con_auspices},@{con_remark},@{con_year},@{con_loc},@{con_session},@{con_time},@{con_fund_budget},@{con_sta_pub});
+					</value>
+				</insert>
+				<update>
+					<value>
+						<![CDATA[update t_contestinfo (@{con_name},@{con_desc},@{con_rank},@{con_org},@{con_org_co},@{con_auspices},@{con_remark},@{con_year},@{con_loc},@{con_session},@{con_time},@{con_fund_budget},@{con_sta_pub}) where con_no=@{con_no} ]]>
+					</value>
+				</update>
+			</sql>
+
+		</report>
+
+
+	</page>
+</applications>

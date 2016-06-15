@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="submitContestAttendList" js="/webresources/script/validate.js,/js/stuMg/stuMg.js">
+		<interceptor>
+		<imports>
+  				<import>com.wabacus.util.*</import>
+  			</imports>
+			<preaction>
+			    
+				rrequest.getRequest().setAttribute("pro_id",UUIDGenerator.generateID());
+				<!-- //rrequest.getRequest().getSession().setAttribute("footer_key","测试Footer动态内容"); -->
+			</preaction>
+		</interceptor>
+		<report id="report1" title="作品列表"  pagesize="50|30|15|-1" navigate="${navigatepagesizepage1.report3.navigate}">
+			<display >
+				<col column="Pro_ID" label="作品编号" />
+				<col column="Pro_Name" label="作品名称" ></col>	
+				<col column="con_no" label="竞赛编号" displaytype="hidden"></col>	
+				<col column="con_name" label="参加竞赛"></col>	
+				<col column="Pro_Sou_Name" label="项目来源"></col>							
+				<col column="Pro_Date_Sub" label="申报日期"  displaytype="hidden"></col>				
+		
+				<col property="staFlg" column="{non-fromdb}" label="申报状态" displaytype="hidden"></col>
+				<col column="con_sta_check" label="审核状态"></col>
+				<col property="btn2" column="{non-fromdb}" label="参赛编辑及申请"></col>
+				<col column="Pro_Sta_Dep" displaytype="hidden"  label="院团委审核状态"></col>
+				<col column="Pro_Sta_Com" displaytype="hidden"  label="校团委审核状态"></col>
+			</display>
+			<format>
+			      <imports>
+					    <import>com.wabacus.util.*</import>
+					    <import>com.wabacus</import>
+			  	   </imports>
+			     <value>
+			   <![CDATA[					
+					if(rrequest.getShowtype() == Consts.DISPLAY_ON_PAGE)
+					{//如果是显示在html页面上，则显示输入框
+					 	Pro_Name="<a href=\"#\"   value=\"查看详情\" title=\"点击查看作品详情\" onclick=\"showProDetailOperation('"+Pro_ID+"')\" >" +Pro_Name+"</a>"; 
+						con_name="<a href=\"#\"   value=\"查看详情\" title=\"点击查看竞赛详情\" onclick=\"showConDetailOperation('"+con_no+"')\" >" +con_name+"</a>";
+						
+						Pro_Date_Sub=Pro_Date_Sub==null?"":Pro_Date_Sub.trim();	
+						Pro_Sta_Dep=Pro_Sta_Dep==null?"":Pro_Sta_Dep.trim();	
+						Pro_Sta_Com=Pro_Sta_Com==null?"":Pro_Sta_Com.trim();	
+						btn2="<input type=\"button\" value=\"参赛编辑及申请\" onclick=\"submitProjectAttend('"+Pro_ID+"')\">";
+						/*
+						if(Pro_Date_Sub.equals(""))
+						{
+							staFlg ="<sapn color='blue'>作品未提交</span>";
+							btn2="<input type=\"button\" value=\"参赛编辑及申请\" onclick=\"submitProjectAttend('"+Pro_ID+"')\">"; 
+							
+						}
+						else
+						{
+							
+							staFlg ="<sapn color='blue'>作品已提交</span>";							   
+							 
+							btn2="<input type=\"button\" value=\"参赛编辑及申请\" disabled=\"disabled\"/>"; 
+								
+						}
+						*/
+						
+					}
+				  ]]>
+			  </value>
+			  </format>
+			<sql>
+				<select>
+					<value>
+					<![CDATA[SELECT p.*,c.con_name,c.con_no,c.con_sta_check,f.Fund_Sou_Name,s.Pro_Sou_Name FROM T_ProjectInfo p left join t_contestinfo c on p.pro_con_num =c.con_no  left join t_fundsourceinfo   f on p.Pro_Fund_Sou_ID =f.fund_sou_id  left join  T_ProjectSourceInfo s on p.Pro_Sou_ID =s.Pro_Sou_ID left join t_teaminfo t on p.pro_id=t.team_pro_id where  {#condition#} and t.team_mem_role='队长' ]]>
+					</value>		
+ 					<condition name="Pro_Num" label="作品编号">
+					    <value>
+						<![CDATA[(p.Pro_Id = #data# )]]>
+					</value>
+					  </condition>
+ 					<condition name="Pro_Name" label="作品名称">
+					    <value>
+						<![CDATA[(p.Pro_Name like  '%#data#%' )]]>
+					</value>
+					  </condition>
+					  <condition name="mem_id" source="session{user}">
+						<value>
+							<![CDATA[t.team_mem_num = #data# ]]>
+						</value>
+					</condition>	
+				</select>
+					
+
+			</sql>
+
+		</report>
+	</page>
+</applications>
+
