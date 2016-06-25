@@ -140,7 +140,7 @@ body {
 							cellspacing="0">
 							<tr>
 								<td align="right" valign="bottom"
-									style="background: url(../images/top3.png) no-repeat"
+									style="background: url(../images/) no-repeat"
 									class="bj-top">
 									<table width="98%" height="77" border="0" cellpadding="0"
 										cellspacing="0">
@@ -160,35 +160,8 @@ body {
 
 											<td width="" align="center" valign="middle"
 												name="current_year">
-												<span class="STYLE1">选择当前年份</span>
-												<select onchange=bao(this.value)>
-													<%
-            	String conyear;
-            	
-            	//currentyear = session.getAttribute("currentyear")==null?"":session.getAttribute("currentyear").toString();
-            	currentyear = session.getAttribute("currentyear").toString();
-				//pstmt = conn.prepareStatement("select * from t_currentyearinfo");
-				//rs = pstmt.executeQuery();
-				//if(rs.next())
-					//currentyear= rs.getString("current_year");
-				System.out.println(currentyear);
-				pstmt = conn.prepareStatement("select * from t_conyearinfo");
-				rs = pstmt.executeQuery();
-				while(rs.next()) {
-					//role = rs.getInt("mem_role_id");
-					conyear = rs.getString("con_year");
-					if(conyear.equals(currentyear))
-					{				
-						out.println("<option value="+conyear+" selected = 'selected' >"+conyear+"</option>");
-					}
-					else			
-					{
-						out.println("<option value="+conyear+" >"+conyear+"</option>");
-					}			
-				}
-			%>
-												</select>
 											</td>
+
 											<td width="160" align="center" valign="middle"
 												style="color: white;">
 												欢迎<%=username%>登录系统!

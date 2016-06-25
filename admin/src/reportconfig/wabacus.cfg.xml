@@ -42,7 +42,7 @@
 		<datasource name="ds_mysql"
 			type="com.wabacus.config.database.datasource.C3P0DataSource" dbtype="com.wabacus.config.database.type.MySql">
 			<property name="driver">com.mysql.jdbc.Driver</property>
-			<property name="url"><![CDATA[jdbc:mysql://localhost/edusys?useUnicode=true&zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8]]></property>
+			<property name="url"><![CDATA[jdbc:mysql://localhost/sports?useUnicode=true&zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8]]></property>
 
 			<property name="user">root</property>
 

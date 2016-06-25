@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<title>报名系统</title>
+<title>赛体育后台管理系统</title>
 <script type="text/javascript">
 var times=0;
 $(document).ready(function(){
@@ -95,7 +95,7 @@ function refreshSelf(){
       <div id="cloud2" class="cloud"></div>
     </div>  
 <div class="logintop">    
-    <span>欢迎登录报名系统平台</span>    
+    <span>欢迎后台管理系统</span>
     <ul>
     <li><a href="#">回首页</a></li>
     <li><a href="#">帮助</a></li>
@@ -105,7 +105,7 @@ function refreshSelf(){
     
     <div class="loginbody">
     
-    <span class="systemlogo2" style="display:block"></span> 
+    <span class="systemlogo2" style="display:block"></span>
        
     <div class="loginbox">
     

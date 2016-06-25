@@ -51,7 +51,7 @@
 			if($type == '0')
 			{
 				$ret['data'] = upload_video($user_id, $video_name, $detail, $description, $video_path, $video_cover);
-			}
+				}
 			elseif ($type == '1') {
 
 				if(empty($_POST['game_id']))
@@ -119,14 +119,14 @@
 	 */
 	if($api == "get_game_video")
 	{
-		$token = $_POST['token'];
-		$user_id = $_POST['user_id'];
+		//$token = $_POST['token'];
+		//$user_id = $_POST['user_id'];
 
 		$ret = array();
 		$ret['status'] = "0";
 
-		if(is_login($token,$user_id))
-		{
+		//if(is_login($token,$user_id))
+		//{
 
 			if(empty($_POST['game_id']))
 			{
@@ -146,13 +146,13 @@
 
 			$ret['status'] = "1";
 			$ret['error'] = "SUCCESS";
-		}
-		else
-		{
-			$ret['status'] = 0;
-			$ret['error'] = '登录超时或未登录';
-			$ret['data'] = 0;
-		}
+		//}
+		//else
+		//{
+			//$ret['status'] = 0;
+			//$ret['error'] = '登录超时或未登录';
+			//$ret['data'] = 0;
+		//}
 
 		echo json_encode($ret);
 		exit();
@@ -220,6 +220,124 @@
 		echo json_encode($ret);
 		exit();
 	}
+
+
+	/**
+	 * 视频点赞
+	 * @var [type]
+	 */
+	if($api == "add_praise")
+	{
+		//$token = $_POST['token'];
+		//$user_id = $_POST['user_id'];
+
+		//$ret = array();
+		$ret['status'] = "0";
+
+		//if(is_login($token,$user_id))
+		//{
+
+			if(empty($_POST['video_id']))
+			{
+				$ret['error'] = '未传入视频id';
+				$ret['data'] = -1;
+				echo json_encode($ret);
+				exit();
+			}
+			$video_id = trim($_POST['video_id']);
+
+			$ret['data'] = add_video_praise($video_id);
+
+			$ret['status'] = "1";
+			$ret['error'] = "SUCCESS";
+		//}
+		//else
+		//{
+			//$ret['status'] = 0;
+			//$ret['error'] = '登录超时或未登录';
+			//$ret['data'] = 0;
+		//}
+
+		echo json_encode($ret);
+		exit();
+	}
+	/**
+	 * 增加播放次数
+	 * @var [type]
+	 */
+	if($api == "add_play_count")
+	{
+		//$token = $_POST['token'];
+		//$user_id = $_POST['user_id'];
+
+		$ret = array();
+		$ret['status'] = "0";
+
+		/*if(is_login($token,$user_id))
+		{
+
+			if(empty($_POST['video_id']))
+			{
+				$ret['error'] = '未传入视频id';
+				$ret['data'] = -1;
+				echo json_encode($ret);
+				exit();
+			}
+
+
+			$ret['data'] = add_video_play_count($video_id);
+
+			$ret['status'] = "1";
+			$ret['error'] = "SUCCESS";
+		}
+		else
+		{
+			$ret['status'] = 0;
+			$ret['error'] = '登录超时或未登录';
+			$ret['data'] = 0;
+		}*/
+		$video_id = trim($_POST['video_id']);
+		$ret['data'] = add_video_play_count($video_id);
+
+		$ret['status'] = "1";
+		$ret['error'] = "SUCCESS";
+
+		echo json_encode($ret);
+		exit();
+	}
+
+	/**
+	 * 获取用户视频列表
+	 * @var [type]
+	 */
+	if($api == "get_video_list")
+	{
+		$ret = array();
+		$ret['status'] = "0";
+		$ret['error'] = '获取视频列表失败';
+
+		if(empty($_POST['user_id']))
+		{
+			$ret['error'] = '未传入用户id';
+			$ret['data'] = 0;
+			echo json_encode($ret);
+			exit();
+		}
+		$user_id = trim($_POST['user_id']);
+
+		$page = empty($_POST['page'])? "1":trim($_POST['page']);
+		$page_size = empty($_POST['page_size'])? "6":trim($_POST['page_size']);
+
+		$ret['data'] = get_video_list($video_id, $page, $page_size);
+
+		$ret['status'] = "1";
+		$ret['error'] = "SUCCESS";
+		
+		echo json_encode($ret);
+		exit();
+	}
+
+
 
 	/**
 	 *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -298,13 +416,13 @@
 	 function get_game_video($game_id, $type = 0, $page = 1, $page_size = 6)
 	 {
 		$db = $GLOBALS['db'];
-		$total = get_game_video_count($game_id);
+		/*$total = get_game_video_count($game_id);
 		$max_page = ceil($total/$page_size);
 
 		if($page > $max_page)
 		{
 			$page = $max_page;
-		}
+		}*/
 		if($page < 1)
 		{
 			$page = 1;
@@ -317,7 +435,7 @@
 
 		$start = ($page-1)*$page_size;
 
-		$sql = "SELECT a.video_id, b.video_name, b.video_cover, b.description as video_desc, b.user_id, c.user_name ".
+		$sql = "SELECT a.video_id, b.name, b.video_cover, b.description as video_desc, b.user_id, c.user_name ".
 				" FROM game_video a inner join video b on a.video_id = b.id left join user c on b.user_id = c.user_id ".
 				" WHERE a.game_id = '$game_id' AND a.video_type = '$type' ".
 				" ORDER BY b.play_count DESC ";
@@ -359,7 +477,7 @@
 
 		if($page > $max_page)
 		{
-			$page = $max_page;
+			return null;
 		}
 		if($page < 1)
 		{
@@ -373,7 +491,7 @@
 
 		$start = ($page-1)*$page_size;
 
-		$sql = "SELECT a.id as video_id, a.user_id, a.video_cover, b.user_name ".
+		$sql = "SELECT a.id as video_id, a.name as video_name, a.user_id, a.video_cover, b.user_name ".
 				" FROM video a left join user b on a.user_id = b.user_id ".
 				" ORDER BY a.play_count DESC ";
 
@@ -393,6 +511,33 @@
 	{
 		$db = $GLOBALS['db'];
 		$sql = "SELECT count(*) FROM video";
+		$count = $db->get_var($sql);
+		return $count;
+	}
+	/**
+	 * 视频点赞
+	 * @param  [type] $video_id [description]
+	 * @return [type]           [description]
+	 */
+	function add_video_praise($video_id)
+	{
+		$db = $GLOBALS['db'];
+		$sql = "UPDATE video SET praise_count = praise_count + 1 WHERE id = '$video_id'";
+		$db->query($sql);
+		$sql = "SELECT praise_count FROM video WHERE id = '$video_id'";
+		$count = $db->get_var($sql);
+		return $count;
+	}
+	/**
+	 * 增加播放次数
+	 * @param [type] $video_id [description]
+	 */
+	function add_video_play_count($video_id)
+	{
+		$db = $GLOBALS['db'];
+		$sql = "UPDATE video SET play_count = play_count + 1 WHERE id = '$video_id'";
+		$db->query($sql);
+		$sql = "SELECT play_count FROM video WHERE id = '$video_id'";
 		$count = $db->get_var($sql);
 		return $count;
 	}

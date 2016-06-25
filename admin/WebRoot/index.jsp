@@ -5,37 +5,11 @@
 <% 
 	String currentyear = (String) request.getParameter("currentyear");
 	System.out.println(currentyear);
-	//currentyear = currentyear.trim();
-	//if(currentyear != "" && currentyear != null && !currentyear.equals("") && !currentyear.equals(null)) 
-	//{	
-		//System.out.println("patameter");
-		//session.setAttribute("currentyear", currentyear);
-		
-	//}
-	//else
-	
-	//{
-		//System.out.println(currentyear);
-	
-		//Connection conn=Config.getInstance().getDataSource("ds_mysql").getConnection();
-		//PreparedStatement pstmt;
-	
-		//ResultSet rs;
-		//pstmt = conn.prepareStatement("select * from t_currentyearinfo");
-		//rs = pstmt.executeQuery();
-		//System.out.println("success");
-		//if(rs.next()) {
-			//username = rs.getString("mem_name");
-			//currentyear = rs.getString("current_year");
-			//session.setAttribute("currentyear", currentyear);
-		//}
-	//}
-	
 %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>哈工程竞赛管理系统</title>
+<title>赛体育后台管理系统</title>
 <link rel="shortcut icon" href="./favicon.ico">
 <script type="text/javascipt">
 window.onbeforeunload = function(){     

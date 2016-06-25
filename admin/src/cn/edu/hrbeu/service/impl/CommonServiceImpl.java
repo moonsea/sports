@@ -203,7 +203,7 @@ public class CommonServiceImpl implements ICommonService {
 	 */
 	public static String getPassword_stu(String userName) {
 		String result = "";
-		String sql = "select mem_passwd from t_memberinfo where mem_id = ?";
+		String sql = "select admin_passwd from admininfo where admin_id = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -223,7 +223,7 @@ public class CommonServiceImpl implements ICommonService {
 			rs = pstmt.executeQuery();
 			if (null != rs) {
 				if (rs.next()) {
-					result = rs.getString("mem_passwd");
+					result = rs.getString("admin_passwd");
 				}
 			}
 		} catch (SQLException e) {

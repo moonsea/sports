@@ -1,10 +1,9 @@
 <?php
 	error_reporting(0);
-	header("content-Type:text/html;charset=utf=8");
 	include("includes/init.php");
 	include("includes/functions.php");
 	$api = $_POST["act"];
-
+	
 	//注册新用户
 	if($api == "regist")
 	{
@@ -34,6 +33,10 @@
 					$password = md5($password);
 					$sql = "INSERT INTO `user`(user_name,password,mobile) VALUES ('新注册用户','$password','$phone')";
 					$db->query($sql);
+					$sql = "select user_id from `user` where mobile='$phone'";
+					$user_id = $db->get_var($sql);
+					$sql = "INSERT INTO `favorite`(user_id,atten_id) VALUES ('$user_id','$user_id')";
+					$db->query($sql);
 					$ret['status'] = 1;
 					$ret['error'] = 'SUCCESS';
 					echo json_encode($ret);
@@ -49,7 +52,7 @@
 			}
 		}
 	}
-
+	
 	//登录
 	if($api == 'login')
 	{
@@ -80,21 +83,13 @@
 	//获取用户详细信息
 	if($api == 'info')
 	{
-		$token = $_POST['token'];
 		$user_id = $_POST['user_id'];
 		$ret = array();
-		if(is_login($token,$user_id))
-		{
-			$ret['status'] = "1";
-			$ret['error'] = "SUCCESS";
-			$ret['data'] = get_user_info_by_id($user_id);
-		}
-		else
-		{
-			$ret['status'] = 0;
-			$ret['error'] = '登录超时或未登录';
-			$ret['data'] = 0;
-		}
+		
+		$ret['status'] = "1";
+		$ret['error'] = "SUCCESS";
+		$ret['data'] = get_user_info_by_id($user_id);
+		
 		echo json_encode($ret);
 		exit();
 	}
@@ -168,21 +163,21 @@
 	//我的粉丝的总人数
 	if($api == 'follow_count')
 	{
-		$token = $_POST['token'];
+		//$token = $_POST['token'];
 		$user_id = $_POST['user_id'];
 		$ret = array();
-		if(is_login($token,$user_id))
-		{
+		//if(is_login($token,$user_id))
+		//{
 			$ret['status'] = "1";
 			$ret['error'] = "SUCCESS";
 			$ret['data'] = get_follow_count($user_id);
-		}
-		else
-		{
-			$ret['status'] = 0;
-			$ret['error'] = '登录超时或未登录';
-			$ret['data'] = -1;
-		}
+		//}
+		//else
+		//{
+			//$ret['status'] = 0;
+			//$ret['error'] = '登录超时或未登录';
+			//$ret['data'] = -1;
+		//}
 		echo json_encode($ret);
 		exit();
 	}
@@ -408,6 +403,20 @@
 		echo json_encode($ret);
 		exit();
 	}
-
-
+	
+	
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
