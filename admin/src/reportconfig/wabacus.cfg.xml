@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.wabacus.com xsd/wabacus.cfg.xsd">
 	<system>
-		<item name="webroot" value="/HEUConStu" /><!-- 应用的根URL -->
+		<item name="webroot" value="/sports/admin" /><!-- 应用的根URL -->
 		<item name="webroot-abspath" value="" />
 		<!--
 			默认为context.getRealPath("/")获取的值，可以直接配置根路径
@@ -75,8 +75,8 @@
 	<!-- 注册所有报表配置文件 -->
 	<report-files>
 
-		<!-- 学生部分 -->
-		<report-file pattern="true">report/stuMg/</report-file>
+		<!-- 用户管理 -->
+		<report-file pattern="true">report/user/</report-file>
 
 		<!-- 院系部分 -->
 		<report-file pattern="true">report/depMg/</report-file>

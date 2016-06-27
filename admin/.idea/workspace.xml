@@ -1,7 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="543a8235-a2e4-4f1b-9d76-0f1e96bb229b" name="Default" comment="" />
+    <list default="true" id="26cb691c-4ea0-43a5-8f87-db8bf18caa95" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reportconfig/report/user/normal_user.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WebRoot.tar.gz" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/META-INF/MANIFEST.MF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/proxool.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/Awards/awards_con_dep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/Awards/awards_query_dep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/Awards/awards_update_dep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/Awards/awards_update_dep_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/InfoMg/passwd_change_dep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/InfoMg/personal_info_dep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/Statistics/join_con_info_dep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/StuMg/member_manage_student_dep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/StuMg/member_student_add_dep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/StuMg/member_student_update_dep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/Summarize/summary_individual_dep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/Summarize/summary_team_dep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/TeaMg/member_manage_teacher_dep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/TeaMg/member_teacher_add_dep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/TeaMg/member_teacher_update_dep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/project_apply_add_dep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/project_apply_check_dep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/project_apply_check_export.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/project_apply_dep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/project_apply_dep_con.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/project_apply_dep_con2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/submitContestDetailDep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/depMg/submitProjectEditDep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/AdminMg/admin_add_dep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/AdminMg/admin_add_sch.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/AdminMg/admin_manage_sch.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/AdminMg/admin_update_dep.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/AdminMg/admin_update_sch.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/Awards/awards_author_print_sch.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/Awards/awards_author_sch.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/Awards/awards_con_sch_1st.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/Awards/awards_con_sch_2nd.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/Awards/awards_con_sch_3rd.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/Awards/awards_query_sch.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/Awards/awards_update_sch_1st.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/Awards/awards_update_sch_1st_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/Awards/awards_update_sch_2nd.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/Awards/awards_update_sch_2nd_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/Awards/awards_update_sch_3rd.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/Awards/awards_update_sch_3rd_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/FundMg/fund_check_sch_1st.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/FundMg/fund_check_sch_2nd.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/FundMg/fund_check_sch_3rd.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/FundMg/fund_update_sch_1st.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/FundMg/fund_update_sch_1st_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/FundMg/fund_update_sch_2nd.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/FundMg/fund_update_sch_2nd_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/FundMg/fund_update_sch_3rd.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/FundMg/fund_update_sch_3rd_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/InfoMg/passwd_change_sch.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/InfoMg/personal_info_sch.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/Statistics/awards_con_info_sch.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/Statistics/con_fund_info_sch.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/Statistics/join_con_info_sch.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/addcontest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/contest_detail.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/contest_info.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/contest_year_current.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/contest_year_detail.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/contest_year_manage.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/department_manage.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/fund_type.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/member_grade_student.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/member_manage_student.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/member_manage_teacher.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/member_student_add_sch.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/member_student_update_sch.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/member_teacher_add_sch.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/member_teacher_update_sch.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/project_apply.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/project_apply_check_contestlist.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/project_apply_check_export.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/project_apply_check_sch_1st.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/project_apply_check_sch_2nd.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/project_apply_check_sch_3rd.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/project_apply_sch_con.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/project_apply_sch_con_1st.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/project_apply_sch_con_1st2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/project_apply_sch_con_1st3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/project_apply_sch_con_2nd.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/project_apply_sch_con_2nd2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/project_apply_sch_con_2nd3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/project_apply_sch_con_3rd.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/project_apply_sch_con_3rd2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/project_apply_sch_con_3rd3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/submitProjectDetail.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/summary_individual_list.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/summary_individual_sch.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/summary_team.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/summary_team_list.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/schMg/updatecontest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/stuMg/Awards/awards_con_stu.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/stuMg/Awards/awards_query_stu.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/stuMg/Awards/awards_update_stu.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/stuMg/Awards/submitProjectDetailAwards.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/stuMg/InfoMg/passwd_change_stu.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/stuMg/InfoMg/personal_info_stu.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/stuMg/Summarize/SumIndDetail.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/stuMg/Summarize/SumTeamDetail.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/stuMg/Summarize/sum_ind_update_stu.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/stuMg/Summarize/sum_team_update_stu.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/stuMg/Summarize/summary_individual_stu.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/stuMg/Summarize/summary_team_stu.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/stuMg/submitCont/submitProject.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/stuMg/submitCont/submitProjectAttendDetail.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/stuMg/submitCont/submitProjectAttendList.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/stuMg/submitCont/submitProjectDetail.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/stuMg/submitCont/submitProjectList.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/sysManagement/roleMg/RoleManageMg.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/report/sysManagement/roleMg/roleOperationRel.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/resources/i18n/ApplicationResources.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/resources/i18n/ApplicationResources_zh.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/resources/resources_business_ch.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/resources/resources_business_en.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/resources/resources_importdata.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/resources/resources_modularize_test.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/resources/resources_system_en.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/resources/resources_system_i18n.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/xsd/wabacus.applications.xsd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/xsd/wabacus.cfg.xsd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/xsd/wabacus.resources.xsd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/admin/reportconfig/xsd/wabacus.util.xsd" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/cn/edu/hrbeu/service/impl/CommonServiceImpl.class" afterPath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/cn/edu/hrbeu/service/impl/CommonServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/reportconfig/wabacus.cfg.xml" afterPath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/reportconfig/wabacus.cfg.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/frameset/top.jsp" afterPath="$PROJECT_DIR$/WebRoot/frameset/top.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/wxtmpfiles/js/generate_system.js" afterPath="$PROJECT_DIR$/WebRoot/wxtmpfiles/js/generate_system.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin.iml" afterPath="$PROJECT_DIR$/admin.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/edu/hrbeu/service/impl/CommonServiceImpl.java" afterPath="$PROJECT_DIR$/src/cn/edu/hrbeu/service/impl/CommonServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reportconfig/wabacus.cfg.xml" afterPath="$PROJECT_DIR$/src/reportconfig/wabacus.cfg.xml" />
+    </list>
     <ignored path="admin.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -17,60 +157,76 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="DebuggerManager">
+    <breakpoint_any converted="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
+    <breakpoint_rules converted="true" />
+    <ui_properties converted="true" />
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="admin" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
       <file leaf-file-name="wabacus.cfg.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/reportconfig/wabacus.cfg.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="5" column="49" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebRoot/login.jsp">
+      <file leaf-file-name="normal_user.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/reportconfig/report/user/normal_user.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="91" column="24" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="24" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoginFilter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/util/LoginFilter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
-              <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-              <folding>
-                <marker date="1465990636175" expanded="true" signature="7682:7738" ph="select admin... t_admininfo" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommonServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/service/impl/CommonServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-              <folding>
-                <marker date="1466862486799" expanded="true" signature="2733:2785" ph="select mem_p... t_memberinfo" />
-                <marker date="1466862486799" expanded="true" signature="3737:3841" ph="INSERT INTO t_memberinfo... " />
-                <marker date="1466862486799" expanded="true" signature="5125:5178" ph="select mem_p... t_memberinfo" />
-                <marker date="1466862486799" expanded="true" signature="6926:6991" ph="select admin... t_admininfo" />
-              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -80,20 +236,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/WebRoot/login.jsp" />
-        <option value="$PROJECT_DIR$/WebRoot/frameset/css/style.css" />
-        <option value="$PROJECT_DIR$/WebRoot/index.jsp" />
-        <option value="$PROJECT_DIR$/WebRoot/frameset/top.jsp" />
-        <option value="$PROJECT_DIR$/src/reportconfig/wabacus.cfg.xml" />
         <option value="$PROJECT_DIR$/src/cn/edu/hrbeu/service/impl/CommonServiceImpl.java" />
+        <option value="$PROJECT_DIR$/WebRoot/frameset/top.jsp" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/user/normal_user.xml" />
+        <option value="$PROJECT_DIR$/src/reportconfig/wabacus.cfg.xml" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -102,19 +255,13 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="Bundled (Maven 3)" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="24" />
-    <option name="width" value="1920" />
-    <option name="height" value="1056" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1060" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -139,7 +286,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -182,42 +331,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="WebRoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webresources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebRoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jsp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -239,25 +352,125 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="reportconfig" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="report" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="reportconfig" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="report" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="user" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="reportconfig" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="report" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="schMg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hrbeu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/WebRoot" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/GitHub/PortableGit_d76a6a98c9315931ec4927243517bc09e9b731a0/cmd/git.exe" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 6.45">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Codes\Project\sports\admin\src\reportconfig\report\user" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.Tomcat 6">
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
       <deployment />
       <server-settings />
@@ -277,21 +490,31 @@
     </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="MODE" value="default_activity" />
       <option name="DEPLOY" value="true" />
       <option name="ARTIFACT_NAME" value="" />
-      <option name="PM_INSTALL_OPTIONS" value="" />
-      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
-      <option name="MODE" value="default_activity" />
-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
-      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
       <option name="USE_LAST_SELECTED_DEVICE" value="false" />
       <option name="PREFERRED_AVD" value="" />
-      <option name="DEEP_LINK" value="" />
-      <option name="ACTIVITY_CLASS" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="0" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="SELECTED_CLOUD_DEVICE_CONFIGURATION_ID" value="0" />
+      <option name="SELECTED_CLOUD_DEVICE_PROJECT_ID" value="" />
+      <option name="IS_VALID_CLOUD_MATRIX_SELECTION" value="false" />
+      <option name="INVALID_CLOUD_MATRIX_SELECTION_ERROR" value="" />
+      <option name="IS_VALID_CLOUD_DEVICE_SELECTION" value="false" />
+      <option name="INVALID_CLOUD_DEVICE_SELECTION_ERROR" value="" />
+      <option name="CLOUD_DEVICE_SERIAL_NUMBER" value="" />
       <method />
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
@@ -301,15 +524,27 @@
       <option name="METHOD_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="EXTRA_OPTIONS" value="" />
-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
-      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
       <option name="USE_LAST_SELECTED_DEVICE" value="false" />
       <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="0" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="SELECTED_CLOUD_DEVICE_CONFIGURATION_ID" value="0" />
+      <option name="SELECTED_CLOUD_DEVICE_PROJECT_ID" value="" />
+      <option name="IS_VALID_CLOUD_MATRIX_SELECTION" value="false" />
+      <option name="INVALID_CLOUD_MATRIX_SELECTION_ERROR" value="" />
+      <option name="IS_VALID_CLOUD_DEVICE_SELECTION" value="false" />
+      <option name="INVALID_CLOUD_DEVICE_SELECTION_ERROR" value="" />
+      <option name="CLOUD_DEVICE_SERIAL_NUMBER" value="" />
       <method />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
@@ -432,7 +667,7 @@
           <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
           <option name="launcherType" value="OSDefault" />
           <option name="newPlayerInstance" value="false" />
-          <option name="playerPath" value="/usr/bin/flashplayerdebugger" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
         </LauncherParameters>
       </option>
       <option name="mobileRunTarget" value="Emulator" />
@@ -455,7 +690,7 @@
           <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
           <option name="launcherType" value="OSDefault" />
           <option name="newPlayerInstance" value="false" />
-          <option name="playerPath" value="/usr/bin/flashplayerdebugger" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
         </LauncherParameters>
       </option>
       <option name="moduleName" value="" />
@@ -479,12 +714,13 @@
       <method />
     </configuration>
     <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
+      <module name="" />
       <setting name="vmparams" value="" />
       <setting name="cmdLine" value="run-app" />
-      <setting name="passParentEnv" value="true" />
-      <setting name="launchBrowser" value="true" />
       <setting name="depsClasspath" value="false" />
+      <setting name="passParentEnv" value="true" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <setting name="launchBrowser" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -566,57 +802,12 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
-      <method />
-    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
-      <method />
-    </configuration>
-    <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <setting name="path" value="" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workingDirectory" value="" />
-      <setting name="searchForTest" value="Across module dependencies" />
-      <setting name="testName" value="" />
-      <setting name="testKind" value="Class" />
-      <setting name="showProgressMessages" value="true" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="Specs2RunConfiguration" factoryName="Specs2">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <setting name="path" value="" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workingDirectory" value="" />
-      <setting name="searchForTest" value="Across module dependencies" />
-      <setting name="testName" value="" />
-      <setting name="testKind" value="Class" />
-      <setting name="showProgressMessages" value="true" />
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -682,7 +873,6 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
       <node-options />
       <gulpfile />
       <tasks />
@@ -693,21 +883,7 @@
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
       <command value="run-script" />
       <scripts />
-      <node-interpreter value="project" />
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <working-directory />
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui>bdd</ui>
-      <extra-mocha-options />
-      <test-kind>DIRECTORY</test-kind>
-      <test-directory />
-      <recursive>false</recursive>
       <method />
     </configuration>
     <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
@@ -716,23 +892,7 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
-    <configuration default="true" type="uTestRunConfiguration" factoryName="utest">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <setting name="path" value="" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workingDirectory" value="" />
-      <setting name="searchForTest" value="Across module dependencies" />
-      <setting name="testName" value="" />
-      <setting name="testKind" value="Class" />
-      <setting name="showProgressMessages" value="true" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="Tomcat 6.45" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 6.0.45" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="OPEN_IN_BROWSER_URL" value="http://127.0.0.1:8080/sports/admin/" />
+    <configuration default="false" name="Tomcat 6" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 6.0.45" ALTERNATIVE_JRE_ENABLED="false">
       <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
       <option name="UPDATING_POLICY" value="redeploy-artifacts" />
       <deployment>
@@ -752,7 +912,7 @@
       <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="42819" />
+        <option name="DEBUG_PORT" value="54400" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -802,71 +962,58 @@
       <method />
     </configuration>
     <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="Tomcat Server.Tomcat 6.45" />
+      <item index="0" class="java.lang.String" itemvalue="Tomcat Server.Tomcat 6" />
     </list>
   </component>
-  <component name="SbtLocalSettings">
-    <option name="externalProjectsViewState">
-      <projects_view />
-    </option>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
-  </component>
-  <component name="SvnConfiguration" cleanupOnStartRun="true">
-    <configuration>$USER_HOME$/.subversion</configuration>
-    <supportedVersion>125</supportedVersion>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" myUseAcceleration="nothing">
+    <configuration useDefault="false">C:\Users\Moonsea\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="543a8235-a2e4-4f1b-9d76-0f1e96bb229b" name="Default" comment="" />
-      <created>1465995405605</created>
+      <changelist id="26cb691c-4ea0-43a5-8f87-db8bf18caa95" name="Default" comment="" />
+      <created>1466867116349</created>
       <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1465995405605</updated>
-      <workItem from="1465995414696" duration="507000" />
-      <workItem from="1465995946130" duration="294000" />
-      <workItem from="1466007566223" duration="3116000" />
-      <workItem from="1466288522200" duration="73000" />
-      <workItem from="1466852728895" duration="6118000" />
+      <updated>1466867116349</updated>
+      <workItem from="1466867119839" duration="754000" />
+      <workItem from="1466889099696" duration="1141000" />
+      <workItem from="1466893641194" duration="3015000" />
+      <workItem from="1466986011700" duration="3000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10108000" />
+    <option name="totallyTimeSpent" value="4913000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1920" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6690821" sideWeight="0.504315" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.66979164" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16862327" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973032" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6690821" sideWeight="0.495685" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -892,317 +1039,68 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/reportconfig/wabacus.cfg.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/ht_topa.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/frameset/top.jsp">
+    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/user/normal_user.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2556">
-          <caret line="142" column="69" selection-start-line="142" selection-start-column="69" selection-end-line="142" selection-end-column="69" />
-          <folding>
-            <marker date="1466008808580" expanded="true" signature="638:698" ph="select mem_n... t_memberinfo" />
-            <marker date="1466008808580" expanded="true" signature="921:988" ph="select admin... t_admininfo" />
-            <marker date="1466008808580" expanded="true" signature="2053:2084" ph="select * fro... t_currentyearinfo" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="91" column="24" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/reportconfig/wabacus.cfg.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="89" column="17" selection-start-line="89" selection-start-column="17" selection-end-line="89" selection-end-column="17" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reportconfig/wabacus.cfg.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.mymetadata">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/wabacusdemo/util/SetCharacterEncodingFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/frameset/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/table_bg.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/yzm.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/top2.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/top1.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/title_bg_show.gif">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/title_bg_hide_r3_c2.gif">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/title_bg_hide.gif">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/top3.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/new_bg2.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/admin_left_01.gif">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/bg.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/bg.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/bg1.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/bg3.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/bg3.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/bg41.JPG">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/bot2.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/content_bja.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/ht_ss_left.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/ht_ss_right.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/ht_top.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/ht_top.psd">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/ht_top1.gif">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/ht_top1.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/ht_topa.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/frameset/top.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="162" column="48" selection-start-line="162" selection-start-column="48" selection-end-line="162" selection-end-column="48" />
-          <folding>
-            <marker date="1466008808580" expanded="true" signature="638:698" ph="select mem_n... t_memberinfo" />
-            <marker date="1466008808580" expanded="true" signature="921:988" ph="select admin... t_admininfo" />
-            <marker date="1466008808580" expanded="true" signature="2053:2084" ph="select * fro... t_currentyearinfo" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/checkpasswd/CheckPasswd.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="109" column="38" selection-start-line="109" selection-start-column="38" selection-end-line="109" selection-end-column="38" />
-          <folding>
-            <marker date="1465990635947" expanded="true" signature="2523:2655" ph="select count... t_memberinfo" />
-            <marker date="1465990635947" expanded="true" signature="4090:4225" ph="select count... t_admininfo" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/checkusername/CheckUsername.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="133" column="9" selection-start-line="133" selection-start-column="9" selection-end-line="133" selection-end-column="9" />
-          <folding>
-            <marker date="1465990636099" expanded="true" signature="1964:2042" ph="select count... t_memberinfo" />
-            <marker date="1465990636099" expanded="true" signature="3246:3323" ph="select count... t_admininfo" />
-            <marker date="1465990636099" expanded="true" signature="4527:4606" ph="select count... t_teacherinfo" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/service/ICommonService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/servlet/AuthImgServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/servlet/LogoutServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/util/HrTag.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/interceptor/PageValidateSessionInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="30" column="11" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/util/LoginFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-          <folding>
-            <marker date="1465990636175" expanded="true" signature="7682:7738" ph="select admin... t_admininfo" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/service/impl/CommonServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <marker date="1466862486799" expanded="true" signature="2733:2785" ph="select mem_p... t_memberinfo" />
-            <marker date="1466862486799" expanded="true" signature="3737:3841" ph="INSERT INTO t_memberinfo... " />
-            <marker date="1466862486799" expanded="true" signature="5125:5178" ph="select mem_p... t_memberinfo" />
-            <marker date="1466862486799" expanded="true" signature="6926:6991" ph="select admin... t_admininfo" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/util/SetCharacterEncodingFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/util/SetCharacterEncodingFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.034134008">
+          <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/service/impl/CommonServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4096081">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/user/normal_user.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="91" column="24" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/reportconfig/wabacus.cfg.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="49" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
           <folding />
         </state>
       </provider>
@@ -1210,6 +1108,17 @@
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArquillianSettingsConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
@@ -1247,7 +1156,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>1.6</last-edited>
+          <last-edited>1.7</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1271,7 +1180,7 @@
       </state>
       <state key="ProjectJDKs.UI">
         <settings>
-          <last-edited>1.6</last-edited>
+          <last-edited>Jdk1.6</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

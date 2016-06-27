@@ -45,32 +45,32 @@
 	
 	
 	//添加当前年份session
-	String currentyear = (String) request.getParameter("current_year");
-	System.out.println("current");
-	System.out.println(currentyear);
-	String currentyear_session = session.getAttribute("currentyear")==null?"":session.getAttribute("currentyear").toString();
-	if(currentyear != "" && currentyear != null && !currentyear.equals("") && !currentyear.equals(null)) 
-		{	
-			System.out.println("patameter");
-			session.setAttribute("currentyear", currentyear);
-			
-		}
-		else if(currentyear_session.equals("") || currentyear_session.equals(null))
-		{
-			
-			//System.out.println(currentyear);
-		
-			conn=Config.getInstance().getDataSource("ds_mysql").getConnection();
-		
-			pstmt = conn.prepareStatement("select * from t_currentyearinfo");
-			rs = pstmt.executeQuery();
-			System.out.println("success");
-			if(rs.next()) {
-				//username = rs.getString("mem_name");
-				currentyear = rs.getString("current_year");
-				session.setAttribute("currentyear", currentyear);
-			}
-		}
+//	String currentyear = (String) request.getParameter("current_year");
+//	System.out.println("current");
+//	System.out.println(currentyear);
+//	String currentyear_session = session.getAttribute("currentyear")==null?"":session.getAttribute("currentyear").toString();
+//	if(currentyear != "" && currentyear != null && !currentyear.equals("") && !currentyear.equals(null))
+//		{
+//			System.out.println("patameter");
+//			session.setAttribute("currentyear", currentyear);
+//
+//		}
+//		else if(currentyear_session.equals("") || currentyear_session.equals(null))
+//		{
+//
+//			//System.out.println(currentyear);
+//
+//			conn=Config.getInstance().getDataSource("ds_mysql").getConnection();
+//
+//			pstmt = conn.prepareStatement("select * from t_currentyearinfo");
+//			rs = pstmt.executeQuery();
+//			System.out.println("success");
+//			if(rs.next()) {
+//				//username = rs.getString("mem_name");
+//				currentyear = rs.getString("current_year");
+//				session.setAttribute("currentyear", currentyear);
+//			}
+//		}
 		
 		//String dep_num_session = session.getAttribute("dep_num")==null?"":session.getAttribute("dep_num").toString();
 		//System.out.println(dep_num_session);
@@ -80,7 +80,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>哈工程竞赛管理系统</title>
+		<title>赛体育后台管理系统</title>
 		<link rel="shortcut icon" href="./../favicon.ico">
 		<link rel="stylesheet" type="text/css" href="../css/style.css"></link>
 		<style type="text/css">
@@ -158,11 +158,11 @@ body {
 												&nbsp;
 											</td>
 
-											<td width="" align="center" valign="middle"
+											<td width="400" align="center" valign="middle"
 												name="current_year">
 											</td>
 
-											<td width="160" align="center" valign="middle"
+											<td width="160" align="right" valign="middle"
 												style="color: white;">
 												欢迎<%=username%>登录系统!
 											</td>

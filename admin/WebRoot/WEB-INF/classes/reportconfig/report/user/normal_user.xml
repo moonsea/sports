@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="normal_user" js="/webresources/script/validate.js">
+		<report id="report1" title="普通用户信息管理" pagesize="10|15|20|-1"
+			navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+			type="editablelist2" rowselect="checkbox">
+			<display>
+				<col column="user_id" label="用户id" clickorderby="true"
+					valuestyleproperty="style='mso-number-format:\@' width='15%'">
+					<inputbox jsvalidate="isNotEmpty(#label#不允许为空)"></inputbox>
+				</col>
+				<col column="user_name" label="姓名"
+					valuestyleproperty="style='mso-number-format:\@' width='15%'">
+					<inputbox jsvalidate="isNotEmpty(#label#不允许为空)"></inputbox>
+				</col>
+				<col column="mobile" label="联系方式" clickorderby="true" filter="true"
+					 filterwidth="120px">
+				</col>
+				<col column="desc" label="用户简介" clickorderby="true" filter="true"
+					filterwidth="120px">
+				</col>
+				<col column="champion" label="冠军币" clickorderby="true" filter="true"
+					filterwidth="120px">
+				</col>
+				<col column="rank" label="用户等级" clickorderby="true" filter="true"
+					filterwidth="120px">
+				</col>
+				<col column="is_hot" label="是否热门" clickorderby="true" filter="true"
+					filterwidth="120px">
+					<inputbox type="radiobox">
+						<option value="0" label="否"></option>
+						<option value="1" label="是"></option>
+					</inputbox>
+				</col>
+
+				<col column="{editablelist-edit}" label="编辑">
+					<![CDATA[<input type="button"  value="点击进行编辑"/>]]>
+				</col>
+			</display>
+			<sql>
+				<select>
+					<value>
+						<![CDATA[
+
+							select * from user where {#condition#} and role = '0'
+
+						]]>
+					</value>
+					<!--
+					<condition name="m_id" label="学生学号">
+						<value>
+							<![CDATA[m.mem_id like '%#data#%']]>
+						</value>
+						<inputbox>
+							<typeprompt count="15">
+								<promptcol label="mem_id" title="学号" matchmode="anywhere"></promptcol>
+								<promptcol label="mem_name" title="姓名" matchmode="anywhere"></promptcol>
+								<datasource>
+									<option
+										dataset="@{select mem_id,mem_name from t_memberinfo where {#matchcondition#} and mem_role_id=1}"></option>
+								</datasource>
+							</typeprompt>
+						</inputbox>
+					</condition>
+					<condition name="m_name" label="学生姓名">
+						<value>
+							<![CDATA[m.mem_name like '%#data#%']]>
+						</value>
+					</condition>
+					<condition name="d_name" label="院系名称">
+						<value>
+							<![CDATA[(m.mem_dep_num =#data#)]]>
+						</value>
+						<inputbox type="selectbox">
+							<option value="" label="全部院系"></option>
+							<option dataset="@{select dep_name,dep_id from t_departmentinfo}"
+								label="dep_name" value="dep_id"></option>
+						</inputbox>
+					</condition>
+				    <condition name="g_grade" label="学生年级">
+						<value>
+							<![CDATA[(m.mem_grade =#data#)]]>
+						</value>
+						<inputbox type="selectbox">
+							<option value="" label="全部年级"></option>
+							<option dataset="@{select grade_name,grade_id from t_gradeinfo}"
+								label="grade_name" value="grade_id"></option>
+						</inputbox>
+					</condition>
+					 -->
+				</select>
+				<!--
+				<insert pageurl="report{mem_stu_add_sch.report1}"
+					popupparams="{title:'学生信息',width:800,height:500}" />
+				<update pageurl="report{mem_stu_update_sch.report1}"
+					popupparams="{title:'学生信息',width:800,height:500}" urlparams="mem_id=@{mem_id};" />
+				-->
+				<update>
+					update user (@{user_name},@{mobile},@{is_hot}) where user_id = @{user_id__old};
+				</update>
+				<delete>
+					delete from user where user_id=@{user_id__old};
+				</delete>
+			</sql>
+
+		</report>
+
+	</page>
+</applications>

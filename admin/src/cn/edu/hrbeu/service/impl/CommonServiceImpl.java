@@ -1,30 +1,30 @@
-package cn.edu.hrbeu.service.impl;
+		package cn.edu.hrbeu.service.impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+		import java.sql.Connection;
+		import java.sql.PreparedStatement;
+		import java.sql.ResultSet;
+		import java.sql.SQLException;
+		import java.util.HashSet;
+		import java.util.Iterator;
+		import java.util.Set;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+		import javax.servlet.http.HttpServletRequest;
+		import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang.StringUtils;
+		import org.apache.commons.lang.StringUtils;
 
-import cn.edu.hrbeu.jndi.JNDIDataSource;
-import cn.edu.hrbeu.service.ICommonService;
-import cn.edu.hrbeu.util.Constants;
-import cn.edu.hrbeu.util.DatabaseUtil;
+		import cn.edu.hrbeu.jndi.JNDIDataSource;
+		import cn.edu.hrbeu.service.ICommonService;
+		import cn.edu.hrbeu.util.Constants;
+		import cn.edu.hrbeu.util.DatabaseUtil;
 
 public class CommonServiceImpl implements ICommonService {
 
 	/**
 	 * 功能：将页面选中的checkbox项转换为int[]
-	 * 
+	 *
 	 * 创建时间：2011年04月09日 修改时间：
-	 * 
+	 *
 	 * @param strSelectedIds
 	 *            被选中的id
 	 * @param split
@@ -52,9 +52,9 @@ public class CommonServiceImpl implements ICommonService {
 
 	/**
 	 * 功能：验证用户的合法性
-	 * 
+	 *
 	 * 创建时间：2011年04月10日 修改时间：
-	 * 
+	 *
 	 * @param request
 	 *            请求对象
 	 * @return
@@ -65,7 +65,7 @@ public class CommonServiceImpl implements ICommonService {
 		String rand = (String) session.getAttribute(Constants.AUTH_IMG);
 		String username = request.getParameter("username");// 用户名
 		String password = request.getParameter("password");// 密码
-	////String validateword = request.getParameter("validateword");// 验证码
+		////String validateword = request.getParameter("validateword");// 验证码
 
 //		if (StringUtils.isEmpty(validateword)) {
 //			request.setAttribute(Constants.LOGIN_ERROR, "验证码不能为空！");
@@ -87,20 +87,20 @@ public class CommonServiceImpl implements ICommonService {
 		// 根据username获得其密码信息
 		String dbPassword = CommonServiceImpl.getPassword_stu(username);
 		if (password != null && password.equals(dbPassword)) {// 并且需要验证是否离职
-								
-		 result = true;
-		 request.setAttribute("msg", "登录成功");
-			
+
+			result = true;
+			request.setAttribute("msg", "登录成功");
+
 		} else {
 			request.setAttribute(Constants.LOGIN_ERROR, "用户名或密码错误！");
 			request.setAttribute("msg", "用户名或密码错误！");
 		}
 		return result;
 	}
-	
+
 	public static boolean is_exist(String userName) {
-		
-		
+
+
 		String sql = "select mem_passwd from t_memberinfo where mem_id = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -134,9 +134,9 @@ public class CommonServiceImpl implements ICommonService {
 
 		return true;
 	}
-	
+
 	public static void api_create_stu(HttpServletRequest request) {
-		
+
 		String username = request.getParameter("username");// 用户名
 		String password = request.getParameter("password");// 密码
 		String displayname = request.getParameter("displayname");
@@ -170,9 +170,9 @@ public class CommonServiceImpl implements ICommonService {
 			}
 		}
 
-		
+
 	}
-	
+
 	public static boolean api_stu(HttpServletRequest request) {
 		String username = request.getParameter("username");
 		if (!is_exist(username)) {
@@ -184,26 +184,26 @@ public class CommonServiceImpl implements ICommonService {
 		}
 		return false;
 	}
-	
+
 //	public static boolean api_adm(HttpServletRequest request) {
 //		if (!validate_stu(request)) {
 //			
 //		}
 //		return true;
 //	}
-	
+
 	/**
 	 * 功能：根据用户名从数据库中获得对应的密码
-	 * 
+	 *
 	 * 创建时间：2011年04月10日 修改时间：
-	 * 
+	 *
 	 * @param userName
 	 *            用户名
 	 * @return 用户密码 String
 	 */
 	public static String getPassword_stu(String userName) {
 		String result = "";
-		String sql = "select admin_passwd from admininfo where admin_id = ?";
+		String sql = "select mem_passwd from t_memberinfo where mem_id = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -223,7 +223,7 @@ public class CommonServiceImpl implements ICommonService {
 			rs = pstmt.executeQuery();
 			if (null != rs) {
 				if (rs.next()) {
-					result = rs.getString("admin_passwd");
+					result = rs.getString("mem_passwd");
 				}
 			}
 		} catch (SQLException e) {
@@ -239,8 +239,8 @@ public class CommonServiceImpl implements ICommonService {
 		return result;
 	}
 
-	
-	
+
+
 	public static boolean validate_adm(HttpServletRequest request) {
 		boolean result = false;
 		String username = request.getParameter("username");// 用户名
@@ -258,9 +258,9 @@ public class CommonServiceImpl implements ICommonService {
 		// 根据username获得其密码信息
 		String dbPassword = CommonServiceImpl.getPassword_adm(username);
 		if (password != null && password.equals(dbPassword)) {// 并且需要验证是否离职
-			request.setAttribute("msg", "登录成功");		
-		 result = true;
-			
+			request.setAttribute("msg", "登录成功");
+			result = true;
+
 		} else {
 			request.setAttribute(Constants.LOGIN_ERROR, "用户名或密码错误！");
 			request.setAttribute("msg", "用户名或密码错误！");
@@ -268,12 +268,12 @@ public class CommonServiceImpl implements ICommonService {
 		return result;
 	}
 
-	
+
 	/**
 	 * 功能：根据用户名从数据库中获得对应的密码
-	 * 
+	 *
 	 * 创建时间：2011年04月10日 修改时间：
-	 * 
+	 *
 	 * @param userName
 	 *            用户名
 	 * @return 用户密码 String
@@ -315,15 +315,15 @@ public class CommonServiceImpl implements ICommonService {
 
 		return result;
 	}
-	
+
 
 
 
 	/**
 	 * 功能：根据登录名获得用户的部门或者功能权限
-	 * 
+	 *
 	 * 创建时间：2011年05月09日 修改时间：
-	 * 
+	 *
 	 * @param sql
 	 * @param loginName
 	 * @return 部门或功能ID的集合，用逗号隔开
@@ -404,9 +404,9 @@ public class CommonServiceImpl implements ICommonService {
 
 	/**
 	 * 功能：处理附件路径
-	 * 
+	 *
 	 * 创建时间：2011年04月27号 修改时间：
-	 * 
+	 *
 	 * @param FU_JIAN
 	 * @return
 	 */
@@ -421,7 +421,7 @@ public class CommonServiceImpl implements ICommonService {
 
 	/**
 	 * 功能：根据ID查询参数名称
-	 * 
+	 *
 	 * @param paramId
 	 * @return
 	 */
@@ -432,7 +432,7 @@ public class CommonServiceImpl implements ICommonService {
 
 	/**
 	 * 根据id获得企业的名称
-	 * 
+	 *
 	 * @param untiId
 	 * @return
 	 */
@@ -443,7 +443,7 @@ public class CommonServiceImpl implements ICommonService {
 
 	/**
 	 * 根据id获得对应的名称
-	 * 
+	 *
 	 * @param sql
 	 * @param strId
 	 * @return
