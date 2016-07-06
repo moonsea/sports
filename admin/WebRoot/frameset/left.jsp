@@ -22,23 +22,27 @@
 	List<Operation> operationList = new ArrayList<Operation>();
 
 	try {
-		if(role.equals("stu"))
-		{
-			pstmt = conn
-					.prepareStatement("select C.operationId,C.operationname,C.parentId,C.url from t_memberinfo  A inner join roleoperationmapping B  on A.mem_role_id = B.roleid inner join Operation C on  C.operationid = B.operationId where A.mem_id=? and C.parentId not in('00000000')  order by C.operationId ");
-			pstmt.setString(1, user); 
-			
-			
-		}
-		else
-		{ 		
-			
-			
-			pstmt = conn
-					.prepareStatement("select C.operationId,C.operationname,C.parentId,C.url from t_admininfo  A inner join roleoperationmapping B  on A.admin_role_id = B.roleid inner join Operation C on  C.operationid = B.operationId where A.admin_id=? and  C.parentId <> \"00000000\"  order by C.operationId ");
-			pstmt.setString(1, user);
-		
-		}
+		pstmt = conn
+				.prepareStatement("select C.operationId,C.operationname,C.parentId,C.url from admininfo A inner join roleoperationmapping B  on A.admin_role_id = B.roleid inner join Operation C on  C.operationid = B.operationId where A.admin_id=? and C.parentId not in('00000000')  order by C.operationId ");
+		pstmt.setString(1, user);
+//
+//		if(role.equals("stu"))
+//		{
+//			pstmt = conn
+//					.prepareStatement("select C.operationId,C.operationname,C.parentId,C.url from t_memberinfo  A inner join roleoperationmapping B  on A.mem_role_id = B.roleid inner join Operation C on  C.operationid = B.operationId where A.mem_id=? and C.parentId not in('00000000')  order by C.operationId ");
+//			pstmt.setString(1, user);
+//
+//
+//		}
+//		else
+//		{
+//
+//
+//			pstmt = conn
+//					.prepareStatement("select C.operationId,C.operationname,C.parentId,C.url from t_admininfo  A inner join roleoperationmapping B  on A.admin_role_id = B.roleid inner join Operation C on  C.operationid = B.operationId where A.admin_id=? and  C.parentId <> \"00000000\"  order by C.operationId ");
+//			pstmt.setString(1, user);
+//
+//		}
 		
 		ResultSet userOperationRs = pstmt.executeQuery();
 
@@ -69,29 +73,9 @@
 
 
 	String str = "<div id=\"leftbox\">";
-	if(bigCatalog.equals("03")){
 
-		str += "<div id=\"aa\"><strong>竞赛管理系统</strong></div>";
-		
-	}
-	else if(bigCatalog.equals("01")){
+	str += "<div id=\"aa\"><strong>赛体育后台管理系统</strong></div>";
 
-		str += "<div id=\"aa\"><strong>竞赛管理系统</strong></div>";
-
-		
-	}
-	else if(bigCatalog.equals("02")){
-		str += "<div id=\"aa\"><strong>竞赛管理系统</strong></div>";
-		
-	}
-	else if(bigCatalog.equals("04")){
-		str += "<div id=\"aa\"><strong>竞赛管理系统</strong></div>";
-		
-	}
-	else{
-		
-		
-	}
 	String parentName= "";
 	char id = 'a';
 	for (Operation o : operationList) {
@@ -114,10 +98,11 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>哈工程竞赛管理系统</title>
+		<title>赛体育管理系统</title>
 		<link rel="stylesheet" type="text/css" href="<%=path%>/css/style.css"></link>
 		<script type="text/javascript" src="<%=path%>/js/leftTree.js"></script>
 	</head>
+
 	<body>
 		<table width="100%" border="0" cellpadding="0" cellspacing="0">
 			<tr>

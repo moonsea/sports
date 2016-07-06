@@ -3,7 +3,7 @@
 
 <%@page import="java.util.Date"%>
 <%@page import="java.sql.*"%>
-<%@page import="com.wabacus.config.Config;"%>
+<%@ page import="com.wabacus.config.Config" %>
 <%
 	String path = request.getContextPath();
 	
@@ -11,69 +11,19 @@
 	String dep_Num="";//院系id
 	int role;
 	String mem_id = session.getAttribute("user").toString();
-	String login_role = session.getAttribute(Constants.LOGIN_ROLE).toString();
-	Connection conn=Config.getInstance().getDataSource("ds_mysql").getConnection();
+//	String login_role = session.getAttribute(Constants.LOGIN_ROLE).toString();
+	Connection conn= Config.getInstance().getDataSource("ds_mysql").getConnection();
 	PreparedStatement pstmt;
 	ResultSet rs;
-	if(login_role.equals("stu"))
-	{
-		pstmt = conn.prepareStatement("select mem_name,mem_role_id from t_memberinfo where mem_id=?");
-		pstmt.setString(1, mem_id);
-		rs = pstmt.executeQuery();
-		if(rs.next()) {
-			role = rs.getInt("mem_role_id");
-			username = rs.getString("mem_name");
-			
-		}
+
+	pstmt = conn.prepareStatement("select admin_name,admin_role_id from admininfo where admin_id=?");
+	pstmt.setString(1, mem_id);
+	rs = pstmt.executeQuery();
+	if(rs.next()) {
+		role = rs.getInt("admin_role_id");
+		username = rs.getString("admin_name");
+
 	}
-	else
-	{
-	        pstmt = conn
-					.prepareStatement("select admin_dep_num,admin_name  from t_admininfo  where admin_id=? ");
-			pstmt.setString(1, session.getAttribute("user").toString());
-			ResultSet dep_Nums = pstmt.executeQuery();
-			String adminid= null;
-			while (dep_Nums.next()) 
-			{			
-				dep_Num=dep_Nums.getString("admin_dep_num");	
-				username=dep_Nums.getString("admin_name");			 
-			}
-			
-			session.setAttribute(Constants.Dep_Num,dep_Num);		
-	}
-	
-	
-	
-	//添加当前年份session
-//	String currentyear = (String) request.getParameter("current_year");
-//	System.out.println("current");
-//	System.out.println(currentyear);
-//	String currentyear_session = session.getAttribute("currentyear")==null?"":session.getAttribute("currentyear").toString();
-//	if(currentyear != "" && currentyear != null && !currentyear.equals("") && !currentyear.equals(null))
-//		{
-//			System.out.println("patameter");
-//			session.setAttribute("currentyear", currentyear);
-//
-//		}
-//		else if(currentyear_session.equals("") || currentyear_session.equals(null))
-//		{
-//
-//			//System.out.println(currentyear);
-//
-//			conn=Config.getInstance().getDataSource("ds_mysql").getConnection();
-//
-//			pstmt = conn.prepareStatement("select * from t_currentyearinfo");
-//			rs = pstmt.executeQuery();
-//			System.out.println("success");
-//			if(rs.next()) {
-//				//username = rs.getString("mem_name");
-//				currentyear = rs.getString("current_year");
-//				session.setAttribute("currentyear", currentyear);
-//			}
-//		}
-		
-		//String dep_num_session = session.getAttribute("dep_num")==null?"":session.getAttribute("dep_num").toString();
-		//System.out.println(dep_num_session);
 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -140,7 +90,7 @@ body {
 							cellspacing="0">
 							<tr>
 								<td align="right" valign="bottom"
-									style="background: url(../images/) no-repeat"
+									<%--style="background: url(../images/) no-repeat"--%>
 									class="bj-top">
 									<table width="98%" height="77" border="0" cellpadding="0"
 										cellspacing="0">

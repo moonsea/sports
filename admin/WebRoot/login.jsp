@@ -123,7 +123,7 @@ out.print(request.getAttribute("msg"));
     </ul>  
     </div>  
     </div>
-    <div class="loginbm">版权所有  2016 共青团哈尔滨工程大学委员会</div>
+    <div class="loginbm">版权所有  2016 赛体育</div>
 <input type="hidden" name="origin_uri" value="${requestScope.origin_uri}"/>
 </form>
 </body>

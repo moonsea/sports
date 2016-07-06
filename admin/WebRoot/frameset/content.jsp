@@ -8,15 +8,12 @@
 <!--
 body { 
  	
- 	background-color: #F0FFF0;
+ 	/*background-color: #777777;*/
 	height:100%;
-	background:#f1f8ff url(../images/index.png) no-repeat bottom right;
-	
-
 }
 .bjys {
 border:1px solid #6b3a00;
-background-color:#ffffff;
+background-color:#777777;
 height:23px;
 }
 .STYLE2 {

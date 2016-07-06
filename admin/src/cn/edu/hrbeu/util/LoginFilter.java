@@ -106,17 +106,19 @@ public class LoginFilter implements Filter{
 				return;
 			}
 		}
+
 		else if(Stu_login_page.equals(uri)){
 			//若是登录页面，则通过查看是否附加有查询参数，来判断用户是否访问登录页面，还是提交登录信息
 			String strLogin = httpRequest.getParameter("action");//action是登录页面form的action属性中设置的参数
 			if("login".equals(strLogin)){
 				//若是提交登录信息，则对用户进行验证
 				String origin_uri = "";//原先访问的URI
-				
+
 				//调用公共业务类的validate()方法，验证用户合法性
-				if(CommonServiceImpl.validate_stu(httpRequest)){
+				if(CommonServiceImpl.validate_adm(httpRequest)){
 					//验证通过，在session对象中设置isLogin属性为true
 					session.setAttribute(Constants.IS_LOGIN, "true");
+
 					//在session对象中保存用户名
 					session.setAttribute(Constants.USER_KEY, httpRequest.getParameter("username"));		
 					session.setAttribute(Constants.LOGIN_ROLE, "stu");									

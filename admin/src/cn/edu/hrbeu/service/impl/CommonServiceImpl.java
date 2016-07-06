@@ -280,7 +280,7 @@ public class CommonServiceImpl implements ICommonService {
 	 */
 	public static String getPassword_adm(String userName) {
 		String result = "";
-		String sql = "select admin_passwd,admin_id  from t_admininfo where admin_id = ?";
+		String sql = "select admin_passwd,admin_id  from admininfo where admin_id = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
