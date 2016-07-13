@@ -66,7 +66,7 @@ function refresh(obj)
 
 function refreshSelf(){
 	if(window.location.href!= window.parent.location.href){
-　		top.location="/HEUConStu/login_Adm.jsp";
+　		top.location="/sports/admin/login_Adm.jsp";
 	}
 }
 </script>

@@ -9,8 +9,8 @@
 	 * 须修改此处的变量
 	 * */
 	String serverUri = "http://localhost:8080";
-	String appServerLoginUrl = "http://localhost:8080/HEUConStu/login.jsp";
-	String appServerWelcomeUrl = "http://localhost:8080/HEUConStu/index.jsp";
+	String appServerLoginUrl = "http://localhost:8080/sports/admin/login.jsp";
+	String appServerWelcomeUrl = "http://localhost:8080/sports/admin/index.jsp";
 	/*
 	 * END
 	 * */

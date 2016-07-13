@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="HEUConStu"
+  name="/sports/admin"
   id="myeclipse.1289804684859"
-  context-root="/HEUConStu"
+  context-root="/sorts/admin"
   j2ee-spec="5.0"
   archive="HEUConStu.war">
   <attributes>

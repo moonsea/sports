@@ -1,111 +1,188 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <applications xmlns="http://www.wabacus.com"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
-	<page id="normal_user" js="/webresources/script/validate.js">
-		<report id="report1" title="普通用户信息管理" pagesize="10|15|20|-1"
-			navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
-			type="editablelist2" rowselect="checkbox">
-			<display>
-				<col column="user_id" label="用户id" clickorderby="true"
-					valuestyleproperty="style='mso-number-format:\@' width='15%'">
-					<inputbox jsvalidate="isNotEmpty(#label#不允许为空)"></inputbox>
-				</col>
-				<col column="user_name" label="姓名"
-					valuestyleproperty="style='mso-number-format:\@' width='15%'">
-					<inputbox jsvalidate="isNotEmpty(#label#不允许为空)"></inputbox>
-				</col>
-				<col column="mobile" label="联系方式" clickorderby="true" filter="true"
-					 filterwidth="120px">
-				</col>
-				<col column="desc" label="用户简介" clickorderby="true" filter="true"
-					filterwidth="120px">
-				</col>
-				<col column="champion" label="冠军币" clickorderby="true" filter="true"
-					filterwidth="120px">
-				</col>
-				<col column="rank" label="用户等级" clickorderby="true" filter="true"
-					filterwidth="120px">
-				</col>
-				<col column="is_hot" label="是否热门" clickorderby="true" filter="true"
-					filterwidth="120px">
-					<inputbox type="radiobox">
-						<option value="0" label="否"></option>
-						<option value="1" label="是"></option>
-					</inputbox>
-				</col>
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+    <page id="normal_user" js="/webresources/script/validate.js">
+        <report id="report1" title="普通用户信息管理" pagesize="10|15|20|-1"
+                navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+                type="editablelist" rowselect="checkbox">
+            <display>
+                <col column="user_id" label="用户id" clickorderby="true"
+                     valuestyleproperty="style='mso-number-format:\@' width='15%'">
+                    <inputbox jsvalidate="isNotEmpty(#label#不允许为空)"></inputbox>
+                </col>
+                <col column="user_name" label="姓名"
+                     valuestyleproperty="style='mso-number-format:\@' width='15%'">
+                    <inputbox jsvalidate="isNotEmpty(#label#不允许为空)"></inputbox>
+                </col>
+                <col column="mobile" label="联系方式" clickorderby="true" filter="true"
+                     filterwidth="120px">
+                </col>
+                <col column="desc" label="用户简介" clickorderby="true" filter="true"
+                     filterwidth="120px">
+                </col>
+                <col column="champion" label="冠军币" clickorderby="true" filter="true"
+                     filterwidth="120px">
+                </col>
+                <col column="rank" label="用户等级" clickorderby="true" filter="true"
+                     filterwidth="120px">
+                </col>
+                <col column="is_hot" label="是否热门" clickorderby="true" filter="true"
+                     filterwidth="120px">
+                    <inputbox type="radiobox">
+                        <option value="0" label="否"></option>
+                        <option value="1" label="是"></option>
+                    </inputbox>
+                </col>
 
-				<col column="{editablelist-edit}" label="编辑">
-					<![CDATA[<input type="button"  value="点击进行编辑"/>]]>
-				</col>
-			</display>
-			<sql>
-				<select>
-					<value>
-						<![CDATA[
+                <col column="{editablelist-edit}" label="编辑">
+                    <![CDATA[<input type="button"  value="点击进行编辑"/>]]>
+                </col>
+            </display>
+            <format>
+                <imports>
+                    <import>com.wabacus.util.*</import>
+                    <import>com.wabacus</import>
+                </imports>
+                <value>
+                    <![CDATA[
+					if(rrequest.getShowtype() == Consts.DISPLAY_ON_PAGE)
+					{
+						if(is_hot.equals("1"))
+							is_hot = "是";
+						else
+							is_hot = "否";
+
+					}
+				  ]]>
+                </value>
+            </format>
+            <sql>
+                <select>
+                    <value>
+                        <![CDATA[
 
 							select * from user where {#condition#} and role = '0'
 
 						]]>
-					</value>
-					<!--
-					<condition name="m_id" label="学生学号">
-						<value>
-							<![CDATA[m.mem_id like '%#data#%']]>
-						</value>
-						<inputbox>
-							<typeprompt count="15">
-								<promptcol label="mem_id" title="学号" matchmode="anywhere"></promptcol>
-								<promptcol label="mem_name" title="姓名" matchmode="anywhere"></promptcol>
-								<datasource>
-									<option
-										dataset="@{select mem_id,mem_name from t_memberinfo where {#matchcondition#} and mem_role_id=1}"></option>
-								</datasource>
-							</typeprompt>
-						</inputbox>
-					</condition>
-					<condition name="m_name" label="学生姓名">
-						<value>
-							<![CDATA[m.mem_name like '%#data#%']]>
-						</value>
-					</condition>
-					<condition name="d_name" label="院系名称">
-						<value>
-							<![CDATA[(m.mem_dep_num =#data#)]]>
-						</value>
-						<inputbox type="selectbox">
-							<option value="" label="全部院系"></option>
-							<option dataset="@{select dep_name,dep_id from t_departmentinfo}"
-								label="dep_name" value="dep_id"></option>
-						</inputbox>
-					</condition>
-				    <condition name="g_grade" label="学生年级">
-						<value>
-							<![CDATA[(m.mem_grade =#data#)]]>
-						</value>
-						<inputbox type="selectbox">
-							<option value="" label="全部年级"></option>
-							<option dataset="@{select grade_name,grade_id from t_gradeinfo}"
-								label="grade_name" value="grade_id"></option>
-						</inputbox>
-					</condition>
-					 -->
-				</select>
-				<!--
-				<insert pageurl="report{mem_stu_add_sch.report1}"
-					popupparams="{title:'学生信息',width:800,height:500}" />
-				<update pageurl="report{mem_stu_update_sch.report1}"
-					popupparams="{title:'学生信息',width:800,height:500}" urlparams="mem_id=@{mem_id};" />
-				-->
-				<update>
-					update user (@{user_name},@{mobile},@{is_hot}) where user_id = @{user_id__old};
-				</update>
-				<delete>
-					delete from user where user_id=@{user_id__old};
-				</delete>
-			</sql>
+                    </value>
+                    <condition name="c_id" label="用户id或姓名: " labelposition="left">
+                        <value>
+                            <![CDATA[user_id like '%#data#%']]>
+                        </value>
+                        <inputbox>
+                            <typeprompt count="15">
+                                <promptcol label="user_id" title="id" matchmode="anywhere"></promptcol>
+                                <promptcol label="user_name" title="姓名" matchmode="anywhere"></promptcol>
+                                <datasource>
+                                    <option
+                                            dataset="@{select user_id,user_name from user where {#matchcondition#} and role = '0'}"></option>
+                                </datasource>
+                            </typeprompt>
+                        </inputbox>
+                    </condition>
+                    <condition name="c_mobile" label="联系方式: " labelposition="left">
+                        <value>
+                            <![CDATA[mobile like '%#data#%']]>
+                        </value>
+                    </condition>
+                </select>
+                <insert pageurl="report{normal_user_add.report1}" popupparams="{title:'普通用户',width:650,height:400}"
+                        pageinitsize="max"></insert>
+                <update pageurl="report{normal_user_add.report1}"
+                        popupparams="{title:'普通用户',width:650,height:400}" urlparams="User_Id=@{user_id};"
+                        pageinitsize="max"/>
+                <delete>
+                    delete from user where user_id=@{user_id__old};
+                </delete>
+            </sql>
+        </report>
+    </page>
 
-		</report>
+    <page id="normal_user_add" js="/webresources/script/validate.js">
+        <report id="report1" title="添加普通用户" type="form" servervalidateclass="com.user.validator.CheckUserId">
+            <display labelalign="right" valuealign="left" labeltdwidth="100px">
+                <col column="user_id" label="用户id" br="true">
+                    <inputbox jsvalidate="isNotEmpty(#label#列不允许为空)" styleproperty="width:'100%'"
+                              servervalidate="isRepeatUser(errormess:{#label#重复},methodparams:{\'validate_type\':\'user_id\'})"
+                              servervalidatetype="both"></inputbox>
+                </col>
+                <col column="user_name" label="用户姓名" valuestyleproperty="colspan='1'"
+                     br="true">
+                    <inputbox jsvalidate="isNotEmpty(#label#列不允许为空)" styleproperty="width:'100%'"></inputbox>
+                </col>
+                <col column="mobile" label="联系方式" valuestyleproperty="colspan='1'"
+                     br="true">
+                    <inputbox jsvalidate="isNotEmpty(#label#列不允许为空)" styleproperty="width:'100%'"
+                              servervalidate="isRepeatUser(errormess:{#label#重复},methodparams:{\'validate_type\':\'mobile\'})"
+                              servervalidatetype="both"></inputbox>
+                </col>
+                <col column="password" label="用户密码" valuestyleproperty="colspan='1'"
+                     br="true">
+                    <inputbox type="passwordbox" encodelength="7" displayon="update|insert"
+                              styleproperty="width:'100%'"></inputbox>
+                </col>
+                <col column="sex" label="用户性别" br="true">
+                    <inputbox type="radiobox" styleproperty="width:'100%'">
+                        <option value="0" label="男"></option>
+                        <option value="1" label="女"></option>
+                    </inputbox>
+                </col>
+                <col column="birthday" label="用户生日" br="true">
+                    <inputbox styleproperty="width:'100%'"></inputbox>
+                </col>
+                <col column="medal" label="用户金牌币数量"
+                     valuestyleproperty="style='mso-number-format:\@' width='15%',colspan='1'"
+                     br="true">
+                    <inputbox defaultvalue="0" styleproperty="width:'100%'"></inputbox>
+                </col>
+                <col column="champion" label="用户冠军币数量"
+                     valuestyleproperty="style='mso-number-format:\@' width='15%',colspan='1'"
+                     br="true">
+                    <inputbox styleproperty="width:'100%'" defaultvalue="0"></inputbox>
+                </col>
+                <col column="rank" label="用户等级"
+                     valuestyleproperty="style='mso-number-format:\@' width='15%',colspan='1'"
+                     br="true">
+                    <inputbox defaultvalue="0" styleproperty="width:'100%'"></inputbox>
+                </col>
+                <col column="is_hot" label="用户是否热门" br="true">
+                    <inputbox type="radiobox" defaultvalue="0" styleproperty="width:'100%'">
+                        <option value="0" label="否"></option>
+                        <option value="1" label="是"></option>
+                    </inputbox>
+                </col>
+                <col column="desc" label="用户简介" valuestyleproperty="colspan='1'"
+                     br="true">
+                    <inputbox type="textareabox" styleproperty="rows='3'"></inputbox>
+                </col>
 
-	</page>
+            </display>
+            <sql>
+                <select>
+                    <value>
+                        <![CDATA[select * from user where  {#condition#} and role = '0']]>
+                    </value>
+                    <condition name="User_Id" hidden="true">
+                        <value>
+                            <![CDATA[(user_id = #data# )]]>
+                        </value>
+                    </condition>
+                </select>
+                <insert>
+                    <value>
+                        insert
+                        into　user(@{user_id},@{user_name},@{mobile},@{password},@{birthday},@{medal},@{champion},@{rank},@{is_hot},@{desc},role='0');
+                    </value>
+                </insert>
+                <update>
+                    <value>
+                        <![CDATA[
+						update user(@{user_name},password=password(@{password}),@{birthday},@{medal},@{champion},@{rank},@{is_hot},@{desc}) where user_id=@{user_id__old} ]]>
+                    </value>
+                </update>
+            </sql>
+        </report>
+
+    </page>
 </applications>

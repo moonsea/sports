@@ -2,8 +2,8 @@
 <applications xmlns="http://www.wabacus.com"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
-    <page id="normal_user" js="/webresources/script/validate.js">
-        <report id="report1" title="普通用户信息管理" pagesize="10|15|20|-1"
+    <page id="club_user" js="/webresources/script/validate.js">
+        <report id="report1" title="专家用户信息管理" pagesize="10|15|20|-1"
                 navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
                 type="editablelist" rowselect="checkbox">
             <display>
@@ -18,7 +18,7 @@
                 <col column="mobile" label="联系方式" clickorderby="true" filter="true"
                      filterwidth="120px">
                 </col>
-                <col column="desc" label="用户简介" clickorderby="true" filter="true"
+                <col column="game_type" label="专家领域" clickorderby="true" filter="true"
                      filterwidth="120px">
                 </col>
                 <col column="champion" label="冠军币" clickorderby="true" filter="true"
@@ -62,7 +62,7 @@
                     <value>
                         <![CDATA[
 
-							select * from user where {#condition#} and role = '0'
+							select * from user where {#condition#} and role = '1'
 
 						]]>
                     </value>
@@ -87,10 +87,10 @@
                         </value>
                     </condition>
                 </select>
-                <insert pageurl="report{normal_user_add.report1}" popupparams="{title:'普通用户',width:650,height:400}"
+                <insert pageurl="report{expert_user_add.report1}" popupparams="{title:'专家用户',width:650,height:400}"
                         pageinitsize="max"></insert>
-                <update pageurl="report{normal_user_add.report1}"
-                        popupparams="{title:'普通用户',width:650,height:400}" urlparams="User_Id=@{user_id};"
+                <update pageurl="report{expert_user_add.report1}"
+                        popupparams="{title:'专家用户',width:650,height:400}" urlparams="User_Id=@{user_id};"
                         pageinitsize="max"/>
                 <delete>
                     delete from user where user_id=@{user_id__old};
@@ -99,8 +99,8 @@
         </report>
     </page>
 
-    <page id="normal_user_add" js="/webresources/script/validate.js">
-        <report id="report1" title="添加普通用户" type="form" servervalidateclass="com.user.validator.CheckUserId">
+    <page id="expert_user_add" js="/webresources/script/validate.js">
+        <report id="report1" title="专家用户" type="form" servervalidateclass="com.user.validator.CheckUserId">
             <display labelalign="right" valuealign="left" labeltdwidth="100px">
                 <col column="user_id" label="用户id" br="true">
                     <inputbox jsvalidate="isNotEmpty(#label#列不允许为空)" styleproperty="width:'100%'"
@@ -130,6 +130,11 @@
                 </col>
                 <col column="birthday" label="用户生日" br="true">
                     <inputbox styleproperty="width:'100%'"></inputbox>
+                </col>
+                <col column="game_type" label="专家领域" br="true" valuestyleproperty="width='100%'">
+                    <inputbox type="selectbox" styleproperty="width:'100%'" jsvalidate="isNotEmpty(#label#不允许为空)">
+                        <option dataset="@{select type_id,type_name from game_type order by type_id}" label="type_name" value="type_id"></option>
+                    </inputbox>
                 </col>
                 <col column="medal" label="用户金牌币数量"
                      valuestyleproperty="style='mso-number-format:\@' width='15%',colspan='1'"
@@ -172,13 +177,13 @@
                 <insert>
                     <value>
                         insert
-                        into　user(@{user_id},@{user_name},@{mobile},@{password},@{birthday},@{medal},@{champion},@{rank},@{is_hot},@{desc},role='0');
+                        into　user(@{user_id},@{user_name},@{mobile},password=password(@{password}),@{game_type},@{birthday},@{medal},@{champion},@{rank},@{is_hot},@{desc},role='1');
                     </value>
                 </insert>
                 <update>
                     <value>
                         <![CDATA[
-						update user(@{user_name},password=password(@{password}),@{birthday},@{medal},@{champion},@{rank},@{is_hot},@{desc}) where user_id=@{user_id__old} ]]>
+						update user(@{user_name},password=password(@{password}),@{game_type},@{birthday},@{medal},@{champion},@{rank},@{is_hot},@{desc}) where user_id=@{user_id__old} ]]>
                     </value>
                 </update>
             </sql>

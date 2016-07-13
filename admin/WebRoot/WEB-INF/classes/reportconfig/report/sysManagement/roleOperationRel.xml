@@ -10,13 +10,13 @@
 				valuealign="left">
 				<col column="role_Id" label="角色编号" labelstyleproperty="height='30'" />
 				<col column="role_name" label="角色名称" />
-								
+s
 			</display>
 			
 			<sql>
 				<select>
 					<value>
-					<![CDATA[select * from t_role]]>
+					<![CDATA[select * from role]]>
 					</value>			
 					
 				</select>
@@ -53,12 +53,12 @@
 			<sql>
 				<select>
 					<value>
-					<![CDATA[select * from t_role]]>
+					<![CDATA[select * from role]]>
 					</value>			
 					
 				</select>
  					<update>
-				     update t_role(@{role_name}) where role_Id=@{role_Id};
+				     update role(@{role_name}) where role_Id=@{role_Id};
 				  
 				  </update>
 			</sql>

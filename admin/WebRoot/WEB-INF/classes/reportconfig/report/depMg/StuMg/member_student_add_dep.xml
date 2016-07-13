@@ -10,7 +10,7 @@
 					valuestyleproperty="style='mso-number-format:\@' width='15%',colspan='3'"
 					br="true">
 					<inputbox
-						servervalidate="isNotEmpty(#label#不允许为空);isRepeatUsername(errormess:{#label#重复})"
+						servervalidate="isNotEmpty(#label#不允许为空);isRepeatUsername(errormess:{#label#重复},methodparams:{\'type':\'\'})"
 						servervalidatetype="both"></inputbox>
 				</col>
 				<col column="mem_name" label="学生姓名" valuestyleproperty="colspan='3'"

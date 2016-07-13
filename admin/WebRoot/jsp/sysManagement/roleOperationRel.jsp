@@ -4,8 +4,8 @@
 <%
   
   String d=request.getParameter("roleid");
-  String        e = new String(request.getParameter("rolename").getBytes("UTF-8"),"GBK");
- e= request.getParameter("rolename");
+  String        e = new String(request.getParameter("rolename").getBytes("iso8859-1"),"utf-8");
+// e= request.getParameter("rolename");
 
  %>
 
@@ -13,16 +13,16 @@
 <html style="height:100%">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="STYLESHEET" type="text/css" href="/HEUConStu/dhtmlx/codebase/dhtmlxtree.css">
-		<link rel="STYLESHEET" type="text/css" href="/HEUConStu/dhtmlx/codebase/dhtmlxtabbar.css">
-		<script src="/HEUConStu/dhtmlx/codebase/dhtmlxcommon.js"></script>
-		<script src="/HEUConStu/dhtmlx/codebase/dhtmlxtabbar.js"></script>
-		<script src="/HEUConStu/dhtmlx/codebase/dhtmlxtabbar_start.js"></script>
+		<link rel="STYLESHEET" type="text/css" href="/sports/admin/dhtmlx/codebase/dhtmlxtree.css">
+		<link rel="STYLESHEET" type="text/css" href="/sports/admin/dhtmlx/codebase/dhtmlxtabbar.css">
+		<script src="/sports/admin/dhtmlx/codebase/dhtmlxcommon.js"></script>
+		<script src="/sports/admin/dhtmlx/codebase/dhtmlxtabbar.js"></script>
+		<script src="/sports/admin/dhtmlx/codebase/dhtmlxtabbar_start.js"></script>
 
 	</head>
 	<body style="padding-left:20px" onLoad="loadReadonlyTree();getChild('99999999');">
-		<script src="/HEUConStu/dhtmlx/codebase/dhtmlxcommon.js"></script>
-		<script src="/HEUConStu/dhtmlx/codebase/dhtmlxtree.js"></script>
+		<script src="/sports/admin/dhtmlx/codebase/dhtmlxcommon.js"></script>
+		<script src="/sports/admin/dhtmlx/codebase/dhtmlxtree.js"></script>
 <table>
 		<tr><td><div style="font-weight: bold;">当前岗位：</div></td><td><div  style="font-weight: bold;"><%=e %></div></td><td style="width:100px;text-align: right"><input type="button" value="保存" onclick="saveSelectValues()"></input></td><td></td></tr>
 		</table>
@@ -33,10 +33,10 @@
 			var treeReadOnly;
 			function loadReadonlyTree(){
 				treeReadOnly=new dhtmlXTreeObject("tree","400","1640","99999999");
-				treeReadOnly.setImagePath("/HEUConStu/dhtmlx/codebase/imgs/");
+				treeReadOnly.setImagePath("/sports/admin/dhtmlx/codebase/imgs/");
 				treeReadOnly.enableCheckBoxes(1);
 				treeReadOnly.enableThreeStateCheckboxes(true);
-				treeReadOnly.loadXML("/HEUConStu/jsp/sysManagement/act_system.xml?nu=1");				
+				treeReadOnly.loadXML("/sports/admin/jsp/sysManagement/act_system.xml?nu=1");
 			}		
 			function getChild(parentid){	
 	

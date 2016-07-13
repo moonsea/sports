@@ -10,5 +10,5 @@ function testAfterSaveCallback(paramsObj)
 
 function refTab(pageid,reportid)
 {	
-	parent.location.href='/HEUConStu/ShowReport.wx?PAGEID='+pageid+'&tp1_selectedIndex='+reportid;
+	parent.location.href='/sports/admin/ShowReport.wx?PAGEID='+pageid+'&tp1_selectedIndex='+reportid;
 }
