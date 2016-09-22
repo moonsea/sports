@@ -348,7 +348,6 @@
    		<xs:attribute name="plainexcelwidth" type="xs:string"/>
    		<xs:attribute name="pdfwidth" type="xs:string"/>
    		<xs:attribute name="br" type="wxs:booleanType"/>
-   		<xs:attribute name="clickorderby" type="wxs:booleanType"/>
    		<xs:attribute name="filter" type="xs:string"/>
    		<xs:attribute name="filterwidth" type="xs:string"/>
    		<xs:attribute name="filterformat" type="xs:string"/>

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+
+    <page id="game_admin" js="/webresources/script/validate.js">
+        <tabpanel id="tp1" margin="10px" titlestyle="2">
+
+            <report id="report1" title="比赛信息管理" parenttitle="已发布比赛" pagesize="10|15|20|-1"
+                    navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+                    type="editablelist" rowselect="multiple-checkbox">
+                <display>
+                    <col column="{sequence:1}" label="序号" width="40px"></col>
+                    <col column="game_id" label="比赛编号" clickorderby="true" width="100px"
+                         valuestyleproperty="style='mso-number-format:\@' width='15%'">
+                    </col>
+                    <col column="game_img" label="比赛封面"></col>
+                    <col column="game_name" label="比赛名称">
+                        <inputbox jsvalidate="isNotEmpty(#label#不允许为空)"></inputbox>
+                    </col>
+                    <col column="type_name" label="比赛类型" clickorderby="true" filter="true">
+                    </col>
+                    <col column="admin_club_id" label="俱乐部" clickorderby="true" filter="true">
+                    </col>
+                    <col column="is_hot" label="是否精选" clickorderby="true" filter="true">
+                    </col>
+                    <col column="is_pub" label="是否发布" clickorderby="true" filter="true">
+                    </col>
+
+                    <col column="{editablelist-edit}" label="编辑">
+                        <![CDATA[<input type="button"  value="点击进行编辑"/>]]>
+                    </col>
+                </display>
+                <format>
+                    <imports>
+                        <import>com.wabacus.util.*</import>
+                        <import>com.wabacus</import>
+                    </imports>
+                    <value>
+                        <![CDATA[
+					if(rrequest.getShowtype() == Consts.DISPLAY_ON_PAGE)
+					{
+
+                        //　比赛封面
+						if(game_img!=null&&!game_img.trim().equals(""))
+                        {
+                           //video_cover="<a href=\""+video_cover+"\"><img src=\""+video_cover+"\" width=\"60px\" height=\"60px\"></a>";
+                           game_img="<img src=\""+game_img+"\" width=\"60px\" height=\"60px\">";
+                        }else
+                        {
+                            game_img="无头像";
+                        }
+
+                        // 是否热门
+                        is_hot = is_hot==null?"0":is_hot.trim();
+                        if(is_hot.equals("1"))
+                            is_hot = "是";
+                         else
+                            is_hot = "否";
+
+                        //　是否发布
+                        if(is_pub.equals("1"))
+                        {
+                            is_pub = "已发布";
+                        }
+                        else
+                        {
+                            is_pub = "未发布";
+                        }
+
+                        // 俱乐部
+                        java.sql.Connection  conn = rrequest.getConnection(rbean.getSbean().getDatasource());
+                        java.sql.PreparedStatement pstmt = conn.prepareStatement("select club_name from club where club_id = ?");
+                        pstmt.setString(1,admin_club_id);
+                        java.sql.ResultSet rs =  pstmt.executeQuery();
+                        if(rs.next())
+                        {
+
+                            admin_club_id = rs.getString("club_name");
+                        }
+
+                        rs.close();
+                        pstmt.close();
+
+					}
+				  ]]>
+                    </value>
+                </format>
+                <sql>
+                    <select>
+                        <value>
+                            <![CDATA[
+
+							select a.*,b.type_name,c.admin_club_id from game a left join game_type b on a.type_id = b.type_id left join admininfo c on a.user_id = c.admin_id where {#condition#} and a.is_pub = 1
+
+						]]>
+                        </value>
+                        <condition name="c_club" label="俱乐部" labelposition="left">
+                            <value>
+                                <![CDATA[c.admin_club_id = '#data#']]>
+                            </value>
+                            <inputbox>
+                                <typeprompt count="15">
+                                    <promptcol label="club_id" title="编号" matchmode="anywhere"></promptcol>
+                                    <promptcol label="club_name" title="名称" matchmode="anywhere"></promptcol>
+                                    <datasource>
+                                        <option
+                                                dataset="@{select club_id,club_name from club where {#matchcondition#} order by club_id}"></option>
+                                    </datasource>
+                                </typeprompt>
+                            </inputbox>
+                        </condition>
+                        <condition name="c_type" label="比赛类型" labelposition="left">
+                            <value>
+                                <![CDATA[a.type_id = '#data#']]>
+                            </value>
+                            <inputbox>
+                                <typeprompt count="15">
+                                    <promptcol label="type_id" title="编号" matchmode="anywhere"></promptcol>
+                                    <promptcol label="type_name" title="名称" matchmode="anywhere"></promptcol>
+                                    <datasource>
+                                        <option
+                                                dataset="@{select type_id,type_name from game_type where {#matchcondition#} order by type_name}"></option>
+                                    </datasource>
+                                </typeprompt>
+                            </inputbox>
+                        </condition>
+                    </select>
+                    <insert pageurl="report{game_add.report1}" popupparams="{title:'比赛信息',width:650,height:400}"
+                            pageinitsize="max"/>
+                    <update pageurl="report{game_update_admin.report1}"
+                            popupparams="{title:'比赛信息',width:650,height:400}" urlparams="Game_Id=@{game_id};"
+                            pageinitsize="max"/>
+                    <delete confirmessage="确认删除该比赛？">
+                        delete from game where game_id=@{game_id__old};
+                    </delete>
+                </sql>
+            </report>
+            <report id="report2" parenttitle="未发布比赛" title="比赛信息管理" extends="game_admin.report1">
+                <sql>
+                    <select>
+                        <value>
+                            <![CDATA[
+
+							select a.*,b.type_name,c.admin_club_id from game a left join game_type b on a.type_id = b.type_id left join admininfo c on a.user_id = c.admin_id where {#condition#} and a.is_pub = 0
+
+						]]>
+                        </value>
+                        <condition name="c_club" label="俱乐部" labelposition="left">
+                            <value>
+                                <![CDATA[c.admin_club_id = '#data#']]>
+                            </value>
+                            <inputbox>
+                                <typeprompt count="15">
+                                    <promptcol label="club_id" title="编号" matchmode="anywhere"></promptcol>
+                                    <promptcol label="club_name" title="名称" matchmode="anywhere"></promptcol>
+                                    <datasource>
+                                        <option
+                                                dataset="@{select club_id,club_name from club where {#matchcondition#} order by club_id}"></option>
+                                    </datasource>
+                                </typeprompt>
+                            </inputbox>
+                        </condition>
+                        <condition name="c_type" label="比赛类型" labelposition="left">
+                            <value>
+                                <![CDATA[a.type_id = '#data#']]>
+                            </value>
+                            <inputbox>
+                                <typeprompt count="15">
+                                    <promptcol label="type_id" title="编号" matchmode="anywhere"></promptcol>
+                                    <promptcol label="type_name" title="名称" matchmode="anywhere"></promptcol>
+                                    <datasource>
+                                        <option
+                                                dataset="@{select type_id,type_name from game_type where {#matchcondition#} order by type_name}"></option>
+                                    </datasource>
+                                </typeprompt>
+                            </inputbox>
+                        </condition>
+                    </select>
+                    <insert pageurl="report{game_add.report1}" popupparams="{title:'比赛信息',width:650,height:400}"
+                            pageinitsize="max"/>
+                    <update pageurl="report{game_update_admin.report1}"
+                            popupparams="{title:'比赛信息',width:650,height:400}" urlparams="Game_Id=@{game_id};"
+                            pageinitsize="max"/>
+                    <delete confirmessage="确认删除该比赛？">
+                        delete from game where game_id=@{game_id__old};
+                    </delete>
+                </sql>
+            </report>
+        </tabpanel>
+    </page>
+
+
+    <page id="game_update_admin" js="/webresources/script/validate.js">
+        <report id="report1" title="编辑比赛" type="form" extends="game_add.report1">
+            <sql>
+                <select>
+                    <value>
+                        <![CDATA[select a.*,b.type_name from game a left join game_type b on a.type_id = b.type_id where  {#condition#}]]>
+                    </value>
+                    <condition name="Game_Id" hidden="true">
+                        <value>
+                            <![CDATA[(a.game_id = #data# )]]>
+                        </value>
+                    </condition>
+                </select>
+                <insert>
+                    <params>
+                        <param name="User_Id" value="session{user}"/>
+                    </params>
+                    <value>
+                        insert into
+                        game(@{game_name},@{game_img},user_id=#{User_Id},type_id=@{type_name},@{is_hot},@{is_pub},@{game_desc});
+                    </value>
+                </insert>
+                <update>
+                    <value>
+                        <![CDATA[update game (@{game_name},@{game_img},type_id=@{type_name},@{is_hot},@{is_pub},@{game_desc}) where game_id=@{game_id__old} ]]>
+                    </value>
+                </update>
+            </sql>
+        </report>
+
+    </page>
+</applications>

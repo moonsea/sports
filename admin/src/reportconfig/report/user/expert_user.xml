@@ -100,7 +100,8 @@
     </page>
 
     <page id="expert_user_add" js="/webresources/script/validate.js">
-        <report id="report1" title="专家用户" type="form" servervalidateclass="com.user.validator.CheckUserId">
+        <report id="report1" title="专家用户" type="form" servervalidateclass="com.user.validator.CheckUserId"
+                interceptor="com.user.interceptor.EncryptPasswd">
             <display labelalign="right" valuealign="left" labeltdwidth="100px">
                 <col column="user_id" label="用户id" br="true">
                     <inputbox jsvalidate="isNotEmpty(#label#列不允许为空)" styleproperty="width:'100%'"
@@ -133,7 +134,8 @@
                 </col>
                 <col column="game_type" label="专家领域" br="true" valuestyleproperty="width='100%'">
                     <inputbox type="selectbox" styleproperty="width:'100%'" jsvalidate="isNotEmpty(#label#不允许为空)">
-                        <option dataset="@{select type_id,type_name from game_type order by type_id}" label="type_name" value="type_id"></option>
+                        <option dataset="@{select type_id,type_name from game_type order by type_id}" label="type_name"
+                                value="type_id"></option>
                     </inputbox>
                 </col>
                 <col column="medal" label="用户金牌币数量"
@@ -157,7 +159,7 @@
                         <option value="1" label="是"></option>
                     </inputbox>
                 </col>
-                <col column="desc" label="用户简介" valuestyleproperty="colspan='1'"
+                <col column="user_desc" label="用户简介" valuestyleproperty="colspan='1'"
                      br="true">
                     <inputbox type="textareabox" styleproperty="rows='3'"></inputbox>
                 </col>
@@ -177,13 +179,13 @@
                 <insert>
                     <value>
                         insert
-                        into　user(@{user_id},@{user_name},@{mobile},password=password(@{password}),@{game_type},@{birthday},@{medal},@{champion},@{rank},@{is_hot},@{desc},role='1');
+                        into　user(@{user_id},@{user_name},@{mobile},@{password},@{game_type},@{birthday},@{medal},@{champion},@{rank},@{is_hot},@{user_desc},role='1');
                     </value>
                 </insert>
                 <update>
                     <value>
                         <![CDATA[
-						update user(@{user_name},password=password(@{password}),@{game_type},@{birthday},@{medal},@{champion},@{rank},@{is_hot},@{desc}) where user_id=@{user_id__old} ]]>
+						update user(@{user_name},@{password},@{game_type},@{birthday},@{medal},@{champion},@{rank},@{is_hot},@{user_desc}) where user_id=@{user_id__old} ]]>
                     </value>
                 </update>
             </sql>

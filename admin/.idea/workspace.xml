@@ -2,30 +2,50 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26cb691c-4ea0-43a5-8f87-db8bf18caa95" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/user/validator/CheckUserId.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reportconfig/report/user/club_user.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reportconfig/report/user/expert_user.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/reportconfig/report/sysManagement/roleMg/RoleManageMg.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/reportconfig/report/sysManagement/roleMg/roleOperationRel.xml" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/reportconfig/report/sysManagement/roleMg/RoleManageMg.xml" afterPath="$PROJECT_DIR$/src/reportconfig/report/sysManagement/RoleManageMg.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/reportconfig/report/sysManagement/roleMg/roleOperationRel.xml" afterPath="$PROJECT_DIR$/src/reportconfig/report/sysManagement/roleOperationRel.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/cn/edu/hrbeu/service/impl/CommonServiceImpl.class" afterPath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/cn/edu/hrbeu/service/impl/CommonServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/cn/edu/hrbeu/util/LoginFilter.class" afterPath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/cn/edu/hrbeu/util/LoginFilter.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WebRoot/jsp/game/game_manage.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/user/interceptor/EncryptPasswd.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/user/interceptor/VerifyPass.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/video/servercallback/NormaltoWiki.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/video/validator/CheckVideoRepeat.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reportconfig/report/account/club_manage.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reportconfig/report/account/manage_sys.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reportconfig/report/ad/ad.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reportconfig/report/ad/advertiser.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reportconfig/report/game/game_mange.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reportconfig/report/game/game_mange_admin.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reportconfig/report/game/game_type.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reportconfig/report/sys/info_change.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reportconfig/report/sys/passwd_change.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reportconfig/report/user/feedback.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reportconfig/report/user/verify.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reportconfig/report/video/game_video.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reportconfig/report/video/normal_video.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reportconfig/report/video/report.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reportconfig/report/video/wiki_video.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Desktop.ini" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/reportconfig/report/sysManagement/RoleManageMg.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/reportconfig/report/sysManagement/roleOperationRel.xml" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/reportconfig/report/sysManagement/RoleManageMg.xml" afterPath="$PROJECT_DIR$/src/reportconfig/report/account/role_manage.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/reportconfig/report/sysManagement/roleOperationRel.xml" afterPath="$PROJECT_DIR$/src/reportconfig/report/account/roleOperationRel.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/cn/edu/hrbeu/Invoke/sysManagement/getRoleOperations.class" afterPath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/cn/edu/hrbeu/Invoke/sysManagement/getRoleOperations.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/cn/edu/hrbeu/checkpasswd/CheckPasswd.class" afterPath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/cn/edu/hrbeu/checkpasswd/CheckPasswd.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/com/user/validator/CheckUserId.class" afterPath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/com/user/validator/CheckUserId.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.mymetadata" afterPath="$PROJECT_DIR$/.mymetadata" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/reportconfig/report/depMg/StuMg/member_student_add_dep.xml" afterPath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/reportconfig/report/depMg/StuMg/member_student_add_dep.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/reportconfig/report/user/expert_user.xml" afterPath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/reportconfig/report/user/expert_user.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/reportconfig/report/user/normal_user.xml" afterPath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/reportconfig/report/user/normal_user.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/reportconfig/wabacus.cfg.xml" afterPath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/reportconfig/wabacus.cfg.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/js/ProjectApplyCheckDep/testcallback.js" afterPath="$PROJECT_DIR$/WebRoot/js/ProjectApplyCheckDep/testcallback.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/reportconfig/xsd/wabacus.resources.xsd" afterPath="$PROJECT_DIR$/WebRoot/WEB-INF/classes/reportconfig/xsd/wabacus.resources.xsd" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/jsp/sysManagement/roleOperationRel.jsp" afterPath="$PROJECT_DIR$/WebRoot/jsp/sysManagement/roleOperationRel.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/login.jsp" afterPath="$PROJECT_DIR$/WebRoot/login.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/login_Adm.jsp" afterPath="$PROJECT_DIR$/WebRoot/login_Adm.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/login_old.jsp" afterPath="$PROJECT_DIR$/WebRoot/login_old.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/sso/LocalLogin.jsp" afterPath="$PROJECT_DIR$/WebRoot/sso/LocalLogin.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/wxtmpfiles/js/reportconfigreportusernormal_userxml.js" afterPath="$PROJECT_DIR$/WebRoot/wxtmpfiles/js/reportconfigreportusernormal_userxml.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reportconfig/report/depMg/StuMg/member_student_add_dep.xml" afterPath="$PROJECT_DIR$/src/reportconfig/report/depMg/StuMg/member_student_add_dep.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/edu/hrbeu/Invoke/sysManagement/getRoleOperations.java" afterPath="$PROJECT_DIR$/src/cn/edu/hrbeu/Invoke/sysManagement/getRoleOperations.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/edu/hrbeu/checkpasswd/CheckPasswd.java" afterPath="$PROJECT_DIR$/src/cn/edu/hrbeu/checkpasswd/CheckPasswd.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/user/validator/CheckUserId.java" afterPath="$PROJECT_DIR$/src/com/user/validator/CheckUserId.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reportconfig/report/user/club_user.xml" afterPath="$PROJECT_DIR$/src/reportconfig/report/user/club_user.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reportconfig/report/user/expert_user.xml" afterPath="$PROJECT_DIR$/src/reportconfig/report/user/expert_user.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reportconfig/report/user/normal_user.xml" afterPath="$PROJECT_DIR$/src/reportconfig/report/user/normal_user.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reportconfig/wabacus.cfg.xml" afterPath="$PROJECT_DIR$/src/reportconfig/wabacus.cfg.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reportconfig/xsd/wabacus.resources.xsd" afterPath="$PROJECT_DIR$/src/reportconfig/xsd/wabacus.resources.xsd" />
     </list>
     <ignored path="admin.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -88,31 +108,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="normal_user.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/reportconfig/report/user/normal_user.xml">
+      <file leaf-file-name="normal_video.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/reportconfig/report/video/normal_video.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="655">
-              <caret line="117" column="56" selection-start-line="117" selection-start-column="56" selection-end-line="117" selection-end-column="56" />
+            <state relative-caret-position="1350">
+              <caret line="75" column="24" selection-start-line="75" selection-start-column="24" selection-end-line="81" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="expert_user.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/reportconfig/report/user/expert_user.xml">
+      <file leaf-file-name="report.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/reportconfig/report/video/report.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="655">
-              <caret line="185" column="93" selection-start-line="185" selection-start-column="93" selection-end-line="185" selection-end-column="93" />
+            <state relative-caret-position="540">
+              <caret line="84" column="32" selection-start-line="84" selection-start-column="32" selection-end-line="84" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="club_user.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/reportconfig/report/user/club_user.xml">
+      <file leaf-file-name="feedback.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/reportconfig/report/user/feedback.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+            <state relative-caret-position="1260">
+              <caret line="70" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -136,9 +156,6 @@
         <option value="$PROJECT_DIR$/WebRoot/frameset/top.jsp" />
         <option value="$PROJECT_DIR$/WebRoot/frameset/left.jsp" />
         <option value="$PROJECT_DIR$/WebRoot/frameset/content.jsp" />
-        <option value="$PROJECT_DIR$/src/reportconfig/report/sysManagement/roleOperationRel.xml" />
-        <option value="$PROJECT_DIR$/WebRoot/jsp/sysManagement/roleOperationRel.jsp" />
-        <option value="$PROJECT_DIR$/src/reportconfig/wabacus.cfg.xml" />
         <option value="$PROJECT_DIR$/.mymetadata" />
         <option value="$PROJECT_DIR$/WebRoot/login.jsp" />
         <option value="$PROJECT_DIR$/WebRoot/login_Adm.jsp" />
@@ -146,10 +163,44 @@
         <option value="$PROJECT_DIR$/WebRoot/js/ProjectApplyCheckDep/testcallback.js" />
         <option value="$PROJECT_DIR$/WebRoot/sso/LocalLogin.jsp" />
         <option value="$PROJECT_DIR$/src/reportconfig/report/depMg/StuMg/member_student_add_dep.xml" />
-        <option value="$PROJECT_DIR$/src/reportconfig/report/user/normal_user.xml" />
-        <option value="$PROJECT_DIR$/src/com/user/validator/CheckUserId.java" />
-        <option value="$PROJECT_DIR$/src/reportconfig/report/user/expert_user.xml" />
+        <option value="$PROJECT_DIR$/src/reportconfig/xsd/wabacus.resources.xsd" />
+        <option value="$PROJECT_DIR$/src/cn/edu/hrbeu/Invoke/sysManagement/getRoleOperations.java" />
+        <option value="$PROJECT_DIR$/WebRoot/jsp/sysManagement/roleOperationRel.jsp" />
         <option value="$PROJECT_DIR$/src/reportconfig/report/user/club_user.xml" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/user/normal_user.xml" />
+        <option value="$PROJECT_DIR$/src/com/user/interceptor/EncryptPasswd.java" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/user/expert_user.xml" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/video/game_video.xml" />
+        <option value="$PROJECT_DIR$/src/com/video/validator/CheckVideoRepeat.java" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/sysManagement/role_manage.xml" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/sysManagement/roleOperationRel.xml" />
+        <option value="$PROJECT_DIR$/src/com/user/validator/CheckUserId.java" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/sysManagement/manage_sys.xml" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/sysManagement/club_manage.xml" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/video/wiki_video.xml" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/game/game_add.xml" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/game/game_type.xml" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/sys/passwd_change.xml" />
+        <option value="$PROJECT_DIR$/src/cn/edu/hrbeu/checkpasswd/CheckPasswd.java" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/sys/info_change.xml" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/ad/advertiser.xml" />
+        <option value="$PROJECT_DIR$/WebRoot/js/stuMg/stuMg.js" />
+        <option value="$PROJECT_DIR$/Desktop.ini" />
+        <option value="$PROJECT_DIR$/WebRoot/jsp/game/game_manage.jsp" />
+        <option value="$PROJECT_DIR$/src/reportconfig/wabacus.cfg.xml" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/game/game_mange.xml" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/game/game_mange_admin.xml" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/account/club_manage.xml" />
+        <option value="$PROJECT_DIR$/src/com/video/servercallback/checkgroup/CheckGroupCallBack.java" />
+        <option value="$PROJECT_DIR$/src/com/video/servercallback/CheckGroupCallBack.java" />
+        <option value="$PROJECT_DIR$/src/com/video/servercallback/NormaltoWiki.java" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/ad/ad.xml" />
+        <option value="$PROJECT_DIR$/src/cn/edu/hrbeu/interceptor/StuSubmitProjectInterceptor.java" />
+        <option value="$PROJECT_DIR$/src/com/user/interceptor/VerifyPass.java" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/user/verify.xml" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/video/normal_video.xml" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/user/feedback.xml" />
+        <option value="$PROJECT_DIR$/src/reportconfig/report/video/report.xml" />
       </list>
     </option>
   </component>
@@ -166,10 +217,36 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Bundled (Maven 3)" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="24" />
     <option name="width" value="1920" />
     <option name="height" value="1056" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>XML</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>XmlPathReference</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -196,7 +273,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -261,7 +338,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
+              <option name="myItemId" value="jsp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -279,7 +360,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="frameset" />
+              <option name="myItemId" value="jsp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dataimport" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -298,6 +383,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="reportconfig" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="reportconfig" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="report" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="video" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -371,7 +482,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="stuMg" />
+              <option name="myItemId" value="game" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -423,11 +534,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="depMg" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StuMg" />
+              <option name="myItemId" value="ad" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -462,6 +569,10 @@
               <option name="myItemId" value="com" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -481,7 +592,55 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="validator" />
+              <option name="myItemId" value="video" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="user" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="user" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="interceptor" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -521,13 +680,35 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="checkusername" />
+              <option name="myItemId" value="interceptor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hrbeu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="checkgroup" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -547,14 +728,20 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/moonsea/Codes/sports/admin/src/cn/edu/hrbeu/interceptor/StuSubmitProjectInterceptor.java" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.user.interceptor" />
+      <recent name="com.video.validator" />
       <recent name="com.user.validator" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/reportconfig/report/user" />
-      <recent name="D:\Codes\Project\sports\admin\src\reportconfig\report\user" />
+      <recent name="$PROJECT_DIR$/src/reportconfig/report/video" />
+      <recent name="$PROJECT_DIR$/src/com/video/servercallback" />
+      <recent name="$PROJECT_DIR$/WebRoot/jsp/game" />
+      <recent name="$PROJECT_DIR$/src/reportconfig/report/sys" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 6">
@@ -1131,19 +1318,26 @@
       <workItem from="1467735819170" duration="18468000" />
       <workItem from="1468207095422" duration="15030000" />
       <workItem from="1468384698642" duration="2619000" />
+      <workItem from="1468406492223" duration="100000" />
+      <workItem from="1468413614762" duration="20981000" />
+      <workItem from="1468542683767" duration="40641000" />
+      <workItem from="1470806940560" duration="437000" />
+      <workItem from="1471165756565" duration="44247000" />
+      <workItem from="1471704979501" duration="1506000" />
+      <workItem from="1471749256058" duration="137000" />
+      <workItem from="1471750567254" duration="151000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41409000" />
+    <option name="totallyTimeSpent" value="149609000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1151,23 +1345,24 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.66875" sideWeight="0.495685" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.66979164" sideWeight="0.495685" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21291356" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16915688" sideWeight="0.49583334" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16915688" sideWeight="0.50416666" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1192,383 +1387,366 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/sysManagement/roleOperationRel.xml">
+    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/checkpasswd/CheckPasswd.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="954">
-          <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
+        <state relative-caret-position="498">
+          <caret line="113" column="30" selection-start-line="113" selection-start-column="30" selection-end-line="113" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/reportconfig/wabacus.cfg.xml">
+    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/sys/passwd_change.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="32" column="71" selection-start-line="32" selection-start-column="71" selection-end-line="32" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/util/LoginFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/user/normal_user.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1638">
-          <caret line="91" column="24" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reportconfig/wabacus.cfg.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/user/normal_user.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1638">
-          <caret line="91" column="24" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reportconfig/wabacus.cfg.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/user/normal_user.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1638">
-          <caret line="91" column="24" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reportconfig/wabacus.cfg.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/user/normal_user.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="91" column="24" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reportconfig/wabacus.cfg.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="89" column="17" selection-start-line="89" selection-start-column="17" selection-end-line="89" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/service/impl/CommonServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/util/SetCharacterEncodingFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/util/SetCharacterEncodingFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/Invoke/sysManagement/TreeUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/service/impl/CommonServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="277" column="21" selection-start-line="277" selection-start-column="21" selection-end-line="277" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/frameset/top.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1731">
-          <caret line="149" column="2" selection-start-line="149" selection-start-column="2" selection-end-line="149" selection-end-column="2" />
-          <folding>
-            <marker date="1467818272436" expanded="true" signature="609:672" ph="select admin... admininfo" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/ht_ss_left.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/ht_ss_right.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/frameset/center.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="11" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/images/index.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/frameset/images/light.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/frameset/images/line.gif">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/frameset/content.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="34" column="7" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/frameset/left.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="44" column="9" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
-          <folding>
-            <marker date="1467820366316" expanded="true" signature="821:1090" ph="select C.ope... t_memberinfo" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/jsp/sysManagement/roleOperationRel.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/sysManagement/roleOperationRel.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="954">
-          <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reportconfig/wabacus.cfg.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="579">
-          <caret line="79" column="24" selection-start-line="79" selection-start-column="24" selection-end-line="79" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/stuMg/submitCont/submitProject.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="69" column="55" selection-start-line="69" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/depMg/StuMg/member_student_update_dep.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="93" selection-start-line="7" selection-start-column="49" selection-end-line="8" selection-end-column="93" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reportconfig/xsd/wabacus.resources.xsd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="688">
-          <caret line="343" column="8" selection-start-line="343" selection-start-column="8" selection-end-line="343" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/util/LoginFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-186">
-          <caret line="183" column="51" selection-start-line="183" selection-start-column="49" selection-end-line="183" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/util/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/util/CurrentHomeTag.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="36" column="40" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/util/DatabaseUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="33" column="25" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.mymetadata">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="68" column="31" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/login_Adm.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="68" column="35" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/login_old.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="93" column="35" selection-start-line="93" selection-start-column="35" selection-end-line="93" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/js/ProjectApplyCheckDep/testcallback.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/sso/LocalLogin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="68" selection-start-line="12" selection-start-column="68" selection-end-line="12" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/stuMg/submitCont/submitProjectAttendList.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-371">
-          <caret line="17" column="52" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
+        <state relative-caret-position="288">
+          <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/checkusername/CheckUsername.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-564">
-          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+        <state relative-caret-position="336">
+          <caret line="48" column="66" selection-start-line="48" selection-start-column="66" selection-end-line="48" selection-end-column="66" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/user/validator/CheckUserId.java">
+    <entry file="file://$PROJECT_DIR$/WebRoot/js/stuMg/stuMg.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="68" column="17" selection-start-line="68" selection-start-column="17" selection-end-line="68" selection-end-column="17" />
-          <folding>
-            <marker date="1468342575319" expanded="true" signature="2097:2128" ph="select count... user" />
-            <marker date="1468342575319" expanded="true" signature="2097:2200" ph="select count... t_memberinfo" />
-          </folding>
+        <state relative-caret-position="270">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/game/game_type.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reportconfig/proxool.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Desktop.ini" />
+    <entry file="file://$PROJECT_DIR$/WebRoot/jsp/dataimport/teacherimport.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/checkgroup/CheckGroupCallBack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-666">
+          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/wabacus4.3-release/samples/WabacusDemo/WebRoot/wabacusdemo/jsp/tagpages/dynamictemplatepage2_report2.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="137" selection-start-line="13" selection-start-column="137" selection-end-line="13" selection-end-column="137" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/wabacus4.3-release/samples/WabacusDemo/src/reportconfig/report/report_clientapi.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="38" selection-start-line="0" selection-start-column="36" selection-end-line="0" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/wabacus4.3-release/samples/WabacusDemo/WebRoot/wabacusdemo/jsp/tagpages/dynamictemplatepage3_report2.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="60" selection-start-line="16" selection-start-column="60" selection-end-line="17" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/wabacus4.3-release/samples/WabacusDemo/WebRoot/wabacusdemo/jsp/tagpages/dynamictemplatepage1.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/wabacus4.3-release/samples/WabacusDemo/WebRoot/wabacusdemo/jsp/tagpages/dynamictemplatepage3_report1.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="21" column="65" selection-start-line="21" selection-start-column="65" selection-end-line="21" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRoot/jsp/dataimport/studentimport.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="32" column="38" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/wabacus4.3-release/samples/WabacusDemo/WebRoot/wabacusdemo/jsp/tagpages/dynamictemplatepage2_report1.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="135" selection-start-line="9" selection-start-column="135" selection-end-line="9" selection-end-column="135" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRoot/jsp/game/game_manage.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="113" selection-start-line="18" selection-start-column="98" selection-end-line="18" selection-end-column="113" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/wabacus4.3-release/samples/WabacusDemo/src/reportconfig/report/report_usualfunc5.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="1235" column="79" selection-start-line="1235" selection-start-column="79" selection-end-line="1235" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/wabacus4.3-release/samples/WabacusDemo/WebRoot/wabacusdemo/jsp/tagpages/fileuploadpage.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
+          <caret line="108" column="21" selection-start-line="108" selection-start-column="21" selection-end-line="108" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/game/game_mange_admin.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="195" column="17" selection-start-line="195" selection-start-column="17" selection-end-line="195" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/account/club_manage.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="56" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/video/servercallback/checkgroup/CheckGroupSchCallBack.java" />
+    <entry file="file://$PROJECT_DIR$/src/reportconfig/wabacus.cfg.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRoot/js/tmp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="13" column="191" selection-start-line="13" selection-start-column="191" selection-end-line="13" selection-end-column="191" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/wabacus4.3-release/samples/WabacusDemo/src/com/wabacusdemo/TestServerCallBack1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="768">
+          <caret line="116" column="5" selection-start-line="97" selection-start-column="4" selection-end-line="116" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/video/validator/CheckVideoRepeat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="62" column="31" selection-start-line="62" selection-start-column="31" selection-end-line="62" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/video/servercallback/NormaltoWiki.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="642">
+          <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/video/game_video.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2808">
+          <caret line="156" column="29" selection-start-line="156" selection-start-column="29" selection-end-line="156" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/ad/advertiser.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/game/game_mange.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1887">
+          <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/video/wiki_video.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1098">
+          <caret line="5" column="25" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/depMg/project_apply_check_export.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1923">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/depMg/project_apply_dep.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="774">
+          <caret line="55" column="21" selection-start-line="19" selection-start-column="12" selection-end-line="55" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/ad/ad.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/reportconfig/report/user/normal_user.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="655">
-          <caret line="117" column="56" selection-start-line="117" selection-start-column="56" selection-end-line="117" selection-end-column="56" />
+        <state relative-caret-position="-1599">
+          <caret line="55" column="21" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/depMg/StuMg/member_student_add_dep.xml">
+    <entry file="file://$PROJECT_DIR$/src/com/user/interceptor/EncryptPasswd.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="128" selection-start-line="12" selection-start-column="128" selection-end-line="12" selection-end-column="128" />
-          <folding />
+        <state relative-caret-position="246">
+          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/user/expert_user.xml">
+    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/interceptor/SubmitContestDetailDep.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="655">
-          <caret line="185" column="93" selection-start-line="185" selection-start-column="93" selection-end-line="185" selection-end-column="93" />
-          <folding />
+        <state relative-caret-position="666">
+          <caret line="48" column="44" selection-start-line="48" selection-start-column="44" selection-end-line="48" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/user/club_user.xml">
+    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/interceptor/SubmitContestDetailSch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/interceptor/SubmitContestDetailSch1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-330">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/dep/interceptor/ProjectApplyDepCon1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/dep/interceptor/ProjectApplyDepCon2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/dep/interceptor/SubmitContestDetailDep.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-132">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/interceptor/StudentImport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4322">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/interceptor/PageValidateSessionInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/edu/hrbeu/interceptor/StuSubmitProjectInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="45" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/user/interceptor/VerifyPass.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
-          <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/user/verify.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="943">
+          <caret line="87" column="0" selection-start-line="86" selection-start-column="37" selection-end-line="87" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/video/normal_video.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="75" column="24" selection-start-line="75" selection-start-column="24" selection-end-line="81" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/user/feedback.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1260">
+          <caret line="70" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reportconfig/report/video/report.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="84" column="32" selection-start-line="84" selection-start-column="32" selection-end-line="84" selection-end-column="32" />
           <folding />
         </state>
       </provider>

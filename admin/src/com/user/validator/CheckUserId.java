@@ -50,14 +50,33 @@ public class CheckUserId {
 
         String validate_type = mMethodParavalues.get("validate_type") == null? "user_id":mMethodParavalues.get("validate_type").toString();
 
+        String sql = "";
+        String old_validate_string = "";
+
+        if(validate_type.equals("club_user"))
+        {
+            old_validate_string = (String)mValues.get("user_id__old");//取到修改前的部门编号
+            sql = "select count(*) from join_club where user_id = '"+validate_string+"'";
+        }
+        else if(validate_type.equals("admin_user")){
+            old_validate_string = (String)mValues.get("admin_id__old");//取到修改前的部门编号
+            sql = "select count(*) from admininfo where admin_id = '"+validate_string+"'";
+        }
+        else{
+            old_validate_string = (String)mValues.get(validate_type+"__old");//取到修改前的部门编号
+            sql = "select count(*) from user where "+validate_type+"='"+ validate_string + "'";
+        }
+
+        if(validate_string.equals(old_validate_string)) return true;//本次没有修改deptno，则不可能存在重复
+
         // 连接数据库
         Connection conn = rrequest.getConnection();
         Statement stmt = null;
         try {
             stmt = conn.createStatement();
+
             ResultSet rs = stmt
-                    .executeQuery("select count(*) from user where "+validate_type+"='"
-                            + validate_string + "'");
+                    .executeQuery(sql);
             rs.next();
             int count = rs.getInt(1);
             rs.close();
@@ -67,10 +86,7 @@ public class CheckUserId {
             return false;
         } finally {
             try {
-                if (stmt != null)
-                    stmt.close();
-                if (conn != null)
-                    conn.close();
+                stmt.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }

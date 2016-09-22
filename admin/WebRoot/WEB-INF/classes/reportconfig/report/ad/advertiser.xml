@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+
+    <page id="ad_adver" js="/webresources/script/validate.js">
+        <report id="report1" parenttitle="广告商管理" pagesize="10|15|20|-1"
+                navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+                type="editablelist2" rowselect="multiple-checkbox">
+            <display>
+                <col column="{sequence:1}" label="序号"></col>
+                <col column="adver_id" label="广告商编号" clickorderby="true"
+                     valuestyleproperty="style='mso-number-format:\@' width='15%'">
+                </col>
+                <col column="adver_name" label="广告商名称" width="1000px">
+                    <inputbox jsvalidate="isNotEmpty(#label#不允许为空)"></inputbox>
+                </col>
+            </display>
+            <sql>
+                <select>
+                    <value>
+                        <![CDATA[
+
+							select * from advertise where {#condition#}
+
+						]]>
+                    </value>
+                    <condition name="c_adver" label="广告商id或名称" labelposition="left">
+                        <value>
+                            <![CDATA[adver_id = '#data#']]>
+                        </value>
+                        <inputbox>
+                            <typeprompt count="15">
+                                <promptcol label="adver_id" title="编号" matchmode="anywhere"></promptcol>
+                                <promptcol label="adver_name" title="名称" matchmode="anywhere"></promptcol>
+                                <datasource>
+                                    <option
+                                            dataset="@{select adver_id,adver_name from advertise where {#matchcondition#} order by adver_id}"></option>
+                                </datasource>
+                            </typeprompt>
+                        </inputbox>
+                    </condition>
+                </select>
+                <insert>
+                    insert into advertise (@{adver_name});
+                </insert>
+                <update>
+                    update advertise (@{adver_name}) where adver_id = @{adver_id__old};
+                </update>
+                <delete confirmessage="确认删除该广告商？">
+                    delete from advertise where adver_id=@{adver_id__old};
+                </delete>
+            </sql>
+        </report>
+    </page>
+</applications>

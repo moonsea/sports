@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+    <page id="game_type" js="/webresources/script/validate.js">
+        <report id="report1" parenttitle="运动项目标签库" pagesize="10|15|20|-1"
+                navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+                type="editablelist2">
+            <display>
+                <col column="{sequence:1}" label="序号" width="40px"></col>
+                <col column="type_id" label="项目编号" clickorderby="true" width="100px"
+                     valuestyleproperty="style='mso-number-format:\@' width='15%'">
+                </col>
+                <col column="type_name" label="项目名称">
+                    <inputbox jsvalidate="isNotEmpty(#label#不允许为空)"></inputbox>
+                </col>
+            </display>
+            <sql>
+                <select>
+                    <value>
+                        <![CDATA[
+
+							select * from game_type where {#condition#} order by type_name
+
+						]]>
+                    </value>
+                    <condition name="c_type" label="项目名称" labelposition="left">
+                        <value>
+                            <![CDATA[type_id = '%#data#%']]>
+                        </value>
+                        <inputbox>
+                            <typeprompt count="15">
+                                <promptcol label="type_id" title="编号" matchmode="anywhere"></promptcol>
+                                <promptcol label="type_name" title="名称" matchmode="anywhere"></promptcol>
+                                <datasource>
+                                    <option
+                                            dataset="@{select type_id,type_name from game_type where {#matchcondition#} order by type_name}"></option>
+                                </datasource>
+                            </typeprompt>
+                        </inputbox>
+                    </condition>
+                </select>
+                <insert>
+                    insert into game_type (@{type_name});
+                </insert>
+                <update>
+                    update game_type(@{type_name}) where type_id = @{type_id__old};
+                </update>
+                <delete confirmessage="确认删除该运动项目？">
+                    delete from game_type where type_id=@{type_id__old};
+                </delete>
+            </sql>
+        </report>
+
+    </page>
+</applications>

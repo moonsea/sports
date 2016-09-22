@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+
+    <page id="verify" js="/webresources/script/validate.js">
+        <tabpanel id="tp1" margin="10px" titlestyle="2">
+
+            <report id="report1" title="认证信息管理" parenttitle="未处理认证信息" pagesize="10|15|20|-1"
+                    navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+                    type="listform" interceptor="com.user.interceptor.VerifyPass">
+                <display>
+                    <col column="{sequence:1}" label="序号" width="40px"></col>
+                    <col column="id" label="认证编号" clickorderby="true" width="100px"
+                         valuestyleproperty="style='mso-number-format:\@' width='15%'">
+                    </col>
+                    <col column="user_id" label="用户id" width="100px">
+                    </col>
+                    <col column="user_name" label="用户姓名">
+                    </col>
+                    <col column="img" label="资质照片">
+                    </col>
+                    <col column="add_time" label="申请时间">
+                    </col>
+                    <col column="role_id" label="申请身份id" displaytype="hidden">
+                    </col>
+                    <col column="role_name" label="申请身份">
+                    </col>
+                    <col column="info" label="申请信息">
+                    </col>
+                    <col column="status" label="申请状态">
+                        <inputbox type="selectbox">
+                            <option value="0" label="未处理"/>
+                            <option value="1" label="通过"/>
+                            <option value="2" label="不通过"/>
+                        </inputbox>
+                    </col>
+                </display>
+                <format>
+                    <imports>
+                        <import>com.wabacus.util.*</import>
+                        <import>com.wabacus</import>
+                    </imports>
+                    <value>
+                        <![CDATA[
+
+                                if(rrequest.getShowtype() == Consts.DISPLAY_ON_PAGE)
+                                {
+
+                                    //　资质照片
+                                    if(img!=null&&!img.trim().equals(""))
+                                    {
+                                       img="<img src=\""+img+"\" width=\"60px\" height=\"60px\">";
+                                    }else
+                                    {
+                                        img="无照片";
+                                    }
+
+                                }
+
+                      ]]>
+                    </value>
+                </format>
+                <sql>
+                    <select>
+                        <value>
+                            <![CDATA[
+
+						    	select a.id,a.user_id,a.img,a.role_id,a.info,a.status, FROM_UNIXTIME(a.add_time,'%Y/%m/%d') as add_time,b.user_name,c.role_name from renzheng a left join user b on a.user_id = b.user_id left join role c on a.role_id = c.role_id where {#condition#} and a.status = '0'
+
+					    	]]>
+                        </value>
+                    </select>
+                    <update>
+                        update renzheng (@{status}) where id = @{id__old};
+                    </update>
+                    <delete confirmessage="确认删除该申请？">
+                        delete from renzheng where id=@{id__old};
+                    </delete>
+                </sql>
+            </report>
+
+            <report id="report2" parenttitle="已通过认证管理" title="认证信息管理" extends="verify.report1">
+                <sql>
+                    <select>
+                        <value>
+                            <![CDATA[
+
+						    	select a.id,a.user_id,a.img,a.role_id,a.info,a.status, FROM_UNIXTIME(a.add_time,'%Y/%m/%d') as add_time,b.user_name,c.role_name from renzheng a left join user b on a.user_id = b.user_id left join role c on a.role_id = c.role_id where {#condition#} and a.status = '1'
+
+					    	]]>
+                        </value>
+                    </select>
+                    <!--<update>-->
+                        <!--update renzheng (@{status}) where id = @{id__old};-->
+                    <!--</update>-->
+                    <delete confirmessage="确认删除该申请？">
+                        delete from renzheng where id=@{id__old};
+                    </delete>
+                </sql>
+            </report>
+
+            <report id="report3" parenttitle="未通过认证管理" title="认证信息管理" extends="verify.report1">
+                <sql>
+                    <select>
+                        <value>
+                            <![CDATA[
+
+						    	select a.id,a.user_id,a.img,a.role_id,a.info,a.status, FROM_UNIXTIME(a.add_time,'%Y/%m/%d') as add_time,b.user_name,c.role_name from renzheng a left join user b on a.user_id = b.user_id left join role c on a.role_id = c.role_id where {#condition#} and a.status = '2'
+
+					    	]]>
+                        </value>
+                    </select>
+                    <update>
+                        update renzheng (@{status}) where id = @{id__old};
+                    </update>
+                    <delete confirmessage="确认删除该申请？">
+                        delete from renzheng where id=@{id__old};
+                    </delete>
+                </sql>
+            </report>
+        </tabpanel>
+    </page>
+</applications>

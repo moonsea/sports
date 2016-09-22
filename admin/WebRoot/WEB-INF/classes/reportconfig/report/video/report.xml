@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+
+    <page id="report" js="/webresources/script/validate.js">
+        <tabpanel id="tp1" margin="10px" titlestyle="2">
+
+            <report id="report1" title="举报视频管理" parenttitle="未处理举报管理" pagesize="10|15|20|-1"
+                    navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+                    type="listform">
+                <display>
+                    <col column="{sequence:1}" label="序号" width="40px"></col>
+                    <col column="id" label="举报编号" clickorderby="true" width="100px">
+                    </col>
+                    <col column="add_time" label="举报时间" width="100px" clickorderby="true">
+                    </col>
+                    <col column="video_id" label="视频id" width="100px">
+                    </col>
+                    <col column="video_name" label="视频名称" width="300px">
+                    </col>
+                    <col column="video_cover" label="视频封面" width="100px">
+                    </col>
+                    <col column="video_path" label="播放地址" width="100px">
+                    </col>
+                    <col column="status" label="处理状态" width="100px">
+                        <inputbox type="selectbox">
+                            <option value="0" label="未处理"/>
+                            <option value="1" label="已处理"/>
+                        </inputbox>
+                    </col>
+                </display>
+                <format>
+                    <imports>
+                        <import>com.wabacus.util.*</import>
+                        <import>com.wabacus</import>
+                    </imports>
+                    <value>
+                        <![CDATA[
+
+                                if(rrequest.getShowtype() == Consts.DISPLAY_ON_PAGE)
+                                {
+
+                                    //　视频封面
+                                    if(video_cover!=null&&!video_cover.trim().equals(""))
+                                    {
+                                       video_cover="<img src=\""+video_cover+"\" width=\"60px\" height=\"60px\">";
+                                    }else
+                                    {
+                                        video_cover="无照片";
+                                    }
+
+                                    // 视频路径
+                                   if(video_path!=null&&!video_path.trim().equals(""))
+                                    {
+                                       video_path="<a href=\""+video_path+"\">"+video_name+"</a>";
+                                    }else
+                                    {
+                                        video_path="无播放路径";
+                                    }
+
+                                    //　处理状态
+                                    if(status.equals("1"))
+                                    {
+                                        status = "已处理";
+                                    }
+                                    else
+                                    {
+                                        status = "未处理";
+                                    }
+
+                                }
+
+                      ]]>
+                    </value>
+                </format>
+                <sql>
+                    <select>
+                        <value>
+                            <![CDATA[
+
+						    	select a.id,a.video_id,a.status,FROM_UNIXTIME(a.add_time,'%Y/%m/%d') as add_time,b.name as video_name,b.video_cover,b.video_path from report a left join video b on a.video_id = b.id where {#condition#} and a.status = '0'
+
+					    	]]>
+                        </value>
+                    </select>
+                    <update>
+                        update report (@{status}) where id = @{id__old};
+                    </update>
+                    <delete confirmessage="确认删除该举报？">
+                        delete from report where id=@{id__old};
+                    </delete>
+                </sql>
+            </report>
+
+            <report id="report2" parenttitle="已处理举报管理" title="举报信息管理" extends="report.report1">
+                <sql>
+                    <select>
+                        <value>
+                            <![CDATA[
+
+						    	select a.id,a.video_id,a.status,FROM_UNIXTIME(a.add_time,'%Y/%m/%d') as add_time,b.name as video_name,b.video_cover,b.video_path from report a left join video b on a.video_id = b.id where {#condition#} and a.status = '1'
+
+					    	]]>
+                        </value>
+                    </select>
+                    <!--<update>-->
+                        <!--update report (@{status}) where id = @{id__old};-->
+                    <!--</update>-->
+                    <!--<delete confirmessage="确认删除该申请？">-->
+                        <!--delete from report where id=@{id__old};-->
+                    <!--</delete>-->
+                </sql>
+            </report>
+
+        </tabpanel>
+    </page>
+</applications>

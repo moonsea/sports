@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+    <page id="wiki_video" js="/webresources/script/validate.js">
+        <tabpanel id="tp1" margin="10px" titlestyle="2">
+
+            <report id="report1" title="" parenttitle="标准动作" dataexport="richexcel|plainexcel|word"
+                    type="editablelist2" rowselect="checkbox" servervalidateclass="com.video.validator.CheckVideoRepeat">
+                <display>
+                    <col column="{sequence:1}" label="序号" width="40px"></col>
+
+                    <col column="wiki_id" label="wiki视频id" clickorderby="true" displaytype="hidden">
+                    </col>
+                    <col column="video_id" label="视频id" clickorderby="true" displaytype="hidden">
+                    </col>
+                    <col column="video_cover" label="视频封面" filter="true" clickorderby="true"
+                         valuestyleproperty="width='100%'">
+                    </col>
+                    <col column="name" label="视频名称" filter="true" clickorderby="true" valuestyleproperty="width='100%'">
+                        <inputbox type="selectbox"
+                                  servervalidate="isRepeatVideo(errormess:{该视频已经加入百科},methodparams:{\'validate_type\':\'wiki\'})"
+                                  servervalidatetype="both">
+                            <autocomplete columns="video_id;name;user_id;user_name;play_count;praise_count;add_time;last_time;video_class;video_path"
+                                          colvaluecondition="a.id = #name#"
+                                          dataset="select a.id as video_id,a.id as name,a.video_cover,a.user_id,b.user_name,a.play_count,a.praise_count,FROM_UNIXTIME(a.add_time,'%Y-%m-%d') as add_time,FROM_UNIXTIME(a.last_time,'%Y-%m-%d') as last_time,a.class as video_class,a.video_path from video a left join user b on a.user_id = b.user_id where {#condition#}">
+                            </autocomplete>
+                            <option dataset="@{select id,name from video order by name}" value="id" label="name"></option>
+                        </inputbox>
+                    </col>
+                    <col column="user_id" label="用户id" filter="true" clickorderby="true"
+                         valuestyleproperty="width='100%'" displaytype="hidden">
+                    </col>
+                    <col column="user_name" label="用户姓名" filter="true" clickorderby="true">
+                    </col>
+                    <col column="play_count" label="视频播放次数" clickorderby="true" filter="true"
+                         filterwidth="120px">
+                    </col>
+                    <col column="praise_count" label="视频点赞次数" clickorderby="true" filter="true"
+                         filterwidth="120px">
+                    </col>
+                    <col column="add_time" label="视频添加时间" clickorderby="true" filter="true"
+                         filterwidth="120px" datatype="date{yyyy-MM-dd}">
+                        <inputbox type="datepicker" jsvalidate="isDate(#data#格式不对，必须为yyyy-MM-dd格式)"></inputbox>
+                    </col>
+                    <col column="last_time" label="视频更新时间" clickorderby="true" filter="true"
+                         filterwidth="120px" datatype="date{yyyy-MM-dd}">
+                        <inputbox type="datepicker" jsvalidate="isDate(#data#格式不对，必须为yyyy-MM-dd格式)"></inputbox>
+                    </col>
+                    <col column="video_class" label="是否精选" clickorderby="true" filter="true"
+                         filterwidth="120px">
+                        <inputbox type="radiobox" defaultvalue="0">
+                            <option value="0" label="非精选"></option>
+                            <option value="1" label="精选"></option>
+                        </inputbox>
+                    </col>
+                    <col column="video_path" label="播放地址">
+                    </col>
+
+                </display>
+                <format>
+                    <imports>
+                        <import>com.wabacus.util.*</import>
+                        <import>com.wabacus</import>
+                    </imports>
+                    <value>
+                        <![CDATA[
+					if(rrequest.getShowtype() == Consts.DISPLAY_ON_PAGE)
+					{
+
+                        //　视频精选
+                        video_class = video_class == null? "0":video_class.trim();
+                        if(video_class.equals("1"))
+                            video_class = "精选";
+                        else
+                            video_class = "非精选";
+
+                        //　视频封面
+						if(video_cover!=null&&!video_cover.trim().equals(""))
+                        {
+                           //video_cover="<a href=\""+video_cover+"\"><img src=\""+video_cover+"\" width=\"60px\" height=\"60px\"></a>";
+                           video_cover="<img src=\""+video_cover+"\" width=\"60px\" height=\"60px\">";
+                        }else
+                        {
+                            video_cover="无封面";
+                        }
+
+                        // 视频播放路径
+						if(video_path!=null&&!video_path.trim().equals(""))
+                        {
+                           video_path="<a href=\""+video_path+"\">"+name+"</a>";
+                        }else
+                        {
+                            video_path="无播放路径";
+                        }
+
+					}
+				  ]]>
+                    </value>
+                </format>
+                <sql>
+                    <select>
+                        <value>
+                            <![CDATA[
+
+							select c.wiki_id,c.user_id,c.video_id,a.name,a.play_count,a.praise_count,FROM_UNIXTIME(a.add_time,'%Y-%m-%d') as add_time,FROM_UNIXTIME(a.last_time,'%Y-%m-%d') as last_time,a.class as video_class,a.video_path,a.video_cover,b.user_name from wiki c left join video a on c.video_id = a.id left join user b on c.user_id = b.user_id where {#condition#} and c.type = '0' order by c.user_id,c.wiki_id
+
+						]]>
+                        </value>
+                        <condition name="c_video_id" label="视频编号或名称: " labelposition="left" right="10">
+                            <value>
+                                <![CDATA[c.video_id like '%#data#%']]>
+                            </value>
+                            <inputbox>
+                                <typeprompt count="15">
+                                    <promptcol label="id" title="编号" matchmode="anywhere"></promptcol>
+                                    <promptcol label="name" title="名称" matchmode="anywhere"></promptcol>
+                                    <datasource>
+                                        <option
+                                                dataset="@{select id,name from video where {#matchcondition#} order by id}"></option>
+                                    </datasource>
+                                </typeprompt>
+                            </inputbox>
+                        </condition>
+                        <condition name="c_user_id" label="用户id或姓名: " labelposition="left" right="10">
+                            <value>
+                                <![CDATA[c.user_id like '%#data#%']]>
+                            </value>
+                            <inputbox>
+                                <typeprompt count="15">
+                                    <promptcol label="user_id" title="id" matchmode="anywhere"></promptcol>
+                                    <promptcol label="user_name" title="姓名" matchmode="anywhere"></promptcol>
+                                    <datasource>
+                                        <option
+                                                dataset="@{select user_id,user_name from user where {#matchcondition#} order by user_id}"></option>
+                                    </datasource>
+                                </typeprompt>
+                            </inputbox>
+                        </condition>
+                    </select>
+                    <insert>
+                        insert into wiki(video_id=@{name},user_id = @{user_name},type='0');
+                    </insert>
+                    <update>
+                        update user (class = @{video_class}) where id = @{video_id__old};
+                    </update>
+                    <delete confirmessage="确认从百科视频中删除?">
+                        delete from wiki where wiki_id=@{wiki_id__old};
+                    </delete>
+                </sql>
+            </report>
+
+            <report id="report2" title="" parenttitle="原创动作" extends="wiki_video.report1">
+                <sql>
+                    <select>
+                        <value>
+                            <![CDATA[
+
+							select c.wiki_id,c.user_id,c.video_id,a.name,a.play_count,a.praise_count,FROM_UNIXTIME(a.add_time,'%Y-%m-%d') as add_time,FROM_UNIXTIME(a.last_time,'%Y-%m-%d') as last_time,a.class as video_class,a.video_path,a.video_cover,b.user_name from wiki c left join video a on c.video_id = a.id left join user b on c.user_id = b.user_id where {#condition#} and c.type = '1' order by c.user_id,c.wiki_id
+
+						]]>
+                        </value>
+                        <condition name="c_video_id" label="视频编号或名称: " labelposition="left" right="10">
+                            <value>
+                                <![CDATA[c.video_id like '%#data#%']]>
+                            </value>
+                            <inputbox>
+                                <typeprompt count="15">
+                                    <promptcol label="id" title="编号" matchmode="anywhere"></promptcol>
+                                    <promptcol label="name" title="名称" matchmode="anywhere"></promptcol>
+                                    <datasource>
+                                        <option
+                                                dataset="@{select id,name from video where {#matchcondition#} order by id}"></option>
+                                    </datasource>
+                                </typeprompt>
+                            </inputbox>
+                        </condition>
+                        <condition name="c_user_id" label="用户id或姓名: " labelposition="left" right="10">
+                            <value>
+                                <![CDATA[c.user_id like '%#data#%']]>
+                            </value>
+                            <inputbox>
+                                <typeprompt count="15">
+                                    <promptcol label="user_id" title="id" matchmode="anywhere"></promptcol>
+                                    <promptcol label="user_name" title="姓名" matchmode="anywhere"></promptcol>
+                                    <datasource>
+                                        <option
+                                                dataset="@{select user_id,user_name from user where {#matchcondition#} order by user_id}"></option>
+                                    </datasource>
+                                </typeprompt>
+                            </inputbox>
+                        </condition>
+                    </select>
+                    <insert>
+                        insert into wiki(video_id=@{name},@{user_id},type='1');
+                    </insert>
+                    <update>
+                        update video (class = @{video_class}) where id = @{video_id__old};
+                    </update>
+                    <delete confirmessage="确认从百科视频中删除?">
+                        delete from wiki where wiki_id=@{wiki_id__old};
+                    </delete>
+                </sql>
+            </report>
+        </tabpanel>
+    </page>
+
+</applications>

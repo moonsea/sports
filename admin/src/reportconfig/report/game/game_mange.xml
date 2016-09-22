@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+
+    <page id="game" js="/webresources/script/validate.js">
+        <tabpanel id="tp1" margin="10px" titlestyle="2">
+
+            <report id="report1" parenttitle="已发布比赛" title="比赛信息管理" pagesize="10|15|20|-1"
+                    navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+                    type="editablelist" rowselect="multiple-checkbox">
+                <display>
+                    <col column="{sequence:1}" label="序号" width="40px"></col>
+                    <col column="game_id" label="比赛编号" clickorderby="true" width="100px"
+                         valuestyleproperty="style='mso-number-format:\@' width='15%'">
+                    </col>
+                    <col column="game_img" label="比赛封面"></col>
+                    <col column="game_name" label="比赛名称">
+                        <inputbox jsvalidate="isNotEmpty(#label#不允许为空)"></inputbox>
+                    </col>
+                    <col column="type_name" label="比赛类型" clickorderby="true" filter="true">
+                    </col>
+                    <col column="is_hot" label="是否精选" clickorderby="true" filter="true">
+                    </col>
+                    <col column="is_pub" label="是否发布" clickorderby="true" filter="true">
+                    </col>
+
+                    <col column="{editablelist-edit}" label="编辑">
+                        <![CDATA[<input type="button"  value="点击进行编辑"/>]]>
+                    </col>
+                </display>
+                <format>
+                    <imports>
+                        <import>com.wabacus.util.*</import>
+                        <import>com.wabacus</import>
+                    </imports>
+                    <value>
+                        <![CDATA[
+					if(rrequest.getShowtype() == Consts.DISPLAY_ON_PAGE)
+					{
+
+                        //　比赛封面
+						if(game_img!=null&&!game_img.trim().equals(""))
+                        {
+                           //video_cover="<a href=\""+video_cover+"\"><img src=\""+video_cover+"\" width=\"60px\" height=\"60px\"></a>";
+                           game_img="<img src=\""+game_img+"\" width=\"60px\" height=\"60px\">";
+                        }else
+                        {
+                            game_img="无头像";
+                        }
+
+                        //　是否发布
+                        if(is_pub.equals("1"))
+                        {
+                            is_pub = "已发布";
+                        }
+                        else
+                        {
+                            is_pub = "未发布";
+                        }
+
+					}
+				  ]]>
+                    </value>
+                </format>
+                <sql>
+                    <select>
+                        <value>
+                            <![CDATA[
+
+							select a.*,b.type_name from game a left join game_type b on a.type_id = b.type_id where {#condition#} and is_pub =1
+
+						]]>
+                        </value>
+                        <condition name="User_Id" label="用户名" labelposition="left" hidden="true" source="session{user}">
+                            <value>
+                                <![CDATA[a.user_id = '#data#']]>
+                            </value>
+                        </condition>
+                        <condition name="c_type" label="比赛类型" labelposition="left">
+                            <value>
+                                <![CDATA[a.type_id = '#data#']]>
+                            </value>
+                            <inputbox>
+                                <typeprompt count="15">
+                                    <promptcol label="type_id" title="编号" matchmode="anywhere"></promptcol>
+                                    <promptcol label="type_name" title="名称" matchmode="anywhere"></promptcol>
+                                    <datasource>
+                                        <option
+                                                dataset="@{select type_id,type_name from game_type where {#matchcondition#} order by type_name}"></option>
+                                    </datasource>
+                                </typeprompt>
+                            </inputbox>
+                        </condition>
+                    </select>
+                    <insert pageurl="report{game_add.report1}" popupparams="{title:'比赛信息',width:650,height:400}"
+                            pageinitsize="max"/>
+                    <update pageurl="report{game_update.report1}"
+                            popupparams="{title:'比赛信息',width:650,height:400}" urlparams="Game_Id=@{game_id};"
+                            pageinitsize="max"/>
+                    <delete confirmessage="确认删除该比赛？">
+                        delete from game where game_id=@{game_id__old};
+                    </delete>
+                </sql>
+            </report>
+
+            <report id="report2" parenttitle="未发布比赛" title="比赛信息管理" extends="game.report1">
+                <sql>
+                    <select>
+                        <value>
+                            <![CDATA[
+
+							select a.*,b.type_name from game a left join game_type b on a.type_id = b.type_id where {#condition#} and is_pub = 0
+
+						]]>
+                        </value>
+                        <condition name="User_Id" label="用户名" labelposition="left" hidden="true" source="session{user}">
+                            <value>
+                                <![CDATA[a.user_id = '#data#']]>
+                            </value>
+                        </condition>
+                        <condition name="c_type" label="比赛类型" labelposition="left">
+                            <value>
+                                <![CDATA[a.type_id = '#data#']]>
+                            </value>
+                            <inputbox>
+                                <typeprompt count="15">
+                                    <promptcol label="type_id" title="编号" matchmode="anywhere"></promptcol>
+                                    <promptcol label="type_name" title="名称" matchmode="anywhere"></promptcol>
+                                    <datasource>
+                                        <option
+                                                dataset="@{select type_id,type_name from game_type where {#matchcondition#} order by type_name}"></option>
+                                    </datasource>
+                                </typeprompt>
+                            </inputbox>
+                        </condition>
+                    </select>
+                    <insert pageurl="report{game_add.report1}" popupparams="{title:'比赛信息',width:650,height:400}"
+                            pageinitsize="max"/>
+                    <update pageurl="report{game_update.report1}"
+                            popupparams="{title:'比赛信息',width:650,height:400}" urlparams="Game_Id=@{game_id};"
+                            pageinitsize="max"/>
+                    <delete confirmessage="确认删除该比赛？">
+                        delete from game where game_id=@{game_id__old};
+                    </delete>
+                </sql>
+            </report>
+        </tabpanel>
+    </page>
+
+
+    <page id="game_add" js="/webresources/script/validate.js">
+        <report id="report1" title="添加比赛" type="form">
+            <display labelalign="right" valuealign="left" labeltdwidth="110px">
+                <col column="game_id" label="比赛编号" clickorderby="true"
+                     displaytype="hidden" valuestyleproperty="style='mso-number-format:\@' width='15%'"/>
+                <col column="game_name" label="比赛名称" br="true"
+                     valuestyleproperty="colspan='1'">
+                    <inputbox jsvalidate="isNotEmpty(#label#不允许为空)"
+                              styleproperty="style='width:100%'"></inputbox>
+                </col>
+                <col column="game_img" label="比赛封面"
+                     valuestyleproperty="colspan='1'" br="true">
+                    <inputbox type="file" maxsize="1024" width="400px" height="400px" allowedtypes="jpg;gif;png;bmp"
+                              displaytype="image" deletetype="0" savepath="relative{\upload\game\}"
+                              rooturl="/upload/game/" styleproperty="width:'400px';height:'400px'"></inputbox>
+                </col>
+                <col column="type_id" label="比赛类型编号" br="true"
+                     valuestyleproperty="colspan='1'" displaytype="hidden">
+                </col>
+                <col column="type_name" label="比赛类型" br="true"
+                     valuestyleproperty="colspan='1'">
+                    <inputbox type="selectbox" jsvalidate="isNotEmpty(#label#列不允许为空)" styleproperty="width='100%'">
+                        <autocomplete columns="type_id;type_name;"
+                                      colvaluecondition="type_id = #type_name#"
+                                      dataset="select type_id, type_id as type_name from game_type where {#condition#}">
+                        </autocomplete>
+                        <option dataset="@{select type_id,type_name from game_type order by type_name}" value="type_id"
+                                label="type_name"></option>
+                    </inputbox>
+                </col>
+                <col column="is_hot" label="是否精选" valuestyleproperty="colspan='1'"
+                     br="true">
+                    <inputbox jsvalidate="isNotEmpty(#label#列不允许为空)" type="selectbox"
+                              styleproperty="style='width:100%'" defaultvalue="0">
+                        <option value="0" label="否"></option>
+                        <option value="1" label="是"></option>
+                    </inputbox>
+                </col>
+                <col column="is_pub" label="是否发布" valuestyleproperty="colspan='1'"
+                     br="true">
+                    <inputbox jsvalidate="isNotEmpty(#label#列不允许为空)" type="selectbox"
+                              styleproperty="style='width:100%'" defaultvalue="1">
+                        <option value="0" label="否"></option>
+                        <option value="1" label="是"></option>
+                    </inputbox>
+                </col>
+                <col column="game_desc" label="比赛简介" br="true"
+                     valuestyleproperty="colspan='1'">
+                    <inputbox type="textareabox" styleproperty="rows='3'"></inputbox>
+                </col>
+            </display>
+            <sql>
+                <insert>
+                    <params>
+                        <param name="User_Id" value="session{user}"/>
+                    </params>
+                    <value>
+                        insert into
+                        game(@{game_name},@{game_img},user_id=#{User_Id},type_id=@{type_name},@{is_hot},@{is_pub},@{game_desc});
+                    </value>
+                </insert>
+            </sql>
+        </report>
+    </page>
+
+
+    <page id="game_update" js="/webresources/script/validate.js">
+        <report id="report1" title="修改比赛信息" type="form" extends="game_add.report1">
+            <sql>
+                <select>
+                    <value>
+                        <![CDATA[select a.*,b.type_name from game a left join game_type b on a.type_id = b.type_id where  {#condition#}]]>
+                    </value>
+                    <condition name="Game_Id" hidden="true">
+                        <value>
+                            <![CDATA[(a.game_id = #data# )]]>
+                        </value>
+                    </condition>
+                    <condition name="User_Id" hidden="true" source="session{user}">
+                        <value>
+                            <![CDATA[(a.user_id = #data# )]]>
+                        </value>
+                    </condition>
+                </select>
+                <insert>
+                    <params>
+                        <param name="User_Id" value="session{user}"/>
+                    </params>
+                    <value>
+                        insert into
+                        game(@{game_name},@{game_img},user_id=#{User_Id},type_id=@{type_name},@{is_hot},@{game_desc},@{is_pub});
+                    </value>
+                </insert>
+                <update>
+                    <value>
+                        <![CDATA[update game (@{game_name},@{game_img},type_id=@{type_name},@{is_hot},@{is_pub},@{game_desc}) where game_id=@{game_id__old} ]]>
+                    </value>
+                </update>
+            </sql>
+
+        </report>
+
+    </page>
+</applications>

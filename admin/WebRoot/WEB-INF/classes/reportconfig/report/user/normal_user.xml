@@ -18,7 +18,7 @@
                 <col column="mobile" label="联系方式" clickorderby="true" filter="true"
                      filterwidth="120px">
                 </col>
-                <col column="desc" label="用户简介" clickorderby="true" filter="true"
+                <col column="user_desc" label="用户简介" clickorderby="true" filter="true"
                      filterwidth="120px">
                 </col>
                 <col column="champion" label="冠军币" clickorderby="true" filter="true"
@@ -100,7 +100,8 @@
     </page>
 
     <page id="normal_user_add" js="/webresources/script/validate.js">
-        <report id="report1" title="添加普通用户" type="form" servervalidateclass="com.user.validator.CheckUserId">
+        <report id="report1" title="添加普通用户" type="form" servervalidateclass="com.user.validator.CheckUserId"
+                interceptor="com.user.interceptor.EncryptPasswd">
             <display labelalign="right" valuealign="left" labeltdwidth="100px">
                 <col column="user_id" label="用户id" br="true">
                     <inputbox jsvalidate="isNotEmpty(#label#列不允许为空)" styleproperty="width:'100%'"
@@ -152,7 +153,7 @@
                         <option value="1" label="是"></option>
                     </inputbox>
                 </col>
-                <col column="desc" label="用户简介" valuestyleproperty="colspan='1'"
+                <col column="user_desc" label="用户简介" valuestyleproperty="colspan='1'"
                      br="true">
                     <inputbox type="textareabox" styleproperty="rows='3'"></inputbox>
                 </col>
@@ -172,13 +173,13 @@
                 <insert>
                     <value>
                         insert
-                        into　user(@{user_id},@{user_name},@{mobile},@{password},@{birthday},@{medal},@{champion},@{rank},@{is_hot},@{desc},role='0');
+                        into　user(@{user_id},@{user_name},@{mobile},@{password},@{birthday},@{medal},@{champion},@{rank},@{is_hot},@{user_desc},role='0');
                     </value>
                 </insert>
                 <update>
                     <value>
                         <![CDATA[
-						update user(@{user_name},password=password(@{password}),@{birthday},@{medal},@{champion},@{rank},@{is_hot},@{desc}) where user_id=@{user_id__old} ]]>
+						update user(@{user_name},@{password},@{birthday},@{medal},@{champion},@{rank},@{is_hot},@{user_desc}) where user_id=@{user_id__old} ]]>
                     </value>
                 </update>
             </sql>

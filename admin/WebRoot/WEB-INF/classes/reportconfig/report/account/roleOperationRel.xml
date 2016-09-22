@@ -5,7 +5,7 @@
 	<page xmlns="http://www.wabacus.com" id="RoleOperationRelPage" 
 		js="js/sysManagement/roleOperationRel.js">
 		
-		<report id="report1" title="岗位授权管理" type="editablelist">			
+		<report id="report1" title="用户授权管理" type="editablelist">
 			<display valuetdwidth="100px" labeltdwidth="80px" labelalign="right"
 				valuealign="left">
 				<col column="role_Id" label="角色编号" labelstyleproperty="height='30'" />
@@ -37,12 +37,10 @@ s
 				</value>
 			 </format>
 		</report>
-	
-
 	</page>
 	<page xmlns="http://www.wabacus.com" id="RoleOperationRelPage2" 
 		js="js/sysManagement/roleOperationRel.js">
-			<report id="report1" title="岗位授权管理" type="form" template="/jsp/sysManagement/roleOperationRel.jsp">>			
+			<report id="report1" title="用户授权管理" type="form" template="/jsp/sysManagement/roleOperationRel.jsp">>
 			<display valuetdwidth="100px" labeltdwidth="80px" labelalign="right"
 				valuealign="left">
 				<col column="role_Id" label="角色编号" labelstyleproperty="height='30'" />

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+	<page id="info_change" js="/webresources/script/validate.js">
+		<report id="personal_info_show_com" title="系统管理员信息" pagesize="5|10|15|-1"
+			navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+			type="editabledetail2">
+			<display labelalign="right" valuealign="left" labeltdwidth="100px">
+				<col column="admin_id" label="用户名"
+					valuestyleproperty="style='mso-number-format:\@' width='15%'" br="true">
+					<inputbox styleproperty="disabled='disabled'"></inputbox>
+				</col>
+				<col column="admin_name" label="姓名" br="true"></col>
+				<col column="admin_email" label="邮箱" br="true"></col>
+				<col column="admin_remark" label="备注" br="true"></col>
+			</display>
+			<sql>
+				<select>
+					<value>
+						<![CDATA[select admin_id,admin_name,admin_email,admin_remark from admininfo where {#condition#}]]>
+					</value>
+					<condition name="admin_id" source="session{user}">
+						<value>
+							<![CDATA[admin_id = #data# ]]>
+						</value>
+					</condition>
+				</select>
+				<update>
+					<value> 
+					<![CDATA[update admininfo set admin_email=@{admin_email},admin_remark=@{admin_remark} where admin_id=@{admin_id__old} ]]>
+					</value>
+				</update>
+			</sql>
+		</report>
+	</page>
+</applications>

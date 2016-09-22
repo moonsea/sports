@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+    <page id="manage_sys" js="/webresources/script/validate.js">
+        <tabpanel id="tp1" margin="10px" titlestyle="2">
+            <report id="report1" parenttitle="俱乐部管理员信息管理" pagesize="10|15|20|-1"
+                    navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+                    type="editablelist2" servervalidateclass="com.user.validator.CheckUserId">
+                <display>
+                    <col column="{sequence:1}" label="序号" width="40px"></col>
+                    <col column="admin_id" label="用户名" clickorderby="true"
+                         valuestyleproperty="style='mso-number-format:\@' width='15%'">
+                        <inputbox jsvalidate="isNotEmpty(#label#不允许为空)"
+                                  servervalidate="isRepeatUser(errormess:{该用户已经存在},methodparams:{\'validate_type\':\'admin_user \'})"
+                                  servervalidatetype="both"></inputbox>
+                    </col>
+                    <col column="admin_passwd" label="密码"
+                         valuestyleproperty="style='mso-number-format:\@' width='15%'">
+                        <inputbox type="passwordbox" encodelength="7"
+                                  jsvalidate="isNotEmpty(密码不允许为空)"></inputbox>
+                    </col>
+                    <col column="admin_name" label="用户姓名"
+                         valuestyleproperty="style='mso-number-format:\@' width='15%'">
+                        <inputbox jsvalidate="isNotEmpty(姓名列不允许为空)"></inputbox>
+                    </col>
+                    <col column="club_name" label="俱乐部名称" clickorderby="true" filter="true"
+                         filterwidth="120px" valuestyleproperty="style='mso-number-format:\@' width='15%'">
+                        <inputbox jsvalidate="isNotEmpty(#label#不允许为空)" type="selectbox">
+                            <option dataset="@{select club_id,club_name from club order by club_name}"
+                                    label="club_name" value="club_id"></option>
+                        </inputbox>
+                    </col>
+                    <!--<col column="role_name" label="角色身份">-->
+                    <!--<inputbox jsvalidate="isNotEmpty(#label#不允许为空)" type="selectbox">-->
+                    <!--<option dataset="@{select role_id,role_name from role}"-->
+                    <!--label="role_name" value="role_id"></option>-->
+                    <!--</inputbox>-->
+                    <!--</col>-->
+                    <col column="admin_phone" label="联系电话"></col>
+                    <col column="admin_email" label="邮箱"></col>
+                    <col column="admin_remark" label="备注"></col>
+                </display>
+                <sql>
+                    <select>
+                        <value>
+                            <![CDATA[
+
+							select a.*,b.club_name,c.role_name from admininfo a left join club b on a.admin_club_id = b.club_id left join role c on a.admin_role_id=c.role_id where a.admin_role_id='6' and {#condition#}
+
+						]]>
+                        </value>
+                        <condition name="c_id" label="用户名或姓名" labelposition="left">
+                            <value>
+                                <![CDATA[a.admin_id like '%#data#%']]>
+                            </value>
+                            <inputbox>
+                                <typeprompt count="15">
+                                    <promptcol label="admin_id" title="用户名" matchmode="anywhere"></promptcol>
+                                    <promptcol label="admin_name" title="姓名" matchmode="anywhere"></promptcol>
+                                    <datasource>
+                                        <option
+                                                dataset="@{select admin_id,admin_name from admininfo where {#matchcondition#} and admin_role_id='6'}"></option>
+                                    </datasource>
+                                </typeprompt>
+                            </inputbox>
+                        </condition>
+                        <condition name="c_club" label="俱乐部名称" labelposition="left">
+                            <value>
+                                <![CDATA[c.club_id = '%#data#%']]>
+                            </value>
+                            <inputbox>
+                                <typeprompt count="15">
+                                    <promptcol label="club_id" title="编号" matchmode="anywhere"></promptcol>
+                                    <promptcol label="club_name" title="名称" matchmode="anywhere"></promptcol>
+                                    <datasource>
+                                        <option
+                                                dataset="@{select club_id,club_name from club where {#matchcondition#} order by club_name}"></option>
+                                    </datasource>
+                                </typeprompt>
+                            </inputbox>
+                        </condition>
+                    </select>
+                    <insert>
+                        insert into admininfo (@{admin_id},@{admin_name},@{admin_passwd},@{admin_email},admin_club_id =
+                        @{club_name},admin_role_id = '6',@{admin_phone},@{admin_remark});
+                    </insert>
+                    <update>
+                        update admininfo (@{admin_name},@{admin_passwd},@{admin_email},admin_club_id =
+                        @{club_name},@{admin_phone},@{admin_remark}) where admin_id = @{admin_id__old};
+                    </update>
+                    <delete confirmessage="确认删除该俱乐部管理员？">
+                        delete from admininfo where admin_id=@{admin_id__old};
+                    </delete>
+                </sql>
+            </report>
+
+            <report id="report2" parenttitle="超级管理员信息管理" pagesize="10|15|20|-1"
+                    navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+                    type="editablelist2" servervalidateclass="com.user.validator.CheckUserId">
+                <display>
+                    <col column="{sequence:1}" label="序号" width="40px"></col>
+                    <col column="admin_id" label="用户名" clickorderby="true"
+                         valuestyleproperty="style='mso-number-format:\@' width='15%'">
+                        <inputbox jsvalidate="isNotEmpty(#label#不允许为空)"
+                                  servervalidate="isRepeatUser(errormess:{该用户已经存在},methodparams:{\'validate_type\':\'admin_user \'})"
+                                  servervalidatetype="both"></inputbox>
+                    </col>
+                    <col column="admin_passwd" label="密码"
+                         valuestyleproperty="style='mso-number-format:\@' width='15%'">
+                        <inputbox type="passwordbox" encodelength="7"
+                                  jsvalidate="isNotEmpty(密码不允许为空)"></inputbox>
+                    </col>
+                    <col column="admin_name" label="用户姓名"
+                         valuestyleproperty="style='mso-number-format:\@' width='15%'">
+                        <inputbox jsvalidate="isNotEmpty(姓名列不允许为空)"></inputbox>
+                    </col>
+                    <!--<col column="role_name" label="角色身份">-->
+                    <!--<inputbox jsvalidate="isNotEmpty(#label#不允许为空)" type="selectbox">-->
+                    <!--<option dataset="@{select role_id,role_name from role}"-->
+                    <!--label="role_name" value="role_id"></option>-->
+                    <!--</inputbox>-->
+                    <!--</col>-->
+                    <col column="admin_phone" label="联系电话"></col>
+                    <col column="admin_email" label="邮箱"></col>
+                    <col column="admin_remark" label="备注"></col>
+                </display>
+                <sql>
+                    <select>
+                        <value>
+                            <![CDATA[
+
+							select a.*,c.role_name from admininfo a left join role c on a.admin_role_id=c.role_id where a.admin_role_id='1' and {#condition#}
+
+						]]>
+                        </value>
+                        <condition name="c_id" label="用户名或姓名" labelposition="left">
+                            <value>
+                                <![CDATA[a.admin_id like '%#data#%']]>
+                            </value>
+                            <inputbox>
+                                <typeprompt count="15">
+                                    <promptcol label="admin_id" title="用户名" matchmode="anywhere"></promptcol>
+                                    <promptcol label="admin_name" title="姓名" matchmode="anywhere"></promptcol>
+                                    <datasource>
+                                        <option
+                                                dataset="@{select admin_id,admin_name from admininfo where {#matchcondition#} and admin_role_id='1'}"></option>
+                                    </datasource>
+                                </typeprompt>
+                            </inputbox>
+                        </condition>
+                    </select>
+                    <insert>
+                        insert into admininfo (@{admin_id},@{admin_name},@{admin_passwd},@{admin_email},admin_role_id =
+                        '１',@{admin_phone},@{admin_remark});
+                    </insert>
+                    <update>
+                        update admininfo (@{admin_name},@{admin_passwd},@{admin_email},@{admin_phone},@{admin_remark})
+                        where admin_id = @{admin_id__old};
+                    </update>
+                    <delete confirmessage="确认删除该超级管理员？">
+                        delete from admininfo where admin_id=@{admin_id__old};
+                    </delete>
+                </sql>
+            </report>
+
+        </tabpanel>
+    </page>
+</applications>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications xmlns="http://www.wabacus.com"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
+    <page id="club_manage" js="/webresources/script/validate.js">
+        <report id="report1" parenttitle="俱乐部管理" pagesize="10|15|20|-1"
+                navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
+                type="editablelist2">
+            <display>
+                <col column="{sequence:1}" label="序号" width="40px"></col>
+                <col column="club_id" label="俱乐部编号" clickorderby="true" width="100px"
+                     valuestyleproperty="style='mso-number-format:\@' width='15%'">
+                </col>
+                <col column="img" label="俱乐部头像">
+                    <inputbox type="file" maxsize="1024" width="60px" height="60px" allowedtypes="jpg;gif;png;bmp"
+                              displaytype="image" deletetype="0" savepath="relative{\upload\game\}"
+                              rooturl="/upload/game/" styleproperty="width:'60px';height:'60px'"></inputbox>
+                </col>
+                <col column="club_name" label="俱乐部名称">
+                    <inputbox jsvalidate="isNotEmpty(#label#列不允许为空)"></inputbox>
+                </col>
+                <col column="rank" label="俱乐部等级" clickorderby="true"
+                     valuestyleproperty="style='mso-number-format:\@' width='15%'">
+                </col>
+                <col column="remark" label="备注"></col>
+            </display>
+            <sql>
+                <select>
+                    <value>
+                        <![CDATA[
+
+							select * from club where {#condition#}
+
+						]]>
+                    </value>
+                    <condition name="c_club" label="俱乐部名称" labelposition="left">
+                        <value>
+                            <![CDATA[club_id = '%#data#%']]>
+                        </value>
+                        <inputbox>
+                            <typeprompt count="15">
+                                <promptcol label="club_id" title="编号" matchmode="anywhere"></promptcol>
+                                <promptcol label="club_name" title="名称" matchmode="anywhere"></promptcol>
+                                <datasource>
+                                    <option
+                                            dataset="@{select club_id,club_name from club where {#matchcondition#} order by club_name}"></option>
+                                </datasource>
+                            </typeprompt>
+                        </inputbox>
+                    </condition>
+                </select>
+                <insert>
+                    insert into club (@{club_name},@{img},@{rank},@{remark});
+                </insert>
+                <update>
+                    update club(@{club_name},@{img},@{rank},@{remark}) where club_id = @{club_id__old};
+                </update>
+                <delete confirmessage="确认删除该俱乐部？">
+                    delete from club where club_id=@{club_id__old};
+                </delete>
+            </sql>
+        </report>
+
+    </page>
+</applications>

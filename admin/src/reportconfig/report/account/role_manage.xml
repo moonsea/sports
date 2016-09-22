@@ -2,32 +2,31 @@
 <applications xmlns="http://www.wabacus.com"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.wabacus.com ../xsd/wabacus.applications.xsd">
-	<page id="RoleManage" js="/webresources/script/validate.js">
+	<page id="role_manage" js="/webresources/script/validate.js">
 		<report id="report1" title="角色管理" type="listform"  pagesize="50|30|15|-1" navigate="${navigatepagesizepage1.report3.navigate}">
 			<display valuetdwidth="100px" labeltdwidth="80px" labelalign="right"
 				valuealign="left">
-				<col column="Role_Id" label="角色编号" />
-				<col column="Role_Name" label="角色名称" ></col>
+				<col column="role_id" label="角色编号" />
+				<col column="role_name" label="角色名称" ></col>
+				<col column="remark" label="角色备注" ></col>
 			</display>
 			<sql>
 				<select>
 					<value>
-					<![CDATA[SELECT * FROM t_role   order by Role_Id ]]>
-					</value>				
-
+					<![CDATA[SELECT * FROM role   order by role_id ]]>
+					</value>
 				</select>
 				 <insert>
-				    insert into role (@{Role_Name});
+				    insert into role (@{role_name},@{remark});
 				  </insert>
 				<update>
 					update
-					role (@{Role_Name})
-					where RoleId=@{Role_Id};			
+					role (@{role_name},@{remark})
+					where role_id=@{role_id__old};
 				  </update>
 				<delete>
-					delete from t_role where Role_Id=@{Role_Id};
+					delete from role where role_id=@{role_id__old};
 				  </delete>
-
 			</sql>
 
 		</report>
