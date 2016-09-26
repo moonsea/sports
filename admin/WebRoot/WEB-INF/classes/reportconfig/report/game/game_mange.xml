@@ -150,7 +150,7 @@
 
 
     <page id="game_add" js="/webresources/script/validate.js">
-        <report id="report1" title="添加比赛" type="form">
+        <report id="report1" title="添加比赛" type="form" interceptor="com.game.interceptor.GameInterceptor">
             <display labelalign="right" valuealign="left" labeltdwidth="110px">
                 <col column="game_id" label="比赛编号" clickorderby="true"
                      displaytype="hidden" valuestyleproperty="style='mso-number-format:\@' width='15%'"/>

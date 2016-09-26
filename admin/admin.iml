@@ -429,7 +429,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../project/server/apache-tomcat-6.0.45/lib/jsp-api.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../server/apache-tomcat-6.0.45/lib/jsp-api.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -438,7 +438,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../project/server/apache-tomcat-6.0.45/lib/servlet-api.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../server/apache-tomcat-6.0.45/lib/servlet-api.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

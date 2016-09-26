@@ -8,7 +8,7 @@
 
             <report id="report1" title="广告信息管理" parenttitle="首页广告管理" pagesize="10|15|20|-1"
                     navigate="${navigatepagesizepage1.report3.navigate}" dataexport="richexcel|plainexcel|word"
-                    type="editablelist2">
+                    type="editablelist2" interceptor="com.ad.interceptor.AdInterceptor">
                 <display>
                     <col column="{sequence:1}" label="序号" width="40px"></col>
                     <col column="ad_id" label="广告编号" clickorderby="true" width="100px"
